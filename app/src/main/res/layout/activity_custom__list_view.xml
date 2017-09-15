@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingEnd="10dp"
+    tools:context="fatihdemirag.net.dersprogram.Custom_ListView">
+
+    <TextView
+        android:id="@+id/baslangicSaat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Başlangıç"
+        tools:layout_editor_absoluteY="7dp"
+        app:layout_constraintRight_toLeftOf="@+id/textView3"
+        android:layout_marginRight="24dp"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+    <TextView
+        android:id="@+id/bitisSaat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bitiş"
+        tools:layout_editor_absoluteY="7dp"
+        app:layout_constraintRight_toLeftOf="@+id/textView3"
+        android:layout_marginRight="24dp"
+        android:layout_alignBaseline="@+id/baslangicSaat"
+        android:layout_alignBottom="@+id/baslangicSaat"
+        android:layout_toEndOf="@+id/baslangicSaat" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dersId"
+        android:text="id"
+        android:visibility="invisible"
+        android:layout_marginStart="39dp"
+        android:layout_below="@+id/ders"
+        android:layout_toEndOf="@+id/baslangicSaat" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="7dp"
+        android:layout_alignBaseline="@+id/baslangicSaat"
+        android:layout_alignBottom="@+id/baslangicSaat"
+        android:layout_toStartOf="@+id/bitisSaat"
+        android:layout_marginEnd="10dp" />
+
+    <TextView
+        android:id="@+id/ders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ders"
+        tools:layout_editor_absoluteY="7dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView3"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/ic_class_black_24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+    <ImageView
+        android:id="@+id/editIcon"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/ic_edit_black_24dp"
+        android:clickable="true"
+        android:layout_alignBottom="@+id/dersNotuEkleImage"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/dersNotuEkleImage"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/ic_note_add_black_24dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/editIcon" />
+</RelativeLayout>

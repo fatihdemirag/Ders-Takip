@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Ders Programı</string>
+    <string name="action_settings">Ayarlar</string>
+
+    <string name="title_activity_gunler">Ders Programı</string>
+    <string name="duzenle">Düzenle</string>
+    <string name="title_activity_main2">Anasayfa</string>
+
+    <string name="title_section1">Ders Programı</string>
+    <string name="title_section2">Notlar</string>
+    <string name="title_section3">Ayarlar</string>
+    <string name="title_section4">Section 4</string>
+    <string name="title_section5">Section 5</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+</resources>

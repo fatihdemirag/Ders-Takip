@@ -1,0 +1,6 @@
+            Pazartesi fragment;
+            fragment=new Pazartesi();
+            FragmentManager fragmentManager=getFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment,fragment);
+            fragmentTransaction.commit();
