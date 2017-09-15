@@ -2,7 +2,7 @@ package fatihdemirag.net.dersprogram;
 
 import android.app.Activity;
 import android.os.Bundle;
-
+//fxd
 public class Ayarlar extends Activity {
 
     @Override
