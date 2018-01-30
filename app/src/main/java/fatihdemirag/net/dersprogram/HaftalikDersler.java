@@ -15,9 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
-import at.markushi.ui.CircleButton;
 import fatihdemirag.net.dersprogram.Fragments.Carsamba;
 import fatihdemirag.net.dersprogram.Fragments.Cuma;
 import fatihdemirag.net.dersprogram.Fragments.Cumartesi;
@@ -26,7 +26,7 @@ import fatihdemirag.net.dersprogram.Fragments.Pazartesi;
 import fatihdemirag.net.dersprogram.Fragments.Persembe;
 import fatihdemirag.net.dersprogram.Fragments.Sali;
 
-public class Gunler extends Activity implements ActionBar.TabListener {
+public class HaftalikDersler extends Activity implements ActionBar.TabListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -43,7 +43,6 @@ public class Gunler extends Activity implements ActionBar.TabListener {
      */
     private ViewPager mViewPager;
 
-    Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +51,9 @@ public class Gunler extends Activity implements ActionBar.TabListener {
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
+        getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -59,6 +61,8 @@ public class Gunler extends Activity implements ActionBar.TabListener {
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         // When swiping between different sections, select the corresponding
         // tab. We can also use ActionBar.Tab#select() to do this if we have
@@ -81,10 +85,7 @@ public class Gunler extends Activity implements ActionBar.TabListener {
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
-
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -98,6 +99,11 @@ public class Gunler extends Activity implements ActionBar.TabListener {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+        }
 
         //noinspection SimplifiableIfStatement
 
@@ -143,14 +149,15 @@ public class Gunler extends Activity implements ActionBar.TabListener {
             fragment.setArguments(args);
             return fragment;
         }
-        CircleButton circleButton;
+
+        Button circleButton;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
 
-            View rootView = inflater.inflate(R.layout.fragment_gunler, container, false);
-            circleButton=(CircleButton)rootView.findViewById(R.id.circle);
+            View rootView = inflater.inflate(R.layout.fragment_haftalik_dersler, container, false);
+            circleButton = rootView.findViewById(R.id.circle);
 
             return rootView;
         }

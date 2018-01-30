@@ -1,7 +1,4 @@
-package fatihdemirag.net.dersprogram;
-
-import android.graphics.Bitmap;
-import android.widget.ImageView;
+package fatihdemirag.net.dersprogram.Sınıflar;
 
 /**
  * Created by fxd on 24.08.2017.

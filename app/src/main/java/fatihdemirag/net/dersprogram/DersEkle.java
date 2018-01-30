@@ -21,7 +21,7 @@ public class DersEkle extends Activity {
     EditText dersAdi;
     TimePicker baslangicSaat,bitisSaat;
     Button dersEkle;
-    TextView gun;
+    String gun;
     private void TostMesaj(String mesaj)
     {
         Toast.makeText(getApplicationContext(), mesaj, Toast.LENGTH_SHORT).show();
@@ -30,7 +30,6 @@ public class DersEkle extends Activity {
     private void KayitEkle(String dersAdi,String gun,String baslangicSaat,String bitisSaat)
     {
        try {
-
            if (db.insertData(dersAdi,gun,baslangicSaat,bitisSaat))
                TostMesaj("Ders Eklendi");
        }catch (SQLException s)
@@ -54,10 +53,9 @@ public class DersEkle extends Activity {
         baslangicSaat=(TimePicker)findViewById(R.id.baslangicSaat);
         bitisSaat=(TimePicker)findViewById(R.id.bitisSaat);
         dersEkle=(Button)findViewById(R.id.dersEkle);
-        gun=(TextView)findViewById(R.id.gun);
 
         Bundle bundle=getIntent().getExtras();
-        gun.setText(bundle.getString("Gün"));
+        gun = bundle.getString("Gün");
 
         baslangicSaat.setIs24HourView(true);
         bitisSaat.setIs24HourView(true);
@@ -96,7 +94,7 @@ public class DersEkle extends Activity {
                         TostMesaj("Ders Adı Boş Geçilemez!");
                     else {
                         String dAd = Character.toUpperCase(dersAdi.getText().charAt(0)) + dersAdi.getText().toString().substring(1);
-                        KayitEkle(dAd, gun.getText().toString(), baslangic, bitis);
+                        KayitEkle(dAd, gun, baslangic, bitis);
                     }
                 }
             }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingTop="10dp"
     android:paddingEnd="10dp"
-    tools:context="fatihdemirag.net.dersprogram.Custom_ListView">
+    tools:context="fatihdemirag.net.dersprogram.CustomAdapters_Listviews.Custom_ListView">
 
     <TextView
         android:id="@+id/baslangicSaat"

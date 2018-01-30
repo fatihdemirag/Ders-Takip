@@ -1,12 +1,9 @@
-package fatihdemirag.net.dersprogram;
+package fatihdemirag.net.dersprogram.CustomAdapters_Listviews;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-import fatihdemirag.net.dersprogram.Fragments.Pazartesi;
+import fatihdemirag.net.dersprogram.R;
 
 public class Custom_AlertDialog extends Activity {
 

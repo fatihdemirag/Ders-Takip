@@ -1,15 +1,16 @@
-package fatihdemirag.net.dersprogram;
+package fatihdemirag.net.dersprogram.DersNotlariP;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,9 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.sql.SQLException;
+
+import fatihdemirag.net.dersprogram.DbHelper;
+import fatihdemirag.net.dersprogram.R;
 
 public class DersNotuEkle extends Activity {
 
@@ -59,6 +62,10 @@ public class DersNotuEkle extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ders_notu_ekle);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         resim=(ImageView)findViewById(R.id.galeriResim);
         resimEkle=(Button)findViewById(R.id.resimEkle);
         resimEkle.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +82,6 @@ public class DersNotuEkle extends Activity {
 
         Bundle bundle=getIntent().getExtras();
         ders=bundle.getString("Ders");
-        Toast.makeText(getApplicationContext(),ders,Toast.LENGTH_SHORT).show();
 
         ekleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,8 +96,7 @@ public class DersNotuEkle extends Activity {
                         Toast.makeText(getApplicationContext(),"Lütfen Konu Başlığı Giriniz",Toast.LENGTH_SHORT).show();
                     else if(not.getText().length()==0)
                         Toast.makeText(getApplicationContext(),"Lütfen Not Giriniz",Toast.LENGTH_SHORT).show();
-                    else
-                    {
+                    else {
                         dbHelper.insertData2(konu.getText().toString(),ders,i,not.getText().toString());
                         Toast.makeText(getApplicationContext(),"Not Eklendi",Toast.LENGTH_SHORT).show();
 
@@ -104,7 +109,25 @@ public class DersNotuEkle extends Activity {
 
             }
         });
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -1,4 +1,4 @@
-package fatihdemirag.net.dersprogram;
+package fatihdemirag.net.dersprogram.Sınıflar;
 
 /**
  * Created by fxd on 07.07.2017.

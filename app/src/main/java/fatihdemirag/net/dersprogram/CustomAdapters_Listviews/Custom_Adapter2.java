@@ -1,12 +1,10 @@
-package fatihdemirag.net.dersprogram;
+package fatihdemirag.net.dersprogram.CustomAdapters_Listviews;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +15,16 @@ import android.widget.TextView;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
+import fatihdemirag.net.dersprogram.Sınıflar.DersNotu;
+import fatihdemirag.net.dersprogram.R;
+
 /**
  * Created by fxd on 25.08.2017.
  */
 
 public class Custom_Adapter2 extends ArrayAdapter<DersNotu> {
     public Custom_Adapter2(Context context, ArrayList<DersNotu> dersNotuArrayList) {
-        super(context,R.layout.activity_custom__list_view2,dersNotuArrayList);
+        super(context, R.layout.activity_custom__list_view2, dersNotuArrayList);
         this.context=context;
         this.dersNotuArrayList=dersNotuArrayList;
     }
@@ -54,8 +55,6 @@ public class Custom_Adapter2 extends ArrayAdapter<DersNotu> {
         ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
         Bitmap bitmap= BitmapFactory.decodeStream(imageStream);
         notResmi.setImageBitmap(Bitmap.createScaledBitmap(bitmap,120,120,false));
-
-
 
         return view;
     }

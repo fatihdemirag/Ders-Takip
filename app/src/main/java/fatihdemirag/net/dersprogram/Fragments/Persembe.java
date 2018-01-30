@@ -9,15 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import at.markushi.ui.CircleButton;
-import fatihdemirag.net.dersprogram.Custom_Adapter;
+import fatihdemirag.net.dersprogram.CustomAdapters_Listviews.Custom_Adapter;
 import fatihdemirag.net.dersprogram.DbHelper;
-import fatihdemirag.net.dersprogram.Ders;
+import fatihdemirag.net.dersprogram.Sınıflar.Ders;
 import fatihdemirag.net.dersprogram.DersEkle;
 import fatihdemirag.net.dersprogram.R;
 
@@ -37,7 +37,7 @@ public class Persembe extends Fragment {
         dbHelper=new DbHelper(getActivity());
 
         custom_adapter=new Custom_Adapter(getActivity(),liste);
-        CircleButton circleButton=(CircleButton)view.findViewById(R.id.circle);
+        Button circleButton = view.findViewById(R.id.circle);
         circleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

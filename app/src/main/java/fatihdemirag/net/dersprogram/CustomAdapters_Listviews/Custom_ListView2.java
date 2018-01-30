@@ -1,7 +1,9 @@
-package fatihdemirag.net.dersprogram;
+package fatihdemirag.net.dersprogram.CustomAdapters_Listviews;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import fatihdemirag.net.dersprogram.R;
 
 public class Custom_ListView2 extends Activity {
 

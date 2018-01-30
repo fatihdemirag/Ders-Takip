@@ -1,10 +1,13 @@
-package fatihdemirag.net.dersprogram;
+package fatihdemirag.net.dersprogram.DersNotlariP;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -13,6 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import fatihdemirag.net.dersprogram.CustomAdapters_Listviews.Custom_Adapter2;
+import fatihdemirag.net.dersprogram.DbHelper;
+import fatihdemirag.net.dersprogram.R;
+import fatihdemirag.net.dersprogram.Sınıflar.DersNotu;
 
 public class DersNotlari extends Activity {
 
@@ -28,12 +36,15 @@ public class DersNotlari extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ders_notlari);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         dbHelper=new DbHelper(this);
         bundle=getIntent().getExtras();
         ders=bundle.getString("Ders");
         getActionBar().setTitle(ders+" Dersinin Notları");
 
-        Toast.makeText(getApplicationContext(),bundle.getString("Ders"),Toast.LENGTH_SHORT).show();
         notListesi=(ListView)findViewById(R.id.notListesi);
 
         KayitYukle();
@@ -69,9 +80,10 @@ public class DersNotlari extends Activity {
                 //byte[] i=stream.toByteArray();
 
                 bundle.putByteArray("Seçilen Not Resmi",dersNotu.getNotResmi());
-
                 intent.putExtras(bundle);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
             }
         });
     }
@@ -96,5 +108,25 @@ public class DersNotlari extends Activity {
             Toast.makeText(getApplicationContext(),"Not Yok",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

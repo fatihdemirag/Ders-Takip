@@ -1,13 +1,14 @@
-package fatihdemirag.net.dersprogram;
+package fatihdemirag.net.dersprogram.DersNotlariP;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import fatihdemirag.net.dersprogram.DbHelper;
+import fatihdemirag.net.dersprogram.Sınıflar.Ders;
+import fatihdemirag.net.dersprogram.R;
 
 public class DersListesiNot extends Activity {
 
@@ -31,7 +36,9 @@ public class DersListesiNot extends Activity {
         setContentView(R.layout.activity_ders_listesi_not);
         bundle=new Bundle();
 
-
+        ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         dersNotuListesi=(ListView)findViewById(R.id.dersListesi);
         dbHelper=new DbHelper(this);
@@ -53,6 +60,8 @@ public class DersListesiNot extends Activity {
                 bundle.putString("Ders",dersNotuListesi.getItemAtPosition(position)+"");
                 intent.putExtras(bundle);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
             }
         });
 
@@ -85,5 +94,25 @@ public class DersListesiNot extends Activity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -15,14 +15,35 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
         <activity android:name=".DersEkle" />
-        <activity android:name=".Custom_ListView" />
-        <activity android:name=".Custom_AlertDialog" />
+        <activity android:name=".CustomAdapters_Listviews.Custom_ListView" />
+        <activity android:name=".CustomAdapters_Listviews.Custom_AlertDialog" />
         <activity
-            android:name=".Gunler"
+            android:name=".HaftalikDersler"
             android:label="@string/title_activity_gunler"
             android:theme="@android:style/Theme.Material.Light" />
         <activity
             android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Material.Light">
+
+        </activity>
+        <activity
+            android:name=".DersNotlariP.DersNotlari"
+            android:theme="@android:style/Theme.Material.Light" />
+        <activity
+            android:name=".DersNotlariP.DersNotuEkle"
+            android:theme="@android:style/Theme.Material.Light" />
+        <activity
+            android:name=".DersNotlariP.DersListesiNot"
+            android:label="Ders Notları"
+            android:theme="@android:style/Theme.Material.Light" />
+        <activity android:name=".CustomAdapters_Listviews.Custom_ListView2" />
+        <activity
+            android:name=".DersNotlariP.DersNotuGor"
+            android:theme="@android:style/Theme.Material.Light" />
+        <activity android:name=".Ayarlar" />
+        <activity
+            android:name=".MainPage"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Material.Light">
             <intent-filter>
@@ -31,21 +52,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".DersNotlari"
-            android:theme="@android:style/Theme.Material.Light" />
-        <activity
-            android:name=".DersNotuEkle"
-            android:theme="@android:style/Theme.Material.Light" />
-        <activity
-            android:name=".DersListesiNot"
-            android:label="Ders Notları"
-            android:theme="@android:style/Theme.Material.Light" />
-        <activity android:name=".Custom_ListView2" />
-        <activity
-            android:name=".DersNotuGor"
-            android:theme="@android:style/Theme.Material.Light" />
-        <activity android:name=".Ayarlar"></activity>
     </application>
 
 </manifest>
