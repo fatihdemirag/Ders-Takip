@@ -2,6 +2,8 @@ package fatihdemirag.net.dersprogram.DersNotlariP;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -86,6 +88,18 @@ public class DersNotlari extends Activity {
 
             }
         });
+        if (dersNotuArrayList.size() == 0) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setMessage(ders + " dersinin notu bulunamadı !");
+            alertDialog.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            alertDialog.show();
+
+        }
     }
     public void KayitYukle()
     {
