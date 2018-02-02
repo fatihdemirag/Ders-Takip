@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jsibbold.zoomage.ZoomageView;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,7 +29,7 @@ import fatihdemirag.net.dersprogram.R;
 
 public class DersNotuGor extends Activity {
 
-    ImageView gelenResim;
+    ZoomageView gelenResim;
     TextView gelenBaslik,gelenNot;
 
     Button paylas;

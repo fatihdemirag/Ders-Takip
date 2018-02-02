@@ -20,7 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import fatihdemirag.net.dersprogram.CustomAdapters_Listviews.Custom_Adapter2;
-import fatihdemirag.net.dersprogram.DbHelper;
+import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.Sınıflar.DersNotu;
 

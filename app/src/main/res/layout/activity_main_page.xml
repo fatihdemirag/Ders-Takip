@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context="fatihdemirag.net.dersprogram.MainPage"
     android:orientation="vertical">
 
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="3">
 
@@ -83,6 +84,16 @@
                     android:drawableTop="@drawable/settings"
                     android:paddingRight="10dp" />
             </LinearLayout>
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="SMART_BANNER"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="bottom"
+                ads:adUnitId="@string/bannerAdsId"></com.google.android.gms.ads.AdView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

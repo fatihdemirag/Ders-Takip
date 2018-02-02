@@ -14,39 +14,35 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        android:theme="@android:style/Theme.Material.Light">
         <activity android:name=".DersEkle" />
         <activity android:name=".CustomAdapters_Listviews.Custom_ListView" />
         <activity android:name=".CustomAdapters_Listviews.Custom_AlertDialog" />
         <activity
             android:name=".HaftalikDersler"
-            android:label="@string/title_activity_gunler"
-            android:theme="@android:style/Theme.Material.Light" />
-        <activity
-            android:name=".DersNotlariP.DersNotlari"
-            android:theme="@android:style/Theme.Material.Light" />
-        <activity
-            android:name=".DersNotlariP.DersNotuEkle"
-            android:theme="@android:style/Theme.Material.Light" />
+            android:label="@string/title_activity_gunler" />
+        <activity android:name=".DersNotlariP.DersNotlari" />
+        <activity android:name=".DersNotlariP.DersNotuEkle" />
         <activity
             android:name=".DersNotlariP.DersListesiNot"
-            android:label="Ders Notları"
-            android:theme="@android:style/Theme.Material.Light" />
+            android:label="Ders Notları" />
         <activity android:name=".CustomAdapters_Listviews.Custom_ListView2" />
-        <activity
-            android:name=".DersNotlariP.DersNotuGor"
-            android:theme="@android:style/Theme.Material.Light" />
+        <activity android:name=".DersNotlariP.DersNotuGor" />
         <activity android:name=".Ayarlar" />
         <activity
             android:name=".MainPage"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Material.Light">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NotHesaplama.NotHesaplamaGirisSayfasi"
+            android:label="Not Hesaplama" />
+        <activity android:name=".NotHesaplama.LiseNotHesap" />
+        <activity android:name=".NotHesaplama.LiseNotEkle"></activity>
     </application>
 
 </manifest>

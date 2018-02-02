@@ -16,11 +16,19 @@
             android:padding="10dp"
             android:scrollbars="vertical">
 
-            <ImageView
+            <com.jsibbold.zoomage.ZoomageView
                 android:id="@+id/notGelenResim"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_height="350dp"
+                android:src="@mipmap/ic_launcher"
+                app:zoomage_restrictBounds="false"
+                app:zoomage_animateOnReset="true"
+                app:zoomage_autoResetMode="UNDER"
+                app:zoomage_autoCenter="true"
+                app:zoomage_zoomable="true"
+                app:zoomage_translatable="true"
+                app:zoomage_minScale="0.6"
+                app:zoomage_maxScale="8" />
 
             <LinearLayout
                 android:layout_width="match_parent"

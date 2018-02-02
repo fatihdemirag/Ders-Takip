@@ -21,7 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import fatihdemirag.net.dersprogram.DbHelper;
+import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 import fatihdemirag.net.dersprogram.R;
 
 public class DersNotuEkle extends Activity {

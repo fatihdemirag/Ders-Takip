@@ -1,12 +1,11 @@
 /**
  * Created by fxd on 10.06.2017.
  */
-package fatihdemirag.net.dersprogram;
+package fatihdemirag.net.dersprogram.DbHelpers;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;

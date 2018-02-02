@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import fatihdemirag.net.dersprogram.DbHelper;
+import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 import fatihdemirag.net.dersprogram.Sınıflar.Ders;
 import fatihdemirag.net.dersprogram.R;
 

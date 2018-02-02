@@ -5,14 +5,16 @@ import android.app.Activity;
 import android.database.SQLException;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.NumberPicker;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 
 
 public class DersEkle extends Activity {
@@ -22,27 +24,9 @@ public class DersEkle extends Activity {
     TimePicker baslangicSaat,bitisSaat;
     Button dersEkle;
     String gun;
-    private void TostMesaj(String mesaj)
-    {
-        Toast.makeText(getApplicationContext(), mesaj, Toast.LENGTH_SHORT).show();
-    }
+    private AdView adView;
 
-    private void KayitEkle(String dersAdi,String gun,String baslangicSaat,String bitisSaat)
-    {
-       try {
-           if (db.insertData(dersAdi,gun,baslangicSaat,bitisSaat))
-               TostMesaj("Ders Eklendi");
-       }catch (SQLException s)
-       {
-           TostMesaj("Ders Eklenemedi");
-           s.printStackTrace();
-       }
-       catch (Exception e)
-       {
-           e.printStackTrace();
-       }
 
-    }
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +37,10 @@ public class DersEkle extends Activity {
         baslangicSaat=(TimePicker)findViewById(R.id.baslangicSaat);
         bitisSaat=(TimePicker)findViewById(R.id.bitisSaat);
         dersEkle=(Button)findViewById(R.id.dersEkle);
+        adView = findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
+        adView.loadAd(adRequest);
 
         Bundle bundle=getIntent().getExtras();
         gun = bundle.getString("Gün");
@@ -83,7 +71,6 @@ public class DersEkle extends Activity {
                 String bitis = bitisH + ":" + bitisM;
 
 
-
                 if (Integer.parseInt(String.valueOf(baslangicSaat.getCurrentHour())) > Integer.parseInt(String.valueOf(bitisSaat.getCurrentHour())))
                     TostMesaj("Bitiş Saati Başlangıç Saatinden Önce Olamaz");
                 else if (Integer.parseInt(String.valueOf(baslangicSaat.getCurrentHour())) == Integer.parseInt(String.valueOf(bitisSaat.getCurrentHour())) &&
@@ -99,5 +86,22 @@ public class DersEkle extends Activity {
                 }
             }
         });
+    }
+
+    private void TostMesaj(String mesaj) {
+        Toast.makeText(getApplicationContext(), mesaj, Toast.LENGTH_SHORT).show();
+    }
+
+    private void KayitEkle(String dersAdi, String gun, String baslangicSaat, String bitisSaat) {
+        try {
+            if (db.insertData(dersAdi, gun, baslangicSaat, bitisSaat))
+                TostMesaj("Ders Eklendi");
+        } catch (SQLException s) {
+            TostMesaj("Ders Eklenemedi");
+            s.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
