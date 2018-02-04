@@ -1,8 +1,8 @@
+
+package fatihdemirag.net.dersprogram.DbHelpers;
 /**
  * Created by fxd on 10.06.2017.
  */
-package fatihdemirag.net.dersprogram.DbHelpers;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,18 +12,22 @@ import android.widget.Toast;
 
 public class DbHelper extends SQLiteOpenHelper{
     public static final String dbName="ders_programi";
-    private static final String table="dersler";
-    private static final int version=4;
+    private static final String table = "dersler_programi";
+    private static final int version = 8;
     public static final String col_1="ders_adi";
     public static final String col_2="ders_gunu";
     public static final String col_3="ders_baslangic_saati";
     public static final String col_4="ders_bitis_saati";
+    public static final String col_5 = "ders_pozisyon";
 
-    private static final String table_2="ders_notlari"; ;
+    private static final String table_2 = "ders_notlari";
     public static final String col_1_2="ders_konusu";
     public static final String col_2_2="ders_notu";
     public static final String col_3_2="not_resmi";
     public static final String col_4_2="ders";
+
+    private static final String table_3 = "dersler";
+    public static final String col_1_3 = "ders_adi";
 
     SQLiteDatabase db;
     DbHelper dbHelper;
@@ -43,8 +47,10 @@ public class DbHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.execSQL("create table "+table+" (id integer primary key autoincrement,"+col_1+" text not null,"+col_2+" text,"+col_3+" text,"+col_4+" text)");
+            db.execSQL("create table " + table + " (id integer primary key autoincrement," + col_1 + " text not null," + col_2 + " text," + col_3 + " text," + col_4 + " text," + col_5 + " int)");
             db.execSQL("create table "+table_2+" (id integer primary key autoincrement,"+col_1_2+" text not null,"+col_2_2+" text not null,"+col_3_2+" blob,"+col_4_2+" text)");
+            db.execSQL("create table " + table_3 + " (id integer primary key autoincrement," + col_1_3 + " text not null unique)");
+
 
         }catch (Exception e)
         {
@@ -57,39 +63,41 @@ public class DbHelper extends SQLiteOpenHelper{
 
     }
     long result;
-    public boolean insertData(String dersAdi,String ders_gunu,String dersBaslangicSaati,String dersBitisSaati)
+
+    public boolean insertData(String dersAdi, String ders_gunu, String dersBaslangicSaati, String dersBitisSaati, int dersPoziyon)
     {
 
-            SQLiteDatabase db=this.getWritableDatabase();
-            ContentValues contentValues=new ContentValues();
-            contentValues.put(col_1,dersAdi);
-            contentValues.put(col_2,ders_gunu);
-            contentValues.put(col_3,dersBaslangicSaati);
-            contentValues.put(col_4,dersBitisSaati);
-
-            result=db.insert(table,null,contentValues);
-            if (result==1)
-                return false;
-            else
-                return true;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(col_1, dersAdi);
+        contentValues.put(col_2, ders_gunu);
+        contentValues.put(col_3, dersBaslangicSaati);
+        contentValues.put(col_4, dersBitisSaati);
+        contentValues.put(col_5, dersPoziyon);
+        result = db.insert(table, null, contentValues);
+        if (result == 1)
+            return false;
+        else
+            return true;
 
     }
     public Cursor getAllData()
     {
         SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery("select * from dersler order by ders_baslangic_saati",null);
+        Cursor cursor = db.rawQuery("select * from dersler_programi order by ders_baslangic_saati", null);
         return cursor;
     }
     public Cursor getAllDataT()
     {
         SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery("select distinct ders_adi from dersler",null);
+        Cursor cursor = db.rawQuery("select distinct ders_adi from dersler_programi", null);
         return cursor;
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists "+table);
         db.execSQL("drop table if exists "+table_2);
+        db.execSQL("drop table if exists " + table_3);
         onCreate(db);
     }
     public Integer deleteData(String id)
@@ -121,13 +129,13 @@ public class DbHelper extends SQLiteOpenHelper{
     }
     public boolean updateData2(int id,String konu,String dersNotu)
     {
-            SQLiteDatabase db=this.getWritableDatabase();
-            ContentValues contentValues=new ContentValues();
-            contentValues.put("id",id);
-            contentValues.put(col_1_2,konu);
-            contentValues.put(col_2_2,dersNotu);
-            db.update(table,contentValues,id+"=?",new String[]{String.valueOf(id),String.valueOf(konu),String.valueOf(dersNotu)});
-            return true;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", id);
+        contentValues.put(col_1_2, konu);
+        contentValues.put(col_2_2, dersNotu);
+        db.update(table_2, contentValues, id + "=?", new String[]{String.valueOf(id), String.valueOf(konu), String.valueOf(dersNotu)});
+        return true;
     }
     long result2;
 
@@ -168,6 +176,41 @@ public class DbHelper extends SQLiteOpenHelper{
         SQLiteDatabase db=this.getWritableDatabase();
         String query="delete from '"+table_2+"' where ders='"+ders+"'";
         db.execSQL(query);
+    }
+
+    //  ---------------------Dersler Tablosu----------------------------------
+    public Cursor getAllData3() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select distinct ders_adi from dersler", null);
+        return cursor;
+
+    }
+
+    public Integer deleteData3(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(table_3, "id = ?", new String[]{id});
+    }
+
+    public boolean updateData3(int id, String dersAdi) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("id", id);
+        contentValues.put(col_1_3, dersAdi);
+        db.update(table_3, contentValues, id + "=?", new String[]{String.valueOf(id), String.valueOf(dersAdi)});
+        return true;
+    }
+
+    long result3;
+
+    public boolean insertData3(String dersAdi) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(col_1_3, dersAdi);
+        result3 = db.insert(table_3, null, contentValues);
+        if (result3 == 1)
+            return false;
+        else
+            return true;
     }
 
 }

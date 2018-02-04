@@ -81,7 +81,7 @@ public class DersEkle extends Activity {
                         TostMesaj("Ders Adı Boş Geçilemez!");
                     else {
                         String dAd = Character.toUpperCase(dersAdi.getText().charAt(0)) + dersAdi.getText().toString().substring(1);
-                        KayitEkle(dAd, gun, baslangic, bitis);
+//                        KayitEkle(dAd, gun, baslangic, bitis,0);
                     }
                 }
             }
@@ -92,9 +92,9 @@ public class DersEkle extends Activity {
         Toast.makeText(getApplicationContext(), mesaj, Toast.LENGTH_SHORT).show();
     }
 
-    private void KayitEkle(String dersAdi, String gun, String baslangicSaat, String bitisSaat) {
+    private void KayitEkle(String dersAdi, String gun, String baslangicSaat, String bitisSaat, int dersPozisyon) {
         try {
-            if (db.insertData(dersAdi, gun, baslangicSaat, bitisSaat))
+            if (db.insertData(dersAdi, gun, baslangicSaat, bitisSaat, dersPozisyon))
                 TostMesaj("Ders Eklendi");
         } catch (SQLException s) {
             TostMesaj("Ders Eklenemedi");

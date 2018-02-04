@@ -10,16 +10,16 @@ public class Ders {
     String dersBaslangicSaati;
     String dersBitisSaati;
     int dersId;
+    int dersPozisyon;
 
 
-
-
-    public Ders(String dersAdi,String dersBaslangicSaati,String dersBitisSaati,int dersId)
-    {
-        this.dersAdi=dersAdi;
-        this.dersBaslangicSaati=dersBaslangicSaati;
-        this.dersBitisSaati=dersBitisSaati;
-        this.dersId=dersId;
+    public Ders(String dersAdi, String dersGun, String dersBaslangicSaati, String dersBitisSaati, int dersId, int dersPozisyon) {
+        this.dersAdi = dersAdi;
+        this.dersGun = dersGun;
+        this.dersBaslangicSaati = dersBaslangicSaati;
+        this.dersBitisSaati = dersBitisSaati;
+        this.dersId = dersId;
+        this.dersPozisyon = dersPozisyon;
     }
 
     public Ders() {
@@ -63,5 +63,13 @@ public class Ders {
 
     public void setDersBitisSaati(String dersBitisSaati) {
         this.dersBitisSaati = dersBitisSaati;
+    }
+
+    public int getDersPozisyon() {
+        return dersPozisyon;
+    }
+
+    public void setDersPozisyon(int dersPozisyon) {
+        this.dersPozisyon = dersPozisyon;
     }
 }

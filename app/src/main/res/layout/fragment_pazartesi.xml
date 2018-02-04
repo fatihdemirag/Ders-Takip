@@ -5,19 +5,65 @@
     android:layout_height="match_parent"
     tools:context="fatihdemirag.net.dersprogram.Fragments.Pazartesi">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/pazartesiListe"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/pazartesiListe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="25dp"
+                android:layout_marginBottom="10dp"
+                android:text="+"
+                android:background="@drawable/yuvarlakbuton"
+                android:id="@+id/dersEkleButton" />
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom|right"
+        android:background="@drawable/yuvarlakbuton"
+        android:text="Dersler"
+        android:id="@+id/derslerListesi"
+        android:visibility="invisible"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="130dp"
+        android:textSize="10dp" />
 
     <Button
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom|right"
+        android:background="@drawable/yuvarlakbuton"
+        android:text="Ders Ekle"
+        android:id="@+id/dersEkle"
+        android:visibility="invisible"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="70dp"
+        android:textSize="10dp" />
+
+    <Button
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:layout_gravity="bottom|right"
         android:layout_margin="10dp"
-        android:id="@+id/circle"
+        android:id="@+id/fabButton"
         android:background="@drawable/yuvarlakbuton"
         android:text="+"
-        android:textSize="25dp"
-        android:textColor="@android:color/white" />
+        android:textSize="24dp" />
+
+
 </FrameLayout>

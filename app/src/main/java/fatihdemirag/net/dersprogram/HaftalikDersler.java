@@ -150,14 +150,12 @@ public class HaftalikDersler extends Activity implements ActionBar.TabListener {
             return fragment;
         }
 
-        Button circleButton;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
 
             View rootView = inflater.inflate(R.layout.fragment_haftalik_dersler, container, false);
-            circleButton = rootView.findViewById(R.id.circle);
 
             return rootView;
         }

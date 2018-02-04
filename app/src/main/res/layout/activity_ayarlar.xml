@@ -1,35 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
     tools:context="fatihdemirag.net.dersprogram.Ayarlar">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Karanlık Mod"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:background="@drawable/cardview_background"
+        android:padding="5dp"
+        android:weightSum="3"
+        android:orientation="horizontal">
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ders başlangıç saati"
+            android:padding="10dp"
+            android:gravity="left"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:layout_weight="1" />
+
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:id="@+id/dersBaslangicSaati"
+            android:timePickerMode="spinner" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteY="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="32dp" />
+        android:background="@drawable/cardview_background"
+        android:padding="5dp"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_height="38dp"
-        android:text="Ders Programını Sil"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="16dp"
-        android:layout_width="337dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ders süresi"
+            android:padding="10dp"
+            android:gravity="left"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:id="@+id/dersSuresi"
+            android:layout_weight="1"></NumberPicker>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardview_background"
+        android:padding="5dp"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tenefüs süresi"
+            android:padding="10dp"
+            android:gravity="left"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:layout_weight="1" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:id="@+id/tenefusSuresi"
+            android:layout_weight="1"></NumberPicker>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kaydet"
+            android:background="@drawable/buton_arkaplan"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</LinearLayout>

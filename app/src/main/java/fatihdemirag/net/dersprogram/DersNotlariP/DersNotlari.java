@@ -90,13 +90,18 @@ public class DersNotlari extends Activity {
         });
         if (dersNotuArrayList.size() == 0) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setMessage(ders + " dersinin notu bulunamadı !");
-            alertDialog.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+            alertDialog.setMessage(ders + " dersinin notu bulunamadı !\nNot Eklensin mi ?");
+            alertDialog.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
+                    Intent intent = new Intent(DersNotlari.this, DersNotuEkle.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Ders", ders);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
             });
+            alertDialog.setNegativeButton("Hayır", null);
             alertDialog.show();
 
         }

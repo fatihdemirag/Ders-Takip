@@ -55,21 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:weightSum="2">
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/notHesaplama"
-                    android:background="@drawable/cardview_background"
-                    android:text="Not Hesaplama"
-                    android:paddingTop="30dp"
-                    android:paddingBottom="30dp"
-                    android:paddingLeft="10dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    android:drawableTop="@drawable/mezun"
-                    android:paddingRight="10dp" />
+                android:weightSum="1">
 
                 <Button
                     android:layout_width="100dp"

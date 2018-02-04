@@ -59,8 +59,7 @@ public class DersNotuGor extends Activity {
         byte[] photo=bundle.getByteArray("Seçilen Not Resmi");
         final ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
         bitmap = BitmapFactory.decodeStream(imageStream);
-        gelenResim.setImageBitmap(Bitmap.createScaledBitmap(bitmap,1000,800,false));
-        gelenResim.setRotation(90);
+        gelenResim.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1920, 1080, false));
 
 
         paylas.setOnClickListener(new View.OnClickListener() {

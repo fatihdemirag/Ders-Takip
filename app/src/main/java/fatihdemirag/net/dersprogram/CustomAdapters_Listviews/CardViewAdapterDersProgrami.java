@@ -5,15 +5,22 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +62,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
         holder.bitisSaati.setText(liste.get(position).getDersBitisSaati());
         holder.dersId.setText(liste.get(position).getDersId() + "");
         holder.ders.setText(liste.get(position).getDersAdi());
+        holder.dersler.setSelection(liste.get(position).getDersPozisyon());
     }
 
     @Override
@@ -64,7 +72,9 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView baslangicSaati, bitisSaati, dersId, ders;
-        ImageView dersDuzenle, dersNotuEkle;
+        ImageView dersDuzenle, dersNotuEkle, onayButton;
+
+        Spinner dersler;
 
         Dialog dialog;
 
@@ -85,6 +95,8 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             dersDuzenle = itemView.findViewById(R.id.dersDuzenle);
             dersNotuEkle = itemView.findViewById(R.id.dersNotuEkle);
             customList = itemView.findViewById(R.id.customList);
+            dersler = itemView.findViewById(R.id.dersler);
+            onayButton = itemView.findViewById(R.id.onayButton);
 
             dialog = new Dialog(itemView.getContext());
             dialog.setContentView(R.layout.activity_custom__alert_dialog);
@@ -95,14 +107,20 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             dialogGirisSaati = dialog.findViewById(R.id.dersGiris);
             dialogCikisSaati = dialog.findViewById(R.id.dersCikis);
 
+            final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(itemView.getContext());
             dersDuzenle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dialogId.setText(dersId.getText().toString() + "");
-                    dialogDersAd.setText(ders.getText().toString());
-                    dialogGirisSaati.setText(baslangicSaati.getText().toString());
-                    dialogCikisSaati.setText(bitisSaati.getText().toString());
-                    dialog.show();
+
+                }
+            });
+            onayButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), "00:00", "00:00", dersler.getSelectedItemPosition());
+                    baslangicSaati.setText("00:00");
+                    bitisSaati.setText("00:00");
+                    System.out.println("Seçilen ders : " + getAdapterPosition());
                 }
             });
             dersNotuEkle.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +133,8 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                     itemView.getContext().startActivity(intent);
                 }
             });
+
+            dbHelper = new DbHelper(itemView.getContext());
 
             dialog.findViewById(R.id.kaydetButton).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -138,11 +158,9 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                 @Override
                 public boolean onLongClick(View v) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(itemView.getContext());
-                    alertDialog.setTitle("Dersi Sil").setMessage("Dersi Silmek İstediğinize Emin Misiniz").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    alertDialog.setTitle("Dersi Sil").setMessage("Dersi Silmek İstediğinize Emin Misiniz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            //getActivity().recreate();
-
                             liste.remove(getAdapterPosition());
                             notifyItemRemoved(getAdapterPosition());
 
@@ -159,6 +177,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                 }
             });
 
+            KayitYukle();
 
         }
 
@@ -182,5 +201,36 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                 return false;
             }
         }
+
+        private void KayitEkle(String dersAdi, String gun, String baslangicSaat, String bitisSaat, int dersPozisyon) {
+            try {
+                DbHelper dbHelper = new DbHelper(itemView.getContext());
+
+                if (dbHelper.insertData(dersAdi, gun, baslangicSaat, bitisSaat, dersPozisyon))
+                    Toast.makeText(itemView.getContext(), "Ders Eklendi", Toast.LENGTH_SHORT).show();
+            } catch (SQLException s) {
+                Toast.makeText(itemView.getContext(), "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
+                s.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void KayitYukle() {
+            Cursor cursor;
+            DbHelper dbHelper = new DbHelper(itemView.getContext());
+            cursor = dbHelper.getAllData3();
+
+            ArrayList<String> dersListesi = new ArrayList<>();
+
+            while (cursor.moveToNext()) {
+                dersListesi.add(cursor.getString(0));
+            }
+            ArrayAdapter<String> derslerAdapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_list_item_1, dersListesi);
+            dersler.setAdapter(derslerAdapter);
+
+            derslerAdapter.notifyDataSetChanged();
+        }
+
     }
 }

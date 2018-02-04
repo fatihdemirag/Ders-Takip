@@ -44,7 +44,7 @@ public class DersNotuEkle extends Activity {
                     getResim=data.getData();
                     ınputStream=getContentResolver().openInputStream(getResim);
                     Bitmap r= BitmapFactory.decodeStream(ınputStream);
-                    Bitmap kucukResim=Bitmap.createScaledBitmap(r,800,600,true);
+                    Bitmap kucukResim = Bitmap.createScaledBitmap(r, 1000, 600, true);
                     resim.setImageBitmap(kucukResim);
                     resim.setVisibility(View.VISIBLE);
                 }catch (FileNotFoundException f)
