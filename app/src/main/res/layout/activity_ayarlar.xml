@@ -106,6 +106,7 @@
             android:textStyle="bold"
             android:layout_gravity="center"
             android:textAllCaps="false"
+            android:id="@+id/ayarKaydet"
             android:layout_marginBottom="10dp"
             android:layout_weight="1" />
 

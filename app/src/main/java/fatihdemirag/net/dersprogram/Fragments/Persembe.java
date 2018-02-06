@@ -151,6 +151,9 @@ public class Persembe extends Fragment {
         dersEkleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                liste.clear();
+                KayitYukle("Perşembe", dbHelper, ders, liste);
+
                 ders = new Ders();
                 liste.add(ders);
                 cardViewAdapterDersProgrami.notifyDataSetChanged();

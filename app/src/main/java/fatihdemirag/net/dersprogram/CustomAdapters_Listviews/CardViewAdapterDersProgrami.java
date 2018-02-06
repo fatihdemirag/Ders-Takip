@@ -85,6 +85,13 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
         RelativeLayout customList;
 
+        int baslangicSaatiInt;
+        int bitisSaatiInt;
+        int dersSuresi;
+        int tenefusSuresi;
+        int dersBitisSaati;
+
+        String dersBaslangicSaatiString;
         public ViewHolder(final View itemView) {
             super(itemView);
 
@@ -114,13 +121,41 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
                 }
             });
+
+
             onayButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), "00:00", "00:00", dersler.getSelectedItemPosition());
-                    baslangicSaati.setText("00:00");
-                    bitisSaati.setText("00:00");
-                    System.out.println("Seçilen ders : " + getAdapterPosition());
+
+                    tenefusSuresi = Integer.parseInt(sharedPreferences.getString("tenefusSuresi", ""));
+                    dersSuresi = Integer.parseInt(sharedPreferences.getString("dersSuresi", ""));
+                    dersBaslangicSaatiString = sharedPreferences.getString("dersBaslangicSaati", "") + ":" + sharedPreferences.getString("dersBaslangicDakikasi", "");
+
+                    baslangicSaatiInt = Integer.parseInt(dersBaslangicSaatiString.substring(0, dersBaslangicSaatiString.indexOf(':')));
+                    bitisSaatiInt = Integer.parseInt(dersBaslangicSaatiString.substring(dersBaslangicSaatiString.indexOf(':') + 1, dersBaslangicSaatiString.length()));
+
+                    if (getAdapterPosition() == 0) {
+
+                        KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaatiInt + ":" + bitisSaatiInt, baslangicSaatiInt + ":" + dersBitisSaati, dersler.getSelectedItemPosition());
+
+                        baslangicSaati.setText(baslangicSaatiInt + ":" + bitisSaatiInt);
+                        bitisSaati.setText(baslangicSaatiInt + ":" + dersBitisSaati);
+                    } else {
+                        String simdikiBaslangicSaati = liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':')) + ":" + String.valueOf(Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length())) + tenefusSuresi);
+                        int simdikiBitisSaati = Integer.parseInt(simdikiBaslangicSaati.substring(simdikiBaslangicSaati.indexOf(':') + 1, simdikiBaslangicSaati.length())) + tenefusSuresi + dersSuresi;
+                        String simdikiBitisString;
+
+                        if (simdikiBitisSaati >= 60) {
+                            simdikiBitisString = (Integer.parseInt(simdikiBaslangicSaati.substring(0, simdikiBaslangicSaati.indexOf(':'))) + 1) + ":" + (simdikiBitisSaati - 60);
+                            KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), simdikiBaslangicSaati, simdikiBitisString, dersler.getSelectedItemPosition());
+                        } else {
+                            simdikiBitisString = simdikiBaslangicSaati.substring(0, simdikiBaslangicSaati.indexOf(':')) + ":" + simdikiBitisSaati;
+                            KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), simdikiBaslangicSaati, simdikiBitisString, dersler.getSelectedItemPosition());
+                        }
+
+                        baslangicSaati.setText(simdikiBaslangicSaati);
+                        bitisSaati.setText(simdikiBitisString);
+                    }
                 }
             });
             dersNotuEkle.setOnClickListener(new View.OnClickListener() {
