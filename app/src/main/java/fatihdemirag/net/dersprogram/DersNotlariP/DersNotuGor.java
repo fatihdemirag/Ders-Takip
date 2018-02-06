@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -14,8 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jsibbold.zoomage.ZoomageView;
 
@@ -24,13 +28,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
+import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 import fatihdemirag.net.dersprogram.R;
+import fatihdemirag.net.dersprogram.Sınıflar.DersNotu;
 
 public class DersNotuGor extends Activity {
 
     ZoomageView gelenResim;
     TextView gelenBaslik,gelenNot;
+
+    ImageButton solaDon, sagaDon;
 
     Button paylas;
 
@@ -38,6 +47,8 @@ public class DersNotuGor extends Activity {
 
     Bundle bundle;
     Bitmap bitmap;
+
+    String gelenId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,16 +62,18 @@ public class DersNotuGor extends Activity {
         gelenNot = findViewById(R.id.notGelen);
         gelenResim = findViewById(R.id.notGelenResim);
         paylas = findViewById(R.id.paylas);
+        solaDon = findViewById(R.id.solaDon);
+        sagaDon = findViewById(R.id.sagaDon);
 
         bundle = getIntent().getExtras();
         gelenBaslik.setText(bundle.getString("Seçilen Başlık"));
         gelenNot.setText(bundle.getString("Seçilen Not"));
+        gelenId = bundle.getString("Seçilen Not Id", "");
 
         byte[] photo=bundle.getByteArray("Seçilen Not Resmi");
         final ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
         bitmap = BitmapFactory.decodeStream(imageStream);
-        gelenResim.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1920, 1080, false));
-
+        gelenResim.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1000, 600, false));
 
         paylas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +87,19 @@ public class DersNotuGor extends Activity {
         progressDialog.setMessage("Not paylaşılıyor lütfen bekleyiniz");
         progressDialog.setCancelable(false);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+        solaDon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gelenResim.setRotation(gelenResim.getRotation() - 90);
+            }
+        });
+        sagaDon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gelenResim.setRotation(gelenResim.getRotation() + 90);
+            }
+        });
 
     }
 
@@ -115,7 +141,6 @@ public class DersNotuGor extends Activity {
             }
         }
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

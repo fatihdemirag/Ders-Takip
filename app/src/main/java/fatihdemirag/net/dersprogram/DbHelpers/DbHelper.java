@@ -160,7 +160,6 @@ public class DbHelper extends SQLiteOpenHelper{
         String sql="select * from ders_notlari where ders=?";
         Cursor cursor=db.rawQuery(sql,new String[]{ders});
         return cursor;
-
     }
 
     public Cursor ResimBul(String id)
@@ -196,7 +195,7 @@ public class DbHelper extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", id);
         contentValues.put(col_1_3, dersAdi);
-        db.update(table_3, contentValues, id + "=?", new String[]{String.valueOf(id), String.valueOf(dersAdi)});
+        db.update(table_3, contentValues, id + "=?", new String[]{String.valueOf(dersAdi)});
         return true;
     }
 

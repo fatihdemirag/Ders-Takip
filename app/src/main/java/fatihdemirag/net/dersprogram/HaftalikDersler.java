@@ -3,10 +3,15 @@ package fatihdemirag.net.dersprogram;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -84,6 +89,21 @@ public class HaftalikDersler extends Activity implements ActionBar.TabListener {
                     actionBar.newTab()
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
+        }
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getString("dersBaslangicSaati", "").equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Ders başlangıç saati tanımlanmamış");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(HaftalikDersler.this, Ayarlar.class);
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
+            });
+            builder.show();
         }
     }
     @Override

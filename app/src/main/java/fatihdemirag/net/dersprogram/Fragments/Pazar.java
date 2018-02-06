@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import fatihdemirag.net.dersprogram.CustomAdapters_Listviews.CardViewAdapterDersProgrami;
 import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 import fatihdemirag.net.dersprogram.Sınıflar.Ders;
-import fatihdemirag.net.dersprogram.DersEkle;
 import fatihdemirag.net.dersprogram.R;
 
 public class Pazar extends Fragment {

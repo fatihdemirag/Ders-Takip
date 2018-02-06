@@ -47,6 +47,7 @@ public class DersNotuEkle extends Activity {
                     Bitmap kucukResim = Bitmap.createScaledBitmap(r, 1000, 600, true);
                     resim.setImageBitmap(kucukResim);
                     resim.setVisibility(View.VISIBLE);
+                    resim.setRotation(90);
                 }catch (FileNotFoundException f)
                 {
                     Toast.makeText(getApplicationContext(),"Resim Tanınamadı",Toast.LENGTH_SHORT).show();
@@ -97,8 +98,10 @@ public class DersNotuEkle extends Activity {
                     else if(not.getText().length()==0)
                         Toast.makeText(getApplicationContext(),"Lütfen Not Giriniz",Toast.LENGTH_SHORT).show();
                     else {
-                        dbHelper.insertData2(konu.getText().toString(),ders,i,not.getText().toString());
-                        Toast.makeText(getApplicationContext(),"Not Eklendi",Toast.LENGTH_SHORT).show();
+                        if (dbHelper.insertData2(konu.getText().toString(), ders, i, not.getText().toString()))
+                            Toast.makeText(getApplicationContext(), "Not Eklendi", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(getApplicationContext(), "Not Eklenemedi", Toast.LENGTH_SHORT).show();
 
                     }
                 }catch (Exception e) {
