@@ -11,7 +11,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,12 +30,24 @@ import fatihdemirag.net.dersprogram.Sınıflar.DersNotu;
 public class DersNotlari extends Activity {
 
     Bundle bundle;
+
     ListView notListesi;
+
+    Button fabButton;
+
+    Animation fabAcilis, fabKapanis;
+
     ArrayList<DersNotu> dersNotuArrayList=new ArrayList<>();
+
     String ders;
+
     Cursor cursor;
     DbHelper dbHelper;
+
+    Custom_Adapter2 custom_adapter2;
+
     DersNotu dersNotu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +57,22 @@ public class DersNotlari extends Activity {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        fabButton = findViewById(R.id.fabButton);
+        fabAcilis = AnimationUtils.loadAnimation(this, R.anim.fab_acilis);
+        fabKapanis = AnimationUtils.loadAnimation(this, R.anim.fab_kapanis);
+
         dbHelper=new DbHelper(this);
         bundle=getIntent().getExtras();
         ders=bundle.getString("Ders");
         getActionBar().setTitle(ders+" Dersinin Notları");
 
-        notListesi=(ListView)findViewById(R.id.notListesi);
+        notListesi = findViewById(R.id.notListesi);
+
+
+        custom_adapter2 = new Custom_Adapter2(this, dersNotuArrayList);
+        notListesi.setAdapter(custom_adapter2);
 
         KayitYukle();
-
-        Custom_Adapter2 custom_adapter2=new Custom_Adapter2(this,dersNotuArrayList);
-        notListesi.setAdapter(custom_adapter2);
 
         notListesi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -103,8 +123,50 @@ public class DersNotlari extends Activity {
             });
             alertDialog.setNegativeButton("Hayır", null);
             alertDialog.show();
-
         }
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DersNotlari.this, DersNotuEkle.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("Ders", ders);
+
+                intent.putExtras(bundle);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
+
+        notListesi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(DersNotlari.this);
+                alertDialog.setTitle("Ders Notunu Silmek İstiyor Musunuz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try {
+                            dbHelper.NotSilTekli(dersNotuArrayList.get(position).getId());
+                            Toast.makeText(DersNotlari.this, "Not Silindi", Toast.LENGTH_SHORT).show();
+
+                            dersNotuArrayList.clear();
+                            KayitYukle();
+                            custom_adapter2.notifyDataSetChanged();
+                        } catch (Exception e) {
+                            Toast.makeText(DersNotlari.this, "Not Silinemedi", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                }).setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+                return false;
+            }
+        });
+
     }
     public void KayitYukle()
     {
@@ -120,14 +182,24 @@ public class DersNotlari extends Activity {
                 dersNotu.setId(cursor.getInt(0));
                 dersNotu=new DersNotu(dersNotu.getDersKonusu(),dersNotu.getDersNotu(),dersNotu.getNotResmi(),dersNotu.getDers(),dersNotu.getId());
                 dersNotuArrayList.add(dersNotu);
-
             }
+            custom_adapter2.notifyDataSetChanged();
+
         }catch (SQLException e)
         {
             Toast.makeText(getApplicationContext(),"Not Yok",Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void onResume() {
+        dersNotuArrayList.clear();
+        KayitYukle();
+        custom_adapter2.notifyDataSetChanged();
+        super.onResume();
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

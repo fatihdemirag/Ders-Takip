@@ -48,6 +48,9 @@ public class Ayarlar extends Activity {
         if (!sharedPreferences.getString("dersBaslangicSaati", "").equals("") && !sharedPreferences.getString("dersBaslangicDakikasi", "").equals("")) {
             dersBaslangicSaati.setHour(Integer.parseInt(sharedPreferences.getString("dersBaslangicSaati", "")));
             dersBaslangicSaati.setMinute(Integer.parseInt(sharedPreferences.getString("dersBaslangicDakikasi", "")));
+        } else {
+            dersBaslangicSaati.setHour(8);
+            dersBaslangicSaati.setMinute(0);
         }
         dersSuresi.setMinValue(10);
         dersSuresi.setMaxValue(100);

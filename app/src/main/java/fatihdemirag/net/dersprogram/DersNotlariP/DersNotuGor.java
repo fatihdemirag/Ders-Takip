@@ -1,17 +1,24 @@
 package fatihdemirag.net.dersprogram.DersNotlariP;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +38,7 @@ import java.io.IOException;
 import java.util.List;
 
 import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
+import fatihdemirag.net.dersprogram.MainPage;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.Sınıflar.DersNotu;
 
@@ -70,6 +78,11 @@ public class DersNotuGor extends Activity {
         gelenNot.setText(bundle.getString("Seçilen Not"));
         gelenId = bundle.getString("Seçilen Not Id", "");
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Not paylaşılıyor lütfen bekleyiniz");
+        progressDialog.setCancelable(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
         byte[] photo=bundle.getByteArray("Seçilen Not Resmi");
         final ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
         bitmap = BitmapFactory.decodeStream(imageStream);
@@ -78,15 +91,27 @@ public class DersNotuGor extends Activity {
         paylas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AsenkronPaylas asenkronPaylas = new AsenkronPaylas();
-                asenkronPaylas.execute();
+                final int PERMISSION_ALL = 1;
+                final String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+
+                if (!hasPermissions(DersNotuGor.this, PERMISSIONS)) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(DersNotuGor.this);
+                    alertDialog.setTitle("Paylaşım özelliğini kullanmak için izin gereklidir.").setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(DersNotuGor.this, PERMISSIONS, PERMISSION_ALL);
+                        }
+                    });
+                    alertDialog.show();
+                } else {
+                    AsenkronPaylas asenkronPaylas = new AsenkronPaylas();
+                    asenkronPaylas.execute();
+                }
+
             }
         });
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Not paylaşılıyor lütfen bekleyiniz");
-        progressDialog.setCancelable(false);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
 
         solaDon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +125,7 @@ public class DersNotuGor extends Activity {
                 gelenResim.setRotation(gelenResim.getRotation() + 90);
             }
         });
+
 
     }
 
@@ -135,12 +161,25 @@ public class DersNotuGor extends Activity {
             e.printStackTrace();
         } finally {
             try {
-                fileOutputStream.close();
+                if (fileOutputStream != null)
+                    fileOutputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -164,7 +203,7 @@ public class DersNotuGor extends Activity {
     class AsenkronPaylas extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
-            if (gelenResim == null)
+            if (gelenResim.getDrawable() == null)
                 this.cancel(true);
             else {
                 progressDialog.show();

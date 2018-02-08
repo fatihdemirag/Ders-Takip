@@ -69,7 +69,7 @@ public class DersListesiNot extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder alertDialog=new AlertDialog.Builder(DersListesiNot.this);
-                alertDialog.setTitle(dersNotuListesi.getItemAtPosition(position) + " Dersinin Tüm Notlarını Silinecek").setMessage(dersNotuListesi.getItemAtPosition(position) + " Dersinin Silmek İstediğinize Emin Misiniz").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                alertDialog.setTitle(dersNotuListesi.getItemAtPosition(position) + " Dersinin Tüm Notlarını Silinecek").setMessage(dersNotuListesi.getItemAtPosition(position) + " Dersinin Silmek İstediğinize Emin Misiniz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         try {

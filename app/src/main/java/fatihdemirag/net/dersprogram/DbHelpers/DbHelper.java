@@ -75,7 +75,7 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put(col_4, dersBitisSaati);
         contentValues.put(col_5, dersPoziyon);
         result = db.insert(table, null, contentValues);
-        if (result == 1)
+        if (result == 0)
             return false;
         else
             return true;
@@ -84,13 +84,13 @@ public class DbHelper extends SQLiteOpenHelper{
     public Cursor getAllData()
     {
         SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from dersler_programi order by ders_baslangic_saati", null);
+        Cursor cursor = db.rawQuery("select * from dersler_programi ", null);
         return cursor;
     }
     public Cursor getAllDataT()
     {
         SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select distinct ders_adi from dersler_programi", null);
+        Cursor cursor = db.rawQuery("select distinct ders_adi from dersler", null);
         return cursor;
     }
     @Override
@@ -149,7 +149,7 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put(col_3_2,notResmi);
         contentValues.put(col_4_2,ders);
         result2=db.insert(table_2,null,contentValues);
-        if (result2==1)
+        if (result2 == 0)
             return false;
         else
             return true;
@@ -174,6 +174,12 @@ public class DbHelper extends SQLiteOpenHelper{
     {
         SQLiteDatabase db=this.getWritableDatabase();
         String query="delete from '"+table_2+"' where ders='"+ders+"'";
+        db.execSQL(query);
+    }
+
+    public void NotSilTekli(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "delete from '" + table_2 + "' where id='" + id + "'";
         db.execSQL(query);
     }
 
@@ -206,7 +212,7 @@ public class DbHelper extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
         contentValues.put(col_1_3, dersAdi);
         result3 = db.insert(table_3, null, contentValues);
-        if (result3 == 1)
+        if (result3 == 0)
             return false;
         else
             return true;

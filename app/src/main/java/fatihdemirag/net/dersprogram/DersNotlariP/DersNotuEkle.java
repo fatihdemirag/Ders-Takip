@@ -47,7 +47,6 @@ public class DersNotuEkle extends Activity {
                     Bitmap kucukResim = Bitmap.createScaledBitmap(r, 1000, 600, true);
                     resim.setImageBitmap(kucukResim);
                     resim.setVisibility(View.VISIBLE);
-                    resim.setRotation(90);
                 }catch (FileNotFoundException f)
                 {
                     Toast.makeText(getApplicationContext(),"Resim Tanınamadı",Toast.LENGTH_SHORT).show();

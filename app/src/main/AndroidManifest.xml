@@ -12,11 +12,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@android:style/Theme.Material.Light">
-        <activity android:name=".DersEkle" />
         <activity android:name=".CustomAdapters_Listviews.Custom_ListView" />
         <activity android:name=".CustomAdapters_Listviews.Custom_AlertDialog" />
         <activity
@@ -43,7 +42,8 @@
             android:name=".NotHesaplama.NotHesaplamaGirisSayfasi"
             android:label="Not Hesaplama" />
         <activity android:name=".NotHesaplama.LiseNotHesap" />
-        <activity android:name=".NotHesaplama.LiseNotEkle"></activity>
+        <activity android:name=".NotHesaplama.LiseNotEkle" />
+        <activity android:name=".Dersler"></activity>
     </application>
 
 </manifest>

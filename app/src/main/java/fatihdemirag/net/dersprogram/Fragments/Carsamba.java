@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 import fatihdemirag.net.dersprogram.CustomAdapters_Listviews.CardViewAdapterDersProgrami;
 import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
+import fatihdemirag.net.dersprogram.Dersler;
 import fatihdemirag.net.dersprogram.Sınıflar.Ders;
 import fatihdemirag.net.dersprogram.R;
 
@@ -120,6 +121,8 @@ public class Carsamba extends Fragment {
             }
         });
 
+        dersEkle.setClickable(false);
+        derslerListesi.setClickable(false);
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,6 +131,9 @@ public class Carsamba extends Fragment {
                     dersEkle.startAnimation(butonlarAcilis);
                     derslerListesi.startAnimation(butonlarAcilis);
                     fabTiklandi = !fabTiklandi;
+                    dersEkle.setClickable(true);
+                    derslerListesi.setClickable(true);
+
                 } else {
                     fabButton.startAnimation(fabKapanis);
                     dersEkle.startAnimation(butonlarKapanis);
@@ -163,6 +169,13 @@ public class Carsamba extends Fragment {
                 editor.putString("gun", "Çarşamba");
                 editor.commit();
 
+            }
+        });
+        derslerListesi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Dersler.class);
+                startActivity(intent);
             }
         });
 
