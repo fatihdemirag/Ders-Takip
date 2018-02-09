@@ -35,7 +35,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:id="@+id/dersId"
-        android:text="id"
+        android:text="0"
         android:visibility="invisible"
         android:layout_marginStart="39dp"
         android:layout_below="@+id/ders"

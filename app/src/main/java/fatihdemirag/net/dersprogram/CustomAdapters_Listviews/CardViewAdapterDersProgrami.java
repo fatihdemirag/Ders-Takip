@@ -125,7 +125,6 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             onayButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("Ders id :" + dersId.getText().toString());
                     if (dersId.getText().toString().equals("0")) {
                         tenefusSuresi = Integer.parseInt(sharedPreferences.getString("tenefusSuresi", ""));
                         dersSuresi = Integer.parseInt(sharedPreferences.getString("dersSuresi", ""));
@@ -271,7 +270,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
         void KayitGuncelle() {
             DbHelper dbHelper = new DbHelper(itemView.getContext());
-            if (dbHelper.updateData3(Integer.parseInt(dersId.getText().toString()), dersler.getSelectedItem().toString()))
+            if (dbHelper.dersGuncelle(Integer.parseInt(dersId.getText().toString()), dersler.getSelectedItem().toString(), dersler.getSelectedItemPosition()))
                 Toast.makeText(itemView.getContext(), "Ders Güncellendi", Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(itemView.getContext(), "Ders Güncellenemedi", Toast.LENGTH_SHORT).show();

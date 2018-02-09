@@ -172,10 +172,15 @@ public class Cuma extends Fragment {
         derslerListesi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fabButton.startAnimation(fabKapanis);
+                dersEkle.startAnimation(butonlarKapanis);
+                derslerListesi.startAnimation(butonlarKapanis);
+
                 Intent intent = new Intent(getActivity(), Dersler.class);
                 startActivity(intent);
             }
         });
+
 
         return view;
     }

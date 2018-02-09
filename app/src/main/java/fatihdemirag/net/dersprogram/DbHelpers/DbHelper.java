@@ -120,6 +120,19 @@ public class DbHelper extends SQLiteOpenHelper{
         return true;
     }
 
+    public boolean dersGuncelle(int dersId, String dersAdi, int dersPozisyon) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        //contentValues.put("id",id);
+        contentValues.put(col_1, dersAdi);
+        String updateQuery = "update '" + table + "' set ders_adi='" + dersAdi + "',ders_pozisyon='" + dersPozisyon + "' where id='" + dersId + "'";
+        //db.update(table,contentValues,"id"+"=?",new String[]{String.valueOf(id)});
+        db.execSQL(updateQuery);
+        db.close();
+        return true;
+    }
+
+
     //--------Tablo 2---------//
 
     public Integer deleteData2(String id)
