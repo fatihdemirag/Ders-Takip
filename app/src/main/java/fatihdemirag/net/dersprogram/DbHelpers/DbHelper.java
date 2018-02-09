@@ -204,9 +204,9 @@ public class DbHelper extends SQLiteOpenHelper{
 
     }
 
-    public Integer deleteData3(String id) {
+    public Integer deleteData3(String ders) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(table_3, "id = ?", new String[]{id});
+        return db.delete(table_3, "ders_adi = ?", new String[]{ders});
     }
 
     public boolean updateData3(int id, String dersAdi) {

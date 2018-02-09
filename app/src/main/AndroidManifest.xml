@@ -5,8 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -33,18 +32,19 @@
             android:name=".MainPage"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Material.Light.NoActionBar">
+
+        </activity>
+        <activity android:name=".Dersler" />
+        <activity
+            android:name=".SplashEkrani"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".NotHesaplama.NotHesaplamaGirisSayfasi"
-            android:label="Not Hesaplama" />
-        <activity android:name=".NotHesaplama.LiseNotHesap" />
-        <activity android:name=".NotHesaplama.LiseNotEkle" />
-        <activity android:name=".Dersler"></activity>
     </application>
 
 </manifest>

@@ -2,15 +2,19 @@ package fatihdemirag.net.dersprogram;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,8 +25,11 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
+import fatihdemirag.net.dersprogram.DersNotlariP.DersNotuGor;
 
 public class Dersler extends Activity {
 
@@ -127,8 +134,24 @@ public class Dersler extends Activity {
 
                     }
                 });
-
-
+            }
+        });
+        derslerListesi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Dersler.this);
+                alertDialog.setMessage("Dersi Silmek İstediğinize Emin Misiniz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dbHelper.deleteData3(dersArrayList.get(position).toString());
+                        Toast.makeText(Dersler.this, dersArrayList.get(position).toString() + " Dersi Silindi", Toast.LENGTH_SHORT).show();
+                        dersArrayList.remove(dersArrayList.get(position).toString());
+                        arrayAdapter.notifyDataSetChanged();
+                    }
+                });
+                alertDialog.setNegativeButton("Hayır", null);
+                alertDialog.show();
+                return false;
             }
         });
     }
