@@ -14,7 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dersler"
-        android:layout_toEndOf="@+id/imageView"
         android:text="Başlangıç"
         android:layout_marginLeft="10dp"
         app:layout_constraintRight_toLeftOf="@+id/textView3"
@@ -62,8 +61,7 @@
         tools:layout_editor_absoluteY="7dp"
         app:layout_constraintLeft_toRightOf="@+id/textView3"
         android:textSize="24dp"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_alignParentTop="true" />
 
     <ImageView
         android:id="@+id/dersDuzenle"
@@ -89,8 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="-10dp"
-        android:layout_toEndOf="@+id/imageView"></Spinner>
+        android:layout_marginLeft="-10dp"></Spinner>
 
     <ImageView
         android:id="@+id/onayButton"

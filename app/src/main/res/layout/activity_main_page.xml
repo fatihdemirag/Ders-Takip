@@ -55,8 +55,21 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:weightSum="1">
+                android:weightSum="2">
 
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dersler"
+                    android:background="@drawable/cardview_background"
+                    android:text="Dersler"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:paddingLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/dersler"
+                    android:paddingRight="10dp" />
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -70,16 +83,14 @@
                     android:drawableTop="@drawable/settings"
                     android:paddingRight="10dp" />
             </LinearLayout>
-
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ads:adSize="SMART_BANNER"
+                ads:adSize="BANNER"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_gravity="bottom"
-                ads:adUnitId="@string/bannerAdsId"></com.google.android.gms.ads.AdView>
+                ads:adUnitId="@string/bannerAdsId" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

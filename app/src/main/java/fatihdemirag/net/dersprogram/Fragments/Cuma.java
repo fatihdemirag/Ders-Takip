@@ -37,11 +37,6 @@ public class Cuma extends Fragment {
     Ders ders;
 
     Button dersEkleButton;
-    Button fabButton;
-
-    Button dersEkle, derslerListesi;
-
-    Dialog dialog;
 
     RecyclerView dersProgramiRecycler;
     RecyclerView.LayoutManager layoutManager;
@@ -49,26 +44,12 @@ public class Cuma extends Fragment {
 
     View view;
 
-    EditText dialogDersAdi;
-    private AdView adView;
-
-    Animation fabAcilis, fabKapanis, butonlarAcilis, butonlarKapanis;
-
-    boolean fabTiklandi = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cuma, container, false);
         dersProgramiRecycler = view.findViewById(R.id.cumaListe);
-        fabButton = view.findViewById(R.id.fabButton);
-        dersEkle = view.findViewById(R.id.dersEkle);
-        derslerListesi = view.findViewById(R.id.derslerListesi);
-
-        fabAcilis = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_acilis);
-        fabKapanis = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_kapanis);
-        butonlarAcilis = AnimationUtils.loadAnimation(getActivity(), R.anim.butonlar_acilis);
-        butonlarKapanis = AnimationUtils.loadAnimation(getActivity(), R.anim.butonlar_kapanis);
 
         layoutManager = new LinearLayoutManager(getActivity());
         cardViewAdapterDersProgrami = new CardViewAdapterDersProgrami(getActivity(), liste);
@@ -79,74 +60,6 @@ public class Cuma extends Fragment {
         dersProgramiRecycler.setAdapter(cardViewAdapterDersProgrami);
 
         dbHelper=new DbHelper(getActivity());
-
-
-        dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.activity_ders_ekle);
-        dialog.setCancelable(true);
-        dialog.setTitle("Ders Ekle");
-
-        dialogDersAdi = dialog.findViewById(R.id.dersAdi);
-        adView = dialog.findViewById(R.id.adView);
-
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
-        adView.loadAd(adRequest);
-
-        dialog.findViewById(R.id.dersEkle).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    if (!dialogDersAdi.getText().toString().equals("")) {
-                        if (dbHelper.insertData3(dialogDersAdi.getText().toString())) {
-                            Toast.makeText(getActivity(), "Ders Eklendi", Toast.LENGTH_SHORT).show();
-                            cardViewAdapterDersProgrami.notifyDataSetChanged();
-
-                            fabButton.startAnimation(fabKapanis);
-                            dersEkle.startAnimation(butonlarKapanis);
-                            derslerListesi.startAnimation(butonlarKapanis);
-
-                            dialog.dismiss();
-                        } else
-                            Toast.makeText(getActivity(), "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
-                    } else
-                        Toast.makeText(getActivity(), "Ders Adı Boş Geçilemez", Toast.LENGTH_SHORT).show();
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        });
-
-        dersEkle.setClickable(false);
-        derslerListesi.setClickable(false);
-        fabButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!fabTiklandi) {
-                    fabButton.startAnimation(fabAcilis);
-                    dersEkle.startAnimation(butonlarAcilis);
-                    derslerListesi.startAnimation(butonlarAcilis);
-                    fabTiklandi = !fabTiklandi;
-                    dersEkle.setClickable(true);
-                    derslerListesi.setClickable(true);
-
-                } else {
-                    fabButton.startAnimation(fabKapanis);
-                    dersEkle.startAnimation(butonlarKapanis);
-                    derslerListesi.startAnimation(butonlarKapanis);
-                    fabTiklandi = !fabTiklandi;
-                }
-
-            }
-        });
-        dersEkle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.show();
-            }
-        });
 
 
         KayitYukle("Cuma", dbHelper, ders, liste);
@@ -169,19 +82,6 @@ public class Cuma extends Fragment {
 
             }
         });
-        derslerListesi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fabButton.startAnimation(fabKapanis);
-                dersEkle.startAnimation(butonlarKapanis);
-                derslerListesi.startAnimation(butonlarKapanis);
-
-                Intent intent = new Intent(getActivity(), Dersler.class);
-                startActivity(intent);
-            }
-        });
-
-
         return view;
     }
 

@@ -135,10 +135,12 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
                         if (getAdapterPosition() == 0) {
 
-                            KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaatiInt + ":" + bitisSaatiInt, baslangicSaatiInt + ":" + dersBitisSaati, dersler.getSelectedItemPosition());
-
-                            baslangicSaati.setText(baslangicSaatiInt + ":" + bitisSaatiInt);
-                            bitisSaati.setText(baslangicSaatiInt + ":" + dersBitisSaati);
+                            if (dersler.getSelectedItem() != null) {
+                                KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaatiInt + ":" + bitisSaatiInt, baslangicSaatiInt + ":" + dersBitisSaati, dersler.getSelectedItemPosition());
+                                baslangicSaati.setText(baslangicSaatiInt + ":" + bitisSaatiInt);
+                                bitisSaati.setText(baslangicSaatiInt + ":" + dersBitisSaati);
+                            } else
+                                Toast.makeText(itemView.getContext(), "Ders Adı Boş Olamaz", Toast.LENGTH_SHORT).show();
                         } else {
                             String simdikiBaslangicSaati = liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':')) + ":" + String.valueOf(Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length())) + tenefusSuresi);
                             int simdikiBitisSaati = Integer.parseInt(simdikiBaslangicSaati.substring(simdikiBaslangicSaati.indexOf(':') + 1, simdikiBaslangicSaati.length())) + tenefusSuresi + dersSuresi;

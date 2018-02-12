@@ -20,6 +20,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 
 import fatihdemirag.net.dersprogram.CustomAdapters_Listviews.Custom_Adapter2;
@@ -48,6 +51,8 @@ public class DersNotlari extends Activity {
 
     DersNotu dersNotu;
 
+    AdView adView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +72,10 @@ public class DersNotlari extends Activity {
         getActionBar().setTitle(ders+" Dersinin Notları");
 
         notListesi = findViewById(R.id.notListesi);
+        adView = findViewById(R.id.adView);
 
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
+        adView.loadAd(adRequest);
 
         custom_adapter2 = new Custom_Adapter2(this, dersNotuArrayList);
         notListesi.setAdapter(custom_adapter2);

@@ -1,6 +1,7 @@
 package fatihdemirag.net.dersprogram.DersNotlariP;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,7 +49,11 @@ public class DersNotuGor extends Activity {
     ZoomageView gelenResim;
     TextView gelenBaslik,gelenNot;
 
+    EditText yeniNot;
+
     ImageButton solaDon, sagaDon;
+
+    ImageView notGuncelle;
 
     Button paylas;
 
@@ -57,6 +63,9 @@ public class DersNotuGor extends Activity {
     Bitmap bitmap;
 
     String gelenId;
+
+    boolean notGuncelleTiklandi = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +81,8 @@ public class DersNotuGor extends Activity {
         paylas = findViewById(R.id.paylas);
         solaDon = findViewById(R.id.solaDon);
         sagaDon = findViewById(R.id.sagaDon);
+        notGuncelle = findViewById(R.id.notGuncelle);
+        yeniNot = findViewById(R.id.yeniNot);
 
         bundle = getIntent().getExtras();
         gelenBaslik.setText(bundle.getString("Seçilen Başlık"));
@@ -123,6 +134,31 @@ public class DersNotuGor extends Activity {
             @Override
             public void onClick(View v) {
                 gelenResim.setRotation(gelenResim.getRotation() + 90);
+            }
+        });
+
+        notGuncelle.setImageResource(R.drawable.edit);
+        notGuncelle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!notGuncelleTiklandi) {
+                    notGuncelle.setImageResource(R.drawable.onay);
+                    notGuncelleTiklandi = !notGuncelleTiklandi;
+
+                    gelenNot.setVisibility(View.INVISIBLE);
+                    yeniNot.setVisibility(View.VISIBLE);
+
+                    DbHelper dbHelper = new DbHelper(DersNotuGor.this);
+                    dbHelper.updateData2(Integer.parseInt(gelenId), yeniNot.getText().toString());
+                    Toast.makeText(DersNotuGor.this, "Not Güncellendi", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    notGuncelle.setImageResource(R.drawable.edit);
+                    notGuncelleTiklandi = !notGuncelleTiklandi;
+                    gelenNot.setVisibility(View.VISIBLE);
+                    yeniNot.setVisibility(View.INVISIBLE);
+                }
+                gelenNot.setText(yeniNot.getText().toString());
             }
         });
 

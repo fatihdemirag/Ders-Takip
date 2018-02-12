@@ -140,14 +140,15 @@ public class DbHelper extends SQLiteOpenHelper{
         SQLiteDatabase db=this.getWritableDatabase();
         return db.delete(table_2,"id = ?",new String[] {id});
     }
-    public boolean updateData2(int id,String konu,String dersNotu)
-    {
+
+    public boolean updateData2(int id, String not) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("id", id);
-        contentValues.put(col_1_2, konu);
-        contentValues.put(col_2_2, dersNotu);
-        db.update(table_2, contentValues, id + "=?", new String[]{String.valueOf(id), String.valueOf(konu), String.valueOf(dersNotu)});
+        contentValues.put(col_2_2, not);
+        String updateQuery = "update '" + table_2 + "' set '" + col_2_2 + "'='" + not + "' where id='" + id + "'";
+        db.execSQL(updateQuery);
+        db.close();
         return true;
     }
     long result2;

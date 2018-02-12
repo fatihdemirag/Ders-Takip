@@ -19,7 +19,7 @@
         <activity android:name=".CustomAdapters_Listviews.Custom_AlertDialog" />
         <activity
             android:name=".HaftalikDersler"
-            android:label="@string/title_activity_gunler" />
+            android:label="@string/title_activity_gunler"></activity>
         <activity android:name=".DersNotlariP.DersNotlari" />
         <activity android:name=".DersNotlariP.DersNotuEkle" />
         <activity
@@ -32,18 +32,18 @@
             android:name=".MainPage"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Material.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Dersler" />
         <activity
             android:name=".SplashEkrani"
             android:noHistory="true"
             android:theme="@android:style/Theme.Material.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

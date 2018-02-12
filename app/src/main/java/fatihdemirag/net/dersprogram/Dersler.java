@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,11 +24,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
-import fatihdemirag.net.dersprogram.DersNotlariP.DersNotuGor;
 
 public class Dersler extends Activity {
 

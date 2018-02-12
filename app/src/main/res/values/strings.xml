@@ -13,14 +13,6 @@
     <string name="title_section5">Section 5</string>
 
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_burda">Burda</string>
-
-    <string name="action_example">Example action</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bannerAdsId">ca-app-pub-9361831426651608/5769015827</string>
+    <string name="bannerAdsId">ca-app-pub-9361831426651608/9620720216</string>
 
 </resources>

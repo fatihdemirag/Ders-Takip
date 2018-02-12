@@ -49,8 +49,8 @@ public class Ayarlar extends Activity {
             dersBaslangicSaati.setHour(Integer.parseInt(sharedPreferences.getString("dersBaslangicSaati", "")));
             dersBaslangicSaati.setMinute(Integer.parseInt(sharedPreferences.getString("dersBaslangicDakikasi", "")));
         } else {
-            dersBaslangicSaati.setHour(8);
-            dersBaslangicSaati.setMinute(0);
+            dersBaslangicSaati.setCurrentHour(8);
+            dersBaslangicSaati.setCurrentMinute(0);
         }
         dersSuresi.setMinValue(10);
         dersSuresi.setMaxValue(100);
@@ -65,14 +65,14 @@ public class Ayarlar extends Activity {
         ayarKaydet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dersBaslangicSaati.getHour() < 10)
-                    editor.putString("dersBaslangicSaati", "0" + String.valueOf(dersBaslangicSaati.getHour()));
+                if (dersBaslangicSaati.getCurrentHour() < 10)
+                    editor.putString("dersBaslangicSaati", "0" + String.valueOf(dersBaslangicSaati.getCurrentHour()));
                 else
-                    editor.putString("dersBaslangicSaati", String.valueOf(dersBaslangicSaati.getHour()));
-                if (dersBaslangicSaati.getMinute() < 10)
-                    editor.putString("dersBaslangicDakikasi", "0" + String.valueOf(dersBaslangicSaati.getMinute()));
+                    editor.putString("dersBaslangicSaati", String.valueOf(dersBaslangicSaati.getCurrentHour()));
+                if (dersBaslangicSaati.getCurrentMinute() < 10)
+                    editor.putString("dersBaslangicDakikasi", "0" + String.valueOf(dersBaslangicSaati.getCurrentMinute()));
                 else
-                    editor.putString("dersBaslangicDakikasi", String.valueOf(dersBaslangicSaati.getMinute()));
+                    editor.putString("dersBaslangicDakikasi", String.valueOf(dersBaslangicSaati.getCurrentMinute()));
                 editor.putString("dersSuresi", String.valueOf(dersSuresi.getValue()));
                 editor.putString("tenefusSuresi", String.valueOf(tenefusSuresi.getValue()));
                 editor.commit();
@@ -84,8 +84,6 @@ public class Ayarlar extends Activity {
 //        System.out.println("İki nokta : "+str.indexOf(':'));
 //        System.out.println("İki nokta sol :"+str.substring(0,str.indexOf(':')));
 //        System.out.println("İki nokta sağ :"+str.substring(str.indexOf(':')+1,str.length()));
-
-
     }
 
     @Override

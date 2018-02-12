@@ -75,12 +75,26 @@
                     android:text="TextView" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Not" />
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/notGuncelle"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:layout_gravity="left"
+                    android:text="Not" />
+
+            </LinearLayout>
             <TextView
                 android:id="@+id/notGelen"
                 android:layout_width="wrap_content"
@@ -88,12 +102,21 @@
                 android:text="TextView"
                 android:layout_marginTop="5dp"
                 android:textIsSelectable="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:layout_marginTop="-20dp"
+                android:visibility="invisible"
+                android:id="@+id/yeniNot"
+                android:gravity="left|top" />
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="bottom|right"
         android:layout_margin="10dp"
         android:id="@+id/paylas"
