@@ -76,7 +76,6 @@ public class Dersler extends Activity {
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.activity_ders_ekle);
         dialog.setCancelable(true);
-        dialog.setTitle("Ders Ekle");
 
         dialogDersAdi = dialog.findViewById(R.id.dersAdi);
         adView = dialog.findViewById(R.id.adView);

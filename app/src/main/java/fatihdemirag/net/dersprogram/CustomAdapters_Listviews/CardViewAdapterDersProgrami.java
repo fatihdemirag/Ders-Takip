@@ -29,6 +29,7 @@ import java.util.List;
 
 import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 import fatihdemirag.net.dersprogram.DersNotlariP.DersNotuEkle;
+import fatihdemirag.net.dersprogram.Dersler;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.Sınıflar.Ders;
 
@@ -139,8 +140,19 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                                 KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaatiInt + ":" + bitisSaatiInt, baslangicSaatiInt + ":" + dersBitisSaati, dersler.getSelectedItemPosition());
                                 baslangicSaati.setText(baslangicSaatiInt + ":" + bitisSaatiInt);
                                 bitisSaati.setText(baslangicSaatiInt + ":" + dersBitisSaati);
-                            } else
-                                Toast.makeText(itemView.getContext(), "Ders Adı Boş Olamaz", Toast.LENGTH_SHORT).show();
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                                builder.setMessage("Ders tanımlanmamış ders eklemek ister misiniz ?");
+                                builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(itemView.getContext(), Dersler.class);
+                                        itemView.getContext().startActivity(intent);
+                                    }
+                                });
+                                builder.setNegativeButton("Hayır", null);
+                                builder.show();
+                            }
                         } else {
                             String simdikiBaslangicSaati = liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':')) + ":" + String.valueOf(Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length())) + tenefusSuresi);
                             int simdikiBitisSaati = Integer.parseInt(simdikiBaslangicSaati.substring(simdikiBaslangicSaati.indexOf(':') + 1, simdikiBaslangicSaati.length())) + tenefusSuresi + dersSuresi;
@@ -164,11 +176,25 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             dersNotuEkle.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), DersNotuEkle.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("Ders", ders.getText().toString());
-                    intent.putExtras(bundle);
-                    itemView.getContext().startActivity(intent);
+                    if (dersler.getSelectedItem() == null) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                        builder.setMessage("Ders tanımlanmamış ders eklemek ister misiniz ?");
+                        builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(itemView.getContext(), Dersler.class);
+                                itemView.getContext().startActivity(intent);
+                            }
+                        });
+                        builder.setNegativeButton("Hayır", null);
+                        builder.show();
+                    } else {
+                        Intent intent = new Intent(itemView.getContext(), DersNotuEkle.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Ders", ders.getText().toString());
+                        intent.putExtras(bundle);
+                        itemView.getContext().startActivity(intent);
+                    }
                 }
             });
 
@@ -219,6 +245,16 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
         }
 
+        void AlertDialog(String mesaj) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+            builder.setMessage(mesaj);
+            builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            builder.show();
+        }
         @Override
         public void onClick(View view) {
             Log.d("position ", getAdapterPosition() + "");
