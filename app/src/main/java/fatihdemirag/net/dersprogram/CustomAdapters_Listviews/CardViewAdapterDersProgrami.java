@@ -16,8 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -64,6 +66,8 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
         holder.dersId.setText(liste.get(position).getDersId() + "");
         holder.ders.setText(liste.get(position).getDersAdi());
         holder.dersler.setSelection(liste.get(position).getDersPozisyon());
+        if (liste.get(position).getDersTenefusSuresi() != null)
+            holder.tenefusSuresiNumberPicker.setValue(Integer.parseInt(liste.get(position).getDersTenefusSuresi()));
     }
 
     @Override
@@ -73,9 +77,11 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView baslangicSaati, bitisSaati, dersId, ders;
-        ImageView dersDuzenle, dersNotuEkle, onayButton;
+        Button dersNotuEkle, onayButton;
 
         Spinner dersler;
+
+        NumberPicker tenefusSuresiNumberPicker;
 
         Dialog dialog;
 
@@ -84,7 +90,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
         DbHelper dbHelper;
 
-        RelativeLayout customList;
+        LinearLayout customList;
 
         int baslangicSaatiInt;
         int bitisSaatiInt;
@@ -100,11 +106,11 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             bitisSaati = itemView.findViewById(R.id.bitisSaat);
             dersId = itemView.findViewById(R.id.dersId);
             ders = itemView.findViewById(R.id.ders);
-            dersDuzenle = itemView.findViewById(R.id.dersDuzenle);
             dersNotuEkle = itemView.findViewById(R.id.dersNotuEkle);
             customList = itemView.findViewById(R.id.customList);
             dersler = itemView.findViewById(R.id.dersler);
             onayButton = itemView.findViewById(R.id.onayButton);
+            tenefusSuresiNumberPicker = itemView.findViewById(R.id.tenefusSuresi);
 
             dialog = new Dialog(itemView.getContext());
             dialog.setContentView(R.layout.activity_custom__alert_dialog);
@@ -116,18 +122,18 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             dialogCikisSaati = dialog.findViewById(R.id.dersCikis);
 
             final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(itemView.getContext());
-            dersDuzenle.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
+            tenefusSuresiNumberPicker.setMinValue(5);
+            tenefusSuresiNumberPicker.setMaxValue(30);
 
             onayButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (dersId.getText().toString().equals("0")) {
-                        tenefusSuresi = Integer.parseInt(sharedPreferences.getString("tenefusSuresi", ""));
+                        if (getAdapterPosition() > 0)
+                            tenefusSuresi = Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersTenefusSuresi());
+                        else
+                            tenefusSuresi = tenefusSuresiNumberPicker.getValue();
                         dersSuresi = Integer.parseInt(sharedPreferences.getString("dersSuresi", ""));
                         dersBaslangicSaatiString = sharedPreferences.getString("dersBaslangicSaati", "") + ":" + sharedPreferences.getString("dersBaslangicDakikasi", "");
 
@@ -137,9 +143,9 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                         if (getAdapterPosition() == 0) {
 
                             if (dersler.getSelectedItem() != null) {
-                                KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaatiInt + ":" + bitisSaatiInt, baslangicSaatiInt + ":" + dersBitisSaati, dersler.getSelectedItemPosition());
+                                KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaatiInt + ":" + bitisSaatiInt, baslangicSaatiInt + ":" + (dersBitisSaati + dersSuresi), dersler.getSelectedItemPosition());
                                 baslangicSaati.setText(baslangicSaatiInt + ":" + bitisSaatiInt);
-                                bitisSaati.setText(baslangicSaatiInt + ":" + dersBitisSaati);
+                                bitisSaati.setText(baslangicSaatiInt + ":" + (dersBitisSaati + dersSuresi));
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
                                 builder.setMessage("Ders tanımlanmamış ders eklemek ister misiniz ?");
@@ -204,7 +210,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                 @Override
                 public void onClick(View view) {
                     boolean guncel = dbHelper.updateData(Integer.parseInt(dialogId.getText().toString()), dialogDersAd.getText().toString()
-                            , dialogGirisSaati.getText().toString(), dialogCikisSaati.getText().toString());
+                            , dialogGirisSaati.getText().toString(), dialogCikisSaati.getText().toString(), String.valueOf(tenefusSuresiNumberPicker.getValue()));
                     if (guncel)
                         Toast.makeText(itemView.getContext(), "Ders Güncellendi", Toast.LENGTH_SHORT).show();
                     else
@@ -269,7 +275,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             DbHelper dbHelper = new DbHelper(itemView.getContext());
             int delete = dbHelper.deleteData(id);
             if (delete > 0) {
-                Toast.makeText(itemView.getContext(), "Kayıt Silindi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(itemView.getContext(), "Ders Silindi", Toast.LENGTH_SHORT).show();
                 return true;
             } else {
                 return false;
@@ -280,7 +286,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             try {
                 DbHelper dbHelper = new DbHelper(itemView.getContext());
 
-                if (dbHelper.insertData(dersAdi, gun, baslangicSaat, bitisSaat, dersPozisyon))
+                if (dbHelper.insertData(dersAdi, gun, baslangicSaat, bitisSaat, dersPozisyon, String.valueOf(tenefusSuresiNumberPicker.getValue())))
                     Toast.makeText(itemView.getContext(), "Ders Eklendi", Toast.LENGTH_SHORT).show();
             } catch (SQLException s) {
                 Toast.makeText(itemView.getContext(), "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
@@ -308,7 +314,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
         void KayitGuncelle() {
             DbHelper dbHelper = new DbHelper(itemView.getContext());
-            if (dbHelper.dersGuncelle(Integer.parseInt(dersId.getText().toString()), dersler.getSelectedItem().toString(), dersler.getSelectedItemPosition()))
+            if (dbHelper.dersGuncelle(Integer.parseInt(dersId.getText().toString()), dersler.getSelectedItem().toString(), dersler.getSelectedItemPosition(), String.valueOf(tenefusSuresiNumberPicker.getValue())))
                 Toast.makeText(itemView.getContext(), "Ders Güncellendi", Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(itemView.getContext(), "Ders Güncellenemedi", Toast.LENGTH_SHORT).show();

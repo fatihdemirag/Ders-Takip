@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -48,8 +49,6 @@ public class Dersler extends Activity {
     Cursor cursor;
     DbHelper dbHelper;
 
-    boolean fabTiklandi = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +57,7 @@ public class Dersler extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Dersler");
 
         derslerListesi = findViewById(R.id.derslerListesi);
         dersEkleButton = findViewById(R.id.dersEkleButton);
@@ -74,6 +74,7 @@ public class Dersler extends Activity {
         KayitYukle();
 
         dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.activity_ders_ekle);
         dialog.setCancelable(true);
 
@@ -82,6 +83,7 @@ public class Dersler extends Activity {
 
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
         adView.loadAd(adRequest);
+
 
         dersEkleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,16 +119,26 @@ public class Dersler extends Activity {
                 dersEkleButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!fabTiklandi) {
-                            dersEkleButton.startAnimation(fabAcilis);
-                            dialog.show();
-                            fabTiklandi = !fabTiklandi;
+                        dersEkleButton.startAnimation(fabAcilis);
+                        dialog.show();
 
-                        } else {
-                            dersEkleButton.startAnimation(fabKapanis);
-                            fabTiklandi = !fabTiklandi;
-                        }
+                        fabAcilis.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
 
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                dersEkleButton.startAnimation(fabKapanis);
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
                     }
                 });
             }

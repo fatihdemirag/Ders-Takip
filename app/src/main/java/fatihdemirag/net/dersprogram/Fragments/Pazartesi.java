@@ -101,7 +101,8 @@ public class Pazartesi extends Fragment {
                 ders.setDersBitisSaati(cursor.getString(4));
                 ders.setDersId((cursor.getInt(0)));
                 ders.setDersPozisyon(cursor.getInt(5));
-                ders = new Ders(ders.getDersAdi(), gun, ders.getDersBaslangicSaati(), ders.getDersBitisSaati(), ders.getDersId(), ders.getDersPozisyon());
+                ders.setDersTenefusSuresi(cursor.getString(6));
+                ders = new Ders(ders.getDersAdi(), gun, ders.getDersBaslangicSaati(), ders.getDersBitisSaati(), ders.getDersId(), ders.getDersPozisyon(), ders.getDersTenefusSuresi());
                 liste.add(ders);
             }
         }

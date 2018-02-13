@@ -11,15 +11,24 @@ public class Ders {
     String dersBitisSaati;
     int dersId;
     int dersPozisyon;
+    String dersTenefusSuresi;
 
+    public String getDersTenefusSuresi() {
+        return dersTenefusSuresi;
+    }
 
-    public Ders(String dersAdi, String dersGun, String dersBaslangicSaati, String dersBitisSaati, int dersId, int dersPozisyon) {
+    public void setDersTenefusSuresi(String dersTenefusSuresi) {
+        this.dersTenefusSuresi = dersTenefusSuresi;
+    }
+
+    public Ders(String dersAdi, String dersGun, String dersBaslangicSaati, String dersBitisSaati, int dersId, int dersPozisyon, String dersTenefusSuresi) {
         this.dersAdi = dersAdi;
         this.dersGun = dersGun;
         this.dersBaslangicSaati = dersBaslangicSaati;
         this.dersBitisSaati = dersBitisSaati;
         this.dersId = dersId;
         this.dersPozisyon = dersPozisyon;
+        this.dersTenefusSuresi = dersTenefusSuresi;
     }
 
     public Ders() {

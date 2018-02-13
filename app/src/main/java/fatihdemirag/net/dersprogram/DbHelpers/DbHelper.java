@@ -13,12 +13,13 @@ import android.widget.Toast;
 public class DbHelper extends SQLiteOpenHelper{
     public static final String dbName="ders_programi";
     private static final String table = "dersler_programi";
-    private static final int version = 8;
+    private static final int version = 9;
     public static final String col_1="ders_adi";
     public static final String col_2="ders_gunu";
     public static final String col_3="ders_baslangic_saati";
     public static final String col_4="ders_bitis_saati";
     public static final String col_5 = "ders_pozisyon";
+    public static final String col_6 = "ders_tenefus_suresi";
 
     private static final String table_2 = "ders_notlari";
     public static final String col_1_2="ders_konusu";
@@ -47,7 +48,7 @@ public class DbHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db.execSQL("create table " + table + " (id integer primary key autoincrement," + col_1 + " text not null," + col_2 + " text," + col_3 + " text," + col_4 + " text," + col_5 + " int)");
+            db.execSQL("create table " + table + " (id integer primary key autoincrement," + col_1 + " text not null," + col_2 + " text," + col_3 + " text," + col_4 + " text," + col_5 + " int," + col_6 + " text)");
             db.execSQL("create table "+table_2+" (id integer primary key autoincrement,"+col_1_2+" text not null,"+col_2_2+" text not null,"+col_3_2+" blob,"+col_4_2+" text)");
             db.execSQL("create table " + table_3 + " (id integer primary key autoincrement," + col_1_3 + " text not null unique)");
 
@@ -64,7 +65,7 @@ public class DbHelper extends SQLiteOpenHelper{
     }
     long result;
 
-    public boolean insertData(String dersAdi, String ders_gunu, String dersBaslangicSaati, String dersBitisSaati, int dersPoziyon)
+    public boolean insertData(String dersAdi, String ders_gunu, String dersBaslangicSaati, String dersBitisSaati, int dersPoziyon, String dersTenefusSuresi)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -74,6 +75,7 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put(col_3, dersBaslangicSaati);
         contentValues.put(col_4, dersBitisSaati);
         contentValues.put(col_5, dersPoziyon);
+        contentValues.put(col_6, dersTenefusSuresi);
         result = db.insert(table, null, contentValues);
         if (result == 0)
             return false;
@@ -105,27 +107,29 @@ public class DbHelper extends SQLiteOpenHelper{
         SQLiteDatabase db=this.getWritableDatabase();
         return db.delete(table,"id = ?",new String[] {id});
     }
-    public boolean updateData(int id,String dersAdi,String dersBaslangic,String dersBitis)
+
+    public boolean updateData(int id, String dersAdi, String dersBaslangic, String dersBitis, String dersTenefusSuresi)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         //contentValues.put("id",id);
         contentValues.put(col_1,dersAdi);
         contentValues.put(col_2,dersBaslangic);
-        contentValues.put(col_2,dersBitis);
-        String updateQuery="update '"+table+"' set ders_adi='"+dersAdi+"',ders_baslangic_saati='"+dersBaslangic+"',ders_bitis_saati='"+dersBitis+"' where id='"+id+"'";
+        contentValues.put(col_3, dersBitis);
+        contentValues.put(col_6, dersTenefusSuresi);
+        String updateQuery = "update '" + table + "' set ders_adi='" + dersAdi + "',ders_baslangic_saati='" + dersBaslangic + "',ders_bitis_saati='" + dersBitis + "',ders_tenefus_suresi='" + dersTenefusSuresi + "' where id='" + id + "'";
         //db.update(table,contentValues,"id"+"=?",new String[]{String.valueOf(id)});
         db.execSQL(updateQuery);
         db.close();
         return true;
     }
 
-    public boolean dersGuncelle(int dersId, String dersAdi, int dersPozisyon) {
+    public boolean dersGuncelle(int dersId, String dersAdi, int dersPozisyon, String dersTenefusSuresi) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //contentValues.put("id",id);
         contentValues.put(col_1, dersAdi);
-        String updateQuery = "update '" + table + "' set ders_adi='" + dersAdi + "',ders_pozisyon='" + dersPozisyon + "' where id='" + dersId + "'";
+        String updateQuery = "update '" + table + "' set ders_adi='" + dersAdi + "',ders_pozisyon='" + dersPozisyon + "',ders_tenufus_suresi='" + dersTenefusSuresi + "' where id='" + dersId + "'";
         //db.update(table,contentValues,"id"+"=?",new String[]{String.valueOf(id)});
         db.execSQL(updateQuery);
         db.close();

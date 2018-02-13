@@ -82,7 +82,8 @@ public class Persembe extends Fragment {
                 ders.setDersBaslangicSaati(cursor.getString(3));
                 ders.setDersBitisSaati(cursor.getString(4));
                 ders.setDersId((cursor.getInt(0)));
-                ders = new Ders(ders.getDersAdi(), gun, ders.getDersBaslangicSaati(), ders.getDersBitisSaati(), ders.getDersId(), ders.getDersPozisyon());
+                ders.setDersTenefusSuresi(cursor.getString(6));
+                ders = new Ders(ders.getDersAdi(), gun, ders.getDersBaslangicSaati(), ders.getDersBitisSaati(), ders.getDersId(), ders.getDersPozisyon(), ders.getDersTenefusSuresi());
                 liste.add(ders);
             }
         }

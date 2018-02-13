@@ -16,20 +16,26 @@
             android:padding="10dp"
             android:scrollbars="vertical">
 
-            <com.jsibbold.zoomage.ZoomageView
-                android:id="@+id/notGelenResim"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:src="@mipmap/ic_launcher"
-                app:zoomage_restrictBounds="false"
-                app:zoomage_animateOnReset="true"
-                app:zoomage_autoResetMode="UNDER"
-                app:zoomage_autoCenter="true"
-                app:zoomage_zoomable="true"
-                app:zoomage_translatable="true"
-                app:zoomage_minScale="0.6"
-                app:zoomage_maxScale="8" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/cardview_background">
 
+                <com.jsibbold.zoomage.ZoomageView
+                    android:id="@+id/notGelenResim"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_margin="10dp"
+                    android:src="@mipmap/ic_launcher"
+                    app:zoomage_restrictBounds="false"
+                    app:zoomage_animateOnReset="true"
+                    app:zoomage_autoResetMode="UNDER"
+                    app:zoomage_autoCenter="true"
+                    app:zoomage_zoomable="true"
+                    app:zoomage_translatable="true"
+                    app:zoomage_minScale="0.6"
+                    app:zoomage_maxScale="8" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,66 +57,80 @@
                     android:id="@+id/sagaDon"
                     android:background="@drawable/sagdonus" />
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:weightSum="2">
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/cardview_background">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:layout_gravity="center"
-                    android:text="Başlık : " />
+                    android:padding="10dp"
+                    android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/notGelenBaslik"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:layout_gravity="center"
+                        android:text="Başlık : " />
+
+                    <TextView
+                        android:id="@+id/notGelenBaslik"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="TextView" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/notGuncelle"
+                        android:layout_marginLeft="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="TextView" />
+                    android:padding="10dp"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:layout_gravity="left"
+                        android:text="Not" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/notGelen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:layout_marginTop="5dp"
+                            android:textIsSelectable="true" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:visibility="invisible"
+                            android:layout_marginTop="-20dp"
+                            android:id="@+id/yeniNot" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:id="@+id/notGuncelle"
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="left" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:layout_gravity="left"
-                    android:text="Not" />
-
-            </LinearLayout>
-            <TextView
-                android:id="@+id/notGelen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:layout_marginTop="5dp"
-                android:textIsSelectable="true" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:layout_marginTop="-20dp"
-                android:visibility="invisible"
-                android:id="@+id/yeniNot"
-                android:gravity="left|top" />
         </LinearLayout>
     </ScrollView>
 

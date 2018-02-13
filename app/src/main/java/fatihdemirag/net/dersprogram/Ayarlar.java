@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class Ayarlar extends Activity {
 
     TimePicker dersBaslangicSaati;
-    NumberPicker dersSuresi, tenefusSuresi;
+    NumberPicker dersSuresi;
     Button ayarKaydet;
 
     SharedPreferences sharedPreferences;
@@ -37,7 +37,6 @@ public class Ayarlar extends Activity {
 
         dersBaslangicSaati = findViewById(R.id.dersBaslangicSaati);
         dersSuresi = findViewById(R.id.dersSuresi);
-        tenefusSuresi = findViewById(R.id.tenefusSuresi);
         ayarKaydet = findViewById(R.id.ayarKaydet);
 
         dersBaslangicSaati.setIs24HourView(true);
@@ -57,10 +56,6 @@ public class Ayarlar extends Activity {
         if (!sharedPreferences.getString("dersSuresi", "").equals(""))
             dersSuresi.setValue(Integer.parseInt(sharedPreferences.getString("dersSuresi", "")));
 
-        tenefusSuresi.setMinValue(5);
-        tenefusSuresi.setMaxValue(30);
-        if (!sharedPreferences.getString("tenefusSuresi", "").equals(""))
-            tenefusSuresi.setValue(Integer.parseInt(sharedPreferences.getString("tenefusSuresi", "")));
 
         ayarKaydet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +69,6 @@ public class Ayarlar extends Activity {
                 else
                     editor.putString("dersBaslangicDakikasi", String.valueOf(dersBaslangicSaati.getCurrentMinute()));
                 editor.putString("dersSuresi", String.valueOf(dersSuresi.getValue()));
-                editor.putString("tenefusSuresi", String.valueOf(tenefusSuresi.getValue()));
                 editor.commit();
                 Toast.makeText(Ayarlar.this, "Ayarlar Kaydedildi", Toast.LENGTH_SHORT).show();
             }

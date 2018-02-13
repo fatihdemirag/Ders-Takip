@@ -19,7 +19,9 @@
         <activity android:name=".CustomAdapters_Listviews.Custom_AlertDialog" />
         <activity
             android:name=".HaftalikDersler"
-            android:label="@string/title_activity_gunler"></activity>
+            android:label="@string/title_activity_gunler">
+
+        </activity>
         <activity android:name=".DersNotlariP.DersNotlari" />
         <activity android:name=".DersNotlariP.DersNotuEkle" />
         <activity
@@ -34,7 +36,9 @@
             android:theme="@android:style/Theme.Material.Light.NoActionBar">
 
         </activity>
-        <activity android:name=".Dersler" />
+        <activity android:name=".Dersler">
+
+        </activity>
         <activity
             android:name=".SplashEkrani"
             android:noHistory="true"

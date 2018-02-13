@@ -1,101 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="10dp"
-    android:paddingEnd="10dp"
+    android:padding="10dp"
     android:id="@+id/customList"
+    android:background="@drawable/cardview_background"
     tools:context="fatihdemirag.net.dersprogram.CustomAdapters_Listviews.Custom_ListView">
 
-    <TextView
-        android:id="@+id/baslangicSaat"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dersler"
-        android:text="Başlangıç"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintRight_toLeftOf="@+id/textView3"
-        tools:layout_editor_absoluteY="7dp" />
+        app:cardElevation="2dp">
 
-    <TextView
-        android:id="@+id/bitisSaat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/dersId"
-        android:text="Bitiş"
-        app:layout_constraintRight_toLeftOf="@+id/textView3"
-        tools:layout_editor_absoluteY="7dp" />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/dersId"
-        android:text="0"
-        android:visibility="invisible"
-        android:layout_marginStart="39dp"
-        android:layout_below="@+id/ders"
-        android:layout_toEndOf="@+id/baslangicSaat" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/dersId"
+            android:text="0"
+            android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="7dp"
-        android:layout_alignBaseline="@+id/baslangicSaat"
-        android:layout_alignBottom="@+id/baslangicSaat"
-        android:layout_toStartOf="@+id/bitisSaat"
-        android:layout_marginEnd="10dp" />
+        <TextView
+            android:id="@+id/ders"
+            android:layout_width="0sp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            android:textSize="24dp" />
 
-    <TextView
-        android:id="@+id/ders"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:visibility="invisible"
-        tools:layout_editor_absoluteY="7dp"
-        app:layout_constraintLeft_toRightOf="@+id/textView3"
-        android:textSize="24dp"
-        android:layout_alignParentTop="true" />
+        <Spinner
+            android:id="@+id/dersler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-7dp" />
 
-    <ImageView
-        android:id="@+id/dersDuzenle"
-        android:layout_width="30dp"
-        android:layout_height="40dp"
-        android:src="@mipmap/ic_edit_black_24dp"
-        android:clickable="true"
-        android:visibility="invisible"
-        android:layout_alignBottom="@+id/dersNotuEkle"
-        android:layout_alignParentEnd="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:weightSum="3">
 
-    <ImageView
-        android:id="@+id/dersNotuEkle"
-        android:layout_width="30dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:src="@mipmap/ic_note_add_black_24dp"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/dersDuzenle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="40dp"
+                android:text="Başlangıç" />
 
-    <Spinner
-        android:id="@+id/dersler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="-10dp"></Spinner>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="40dp"
+                android:text="Bitiş" />
 
-    <ImageView
-        android:id="@+id/onayButton"
-        android:layout_width="30dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/success"
-        android:layout_alignBottom="@+id/dersNotuEkle"
-        android:layout_alignParentEnd="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tenefüs Süresi" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/baslangicSaat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="50dp"
+                android:text="Başlangıç" />
+
+            <TextView
+                android:id="@+id/bitisSaat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bitiş" />
+
+            <NumberPicker
+                android:id="@+id/tenefusSuresi"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="-10dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/dersNotuEkle"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Not Ekle"
+                android:paddingLeft="10dp"
+                android:background="@drawable/cardview_background"
+                android:drawableLeft="@drawable/notekle" />
+
+            <Button
+                android:id="@+id/onayButton"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="10dp"
+                android:text="Kaydet"
+                android:drawableLeft="@drawable/derskaydet"
+                android:background="@drawable/cardview_background" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

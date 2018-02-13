@@ -141,24 +141,25 @@ public class DersNotuGor extends Activity {
         notGuncelle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!notGuncelleTiklandi) {
-                    notGuncelle.setImageResource(R.drawable.onay);
-                    notGuncelleTiklandi = !notGuncelleTiklandi;
+                if (notGuncelleTiklandi) {
+                    notGuncelle.setImageResource(R.drawable.edit);
 
-                    gelenNot.setVisibility(View.INVISIBLE);
-                    yeniNot.setVisibility(View.VISIBLE);
+                    gelenNot.setVisibility(View.VISIBLE);
+                    yeniNot.setVisibility(View.INVISIBLE);
 
                     DbHelper dbHelper = new DbHelper(DersNotuGor.this);
                     dbHelper.updateData2(Integer.parseInt(gelenId), yeniNot.getText().toString());
                     Toast.makeText(DersNotuGor.this, "Not Güncellendi", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    notGuncelle.setImageResource(R.drawable.edit);
                     notGuncelleTiklandi = !notGuncelleTiklandi;
-                    gelenNot.setVisibility(View.VISIBLE);
-                    yeniNot.setVisibility(View.INVISIBLE);
+                } else {
+                    yeniNot.setText(gelenNot.getText().toString());
+
+                    notGuncelle.setImageResource(R.drawable.onay);
+
+                    gelenNot.setVisibility(View.INVISIBLE);
+                    yeniNot.setVisibility(View.VISIBLE);
+                    notGuncelleTiklandi = !notGuncelleTiklandi;
                 }
-                gelenNot.setText(yeniNot.getText().toString());
             }
         });
 

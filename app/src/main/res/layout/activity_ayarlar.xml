@@ -66,34 +66,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/cardview_background"
-        android:padding="5dp"
-        android:weightSum="2"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tenefüs süresi"
-            android:padding="10dp"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textAllCaps="false"
-            android:layout_weight="1" />
-
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:id="@+id/tenefusSuresi"
-            android:layout_weight="1"></NumberPicker>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
@@ -111,5 +83,4 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-
 </LinearLayout>
