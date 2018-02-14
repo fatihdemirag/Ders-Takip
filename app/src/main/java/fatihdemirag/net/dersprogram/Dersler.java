@@ -88,6 +88,27 @@ public class Dersler extends Activity {
         dersEkleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
+
+                dersEkleButton.startAnimation(fabAcilis);
+
+                fabAcilis.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        dersEkleButton.startAnimation(fabKapanis);
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
                 dialog.findViewById(R.id.dersEkle).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -114,31 +135,6 @@ public class Dersler extends Activity {
                             Toast.makeText(Dersler.this, "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
 
                         }
-                    }
-                });
-                dersEkleButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dersEkleButton.startAnimation(fabAcilis);
-                        dialog.show();
-
-                        fabAcilis.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
-
-                            }
-
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                dersEkleButton.startAnimation(fabKapanis);
-
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
-
-                            }
-                        });
                     }
                 });
             }

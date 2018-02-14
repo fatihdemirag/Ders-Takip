@@ -57,80 +57,89 @@
                     android:id="@+id/sagaDon"
                     android:background="@drawable/sagdonus" />
             </LinearLayout>
-            <LinearLayout
+
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/cardview_background">
 
+                <ImageView
+                    android:id="@+id/notGuncelle"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right"
+                    android:layout_margin="10dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:weightSum="2">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        android:layout_gravity="center"
-                        android:text="Başlık : " />
-
-                    <TextView
-                        android:id="@+id/notGelenBaslik"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="TextView" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:id="@+id/notGuncelle"
-                        android:layout_marginLeft="10dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-
                     android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20dp"
-                        android:layout_gravity="left"
-                        android:text="Not" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="Başlık : " />
+
+                        <TextView
+                            android:id="@+id/notGelenBaslik"
+                            android:layout_width="220dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:layout_marginRight="80dp"
+                            android:layout_weight="1"
+                            android:text="TextView" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/notGelen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:layout_marginTop="5dp"
-                            android:textIsSelectable="true" />
+                            android:textSize="20dp"
+                            android:layout_gravity="left"
+                            android:text="Not" />
 
-                        <EditText
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textMultiLine"
-                            android:visibility="invisible"
-                            android:layout_marginTop="-20dp"
-                            android:id="@+id/yeniNot" />
-                    </LinearLayout>
+                            android:orientation="vertical">
 
+                            <TextView
+                                android:id="@+id/notGelen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TextView"
+                                android:layout_marginTop="5dp"
+                                android:textIsSelectable="true" />
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textMultiLine"
+                                android:visibility="invisible"
+                                android:layout_marginTop="-20dp"
+                                android:id="@+id/yeniNot" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
 
-            </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
     </ScrollView>
 
