@@ -2,12 +2,15 @@ package fatihdemirag.net.dersprogram;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -86,8 +89,24 @@ public class MainPage extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Çıkış Yapmak İstiyor Musunuz ?");
+            builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            builder.show();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     public static boolean hasPermissions(Context context, String... permissions) {

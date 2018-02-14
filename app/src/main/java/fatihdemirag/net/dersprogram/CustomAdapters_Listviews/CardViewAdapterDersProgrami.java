@@ -53,7 +53,6 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
     @Override
     public CardViewAdapterDersProgrami.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         view = LayoutInflater.from(context).inflate(R.layout.activity_custom__list_view, parent, false);
         viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -233,6 +232,8 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                         public void onClick(DialogInterface dialogInterface, int i) {
                             liste.remove(getAdapterPosition());
                             notifyItemRemoved(getAdapterPosition());
+
+                            notifyDataSetChanged();
 
                             KayitSil(dersId.getText().toString());
 

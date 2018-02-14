@@ -114,7 +114,7 @@ public class Dersler extends Activity {
                     public void onClick(View view) {
                         try {
                             if (!dialogDersAdi.getText().toString().equals("")) {
-                                if (dbHelper.insertData3(dialogDersAdi.getText().toString())) {
+                                if (dbHelper.insertData3(dialogDersAdi.getText().toString().trim())) {
 
                                     dersEkleButton.startAnimation(fabKapanis);
 

@@ -127,9 +127,12 @@ public class DbHelper extends SQLiteOpenHelper{
     public boolean dersGuncelle(int dersId, String dersAdi, int dersPozisyon, String dersTenefusSuresi) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        //contentValues.put("id",id);
+        contentValues.put("id", dersId);
         contentValues.put(col_1, dersAdi);
-        String updateQuery = "update '" + table + "' set ders_adi='" + dersAdi + "',ders_pozisyon='" + dersPozisyon + "',ders_tenufus_suresi='" + dersTenefusSuresi + "' where id='" + dersId + "'";
+        contentValues.put(col_5, dersPozisyon);
+        contentValues.put(col_6, dersTenefusSuresi);
+
+        String updateQuery = "update '" + table + "' set '" + col_1 + "'='" + dersAdi + "','" + col_5 + "'='" + dersPozisyon + "','" + col_6 + "'='" + dersTenefusSuresi + "' where id='" + dersId + "'";
         //db.update(table,contentValues,"id"+"=?",new String[]{String.valueOf(id)});
         db.execSQL(updateQuery);
         db.close();
