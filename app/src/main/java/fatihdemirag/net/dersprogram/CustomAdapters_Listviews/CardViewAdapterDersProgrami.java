@@ -169,6 +169,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                                 String ogleBaslangic = liste.get(getAdapterPosition() - 1).getDersBitisSaati();
                                 baslangicSaati.setText(ogleBaslangic);
                                 bitisSaati.setText((Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':'))) + 1) + ":" + liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length()));
+                                KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaati.getText().toString(), bitisSaati.getText().toString(), dersler.getSelectedItemPosition());
                             } else {
                                 String simdikiBaslangicSaati = "";
 
@@ -303,8 +304,12 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             try {
                 DbHelper dbHelper = new DbHelper(itemView.getContext());
 
-                if (dbHelper.dersEkle(dersAdi, gun, baslangicSaat, bitisSaat, dersPozisyon, String.valueOf(tenefusSuresiNumberPicker.getValue())))
-                    Toast.makeText(itemView.getContext(), "Ders Eklendi", Toast.LENGTH_SHORT).show();
+                if (dbHelper.dersEkle(dersAdi, gun, baslangicSaat, bitisSaat, dersPozisyon, String.valueOf(tenefusSuresiNumberPicker.getValue()))) {
+                    if (dersler.getSelectedItem().toString().equals("--Öğle Arası--"))
+                        Toast.makeText(itemView.getContext(), "Öğle Arası Eklendi", Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(itemView.getContext(), "Ders Eklendi", Toast.LENGTH_SHORT).show();
+                }
             } catch (SQLException s) {
                 Toast.makeText(itemView.getContext(), "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
                 s.printStackTrace();

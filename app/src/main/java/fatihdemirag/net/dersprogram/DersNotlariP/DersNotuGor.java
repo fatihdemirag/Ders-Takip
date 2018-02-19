@@ -142,6 +142,7 @@ public class DersNotuGor extends Activity {
             @Override
             public void onClick(View v) {
                 if (notGuncelleTiklandi) {
+                    gelenNot.setText(yeniNot.getText().toString());
                     notGuncelle.setImageResource(R.drawable.edit);
 
                     gelenNot.setVisibility(View.VISIBLE);

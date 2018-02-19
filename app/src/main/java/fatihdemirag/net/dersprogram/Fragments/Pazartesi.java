@@ -74,9 +74,12 @@ public class Pazartesi extends Fragment {
         dersEkleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                liste.clear();
+                KayitYukle("Pazartesi", dbHelper, ders, liste);
                 ders = new Ders();
                 ders.setButonYazisi("Kaydet");
                 ders.setTenefusAktifMi(true);
+                ders.setTenefusSuresiBaslik("Tenefüs Süresi");
                 ders.setSira("-");
                 liste.add(ders);
                 cardViewAdapterDersProgrami.notifyDataSetChanged();

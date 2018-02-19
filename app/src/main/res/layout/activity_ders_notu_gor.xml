@@ -44,15 +44,15 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_margin="10dp"
                     android:id="@+id/solaDon"
                     android:background="@drawable/soldonus" />
 
                 <ImageButton
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_margin="10dp"
                     android:id="@+id/sagaDon"
                     android:background="@drawable/sagdonus" />
@@ -64,12 +64,6 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/cardview_background">
 
-                <ImageView
-                    android:id="@+id/notGuncelle"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="right"
-                    android:layout_margin="10dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -78,34 +72,37 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
                         android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:padding="10dp"
+                        android:weightSum="1">
 
                         <TextView
-                            android:layout_width="10dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
+                            android:layout_weight="0.1"
                             android:text="Başlık : " />
 
                         <TextView
                             android:id="@+id/notGelenBaslik"
-                            android:layout_width="200dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
-                            android:layout_marginRight="40dp"
-                            android:layout_weight="1"
+                            android:layout_weight="0.7"
                             android:text="TextView" />
 
+                        <ImageView
+                            android:id="@+id/notGuncelle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right"
+                            android:layout_weight="0.2" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
-                        android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -149,5 +146,5 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="10dp"
         android:id="@+id/paylas"
-        android:background="@drawable/share" />
+        android:background="@drawable/ic_paylas" />
 </FrameLayout>

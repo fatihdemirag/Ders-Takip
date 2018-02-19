@@ -97,8 +97,10 @@ public class DersNotuEkle extends Activity {
                     else if(not.getText().length()==0)
                         Toast.makeText(getApplicationContext(),"Lütfen Not Giriniz",Toast.LENGTH_SHORT).show();
                     else {
-                        if (dbHelper.dersNotuEkle(konu.getText().toString(), ders, i, not.getText().toString()))
+                        if (dbHelper.dersNotuEkle(konu.getText().toString(), ders, i, not.getText().toString())) {
+                            onBackPressed();
                             Toast.makeText(getApplicationContext(), "Not Eklendi", Toast.LENGTH_SHORT).show();
+                        }
                         else
                             Toast.makeText(getApplicationContext(), "Not Eklenemedi", Toast.LENGTH_SHORT).show();
 

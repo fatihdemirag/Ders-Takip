@@ -71,9 +71,12 @@ public class Carsamba extends Fragment {
         dersEkleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                liste.clear();
+                KayitYukle("Çarşamba", dbHelper, ders, liste);
                 ders = new Ders();
                 ders.setButonYazisi("Kaydet");
                 ders.setTenefusAktifMi(true);
+                ders.setTenefusSuresiBaslik("Tenefüs Süresi");
                 liste.add(ders);
                 cardViewAdapterDersProgrami.notifyDataSetChanged();
 

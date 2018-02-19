@@ -60,7 +60,7 @@ public class Cumartesi extends Fragment {
 
         dbHelper=new DbHelper(getActivity());
 
-        KayitYukle("Pazartesi", dbHelper, ders, liste);
+        KayitYukle("Cumartesi", dbHelper, ders, liste);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         final SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -68,13 +68,16 @@ public class Cumartesi extends Fragment {
         dersEkleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                liste.clear();
+                KayitYukle("Cumartesi", dbHelper, ders, liste);
                 ders = new Ders();
                 ders.setButonYazisi("Kaydet");
                 ders.setTenefusAktifMi(true);
+                ders.setTenefusSuresiBaslik("Tenefüs Süresi");
                 liste.add(ders);
                 cardViewAdapterDersProgrami.notifyDataSetChanged();
 
-                editor.putString("gun", "Pazartesi");
+                editor.putString("gun", "Cumartesi");
                 editor.commit();
 
             }
