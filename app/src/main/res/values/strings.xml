@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ders Programı</string>
+    <string name="app_name">Ders Takip</string>
     <string name="action_settings">Ayarlar</string>
 
     <string name="title_activity_gunler">Ders Programı</string>

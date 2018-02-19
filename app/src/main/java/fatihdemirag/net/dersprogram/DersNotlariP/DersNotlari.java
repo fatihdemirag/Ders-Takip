@@ -179,7 +179,7 @@ public class DersNotlari extends Activity {
     public void KayitYukle()
     {
         try {
-            cursor= dbHelper.getAllData2(ders);
+            cursor = dbHelper.dersNotlari(ders);
             while(cursor.moveToNext())
             {
                 dersNotu=new DersNotu();

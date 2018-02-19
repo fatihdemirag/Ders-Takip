@@ -42,7 +42,7 @@ public class DersListesiNot extends Activity {
 
         dersNotuListesi=(ListView)findViewById(R.id.dersListesi);
         dbHelper=new DbHelper(this);
-        cursor= dbHelper.getAllDataT();
+        cursor = dbHelper.dersler();
         ders=new Ders();
         while (cursor.moveToNext())
         {

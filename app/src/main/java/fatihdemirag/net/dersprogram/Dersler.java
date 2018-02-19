@@ -69,7 +69,7 @@ public class Dersler extends Activity {
         derslerListesi.setAdapter(arrayAdapter);
 
         dbHelper = new DbHelper(this);
-        cursor = dbHelper.getAllData3();
+        cursor = dbHelper.dersler();
 
         KayitYukle();
 
@@ -114,7 +114,7 @@ public class Dersler extends Activity {
                     public void onClick(View view) {
                         try {
                             if (!dialogDersAdi.getText().toString().equals("")) {
-                                if (dbHelper.insertData3(dialogDersAdi.getText().toString().trim())) {
+                                if (dbHelper.dersEkle(dialogDersAdi.getText().toString().trim())) {
 
                                     dersEkleButton.startAnimation(fabKapanis);
 
@@ -146,7 +146,7 @@ public class Dersler extends Activity {
                 alertDialog.setMessage("Dersi Silmek İstediğinize Emin Misiniz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dbHelper.deleteData3(dersArrayList.get(position).toString());
+                        dbHelper.dersSilTekli(dersArrayList.get(position).toString());
                         Toast.makeText(Dersler.this, dersArrayList.get(position).toString() + " Dersi Silindi", Toast.LENGTH_SHORT).show();
                         dersArrayList.remove(dersArrayList.get(position).toString());
                         arrayAdapter.notifyDataSetChanged();

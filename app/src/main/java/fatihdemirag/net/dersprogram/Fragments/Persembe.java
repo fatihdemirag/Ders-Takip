@@ -57,10 +57,9 @@ public class Persembe extends Fragment {
         dersEkleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                liste.clear();
-                KayitYukle("Perşembe", dbHelper, ders, liste);
-
                 ders = new Ders();
+                ders.setButonYazisi("Kaydet");
+                ders.setTenefusAktifMi(true);
                 liste.add(ders);
                 cardViewAdapterDersProgrami.notifyDataSetChanged();
 
@@ -74,7 +73,8 @@ public class Persembe extends Fragment {
 
     public void KayitYukle(String gun, DbHelper dbHelper, Ders ders, ArrayList<Ders> liste) {
         liste.clear();
-        Cursor cursor = dbHelper.getAllData();
+        Cursor cursor = dbHelper.tumDersler();
+        int i = 1;
         while (cursor.moveToNext()) {
             if (cursor.getString(2).equals(gun)) {
                 ders = new Ders();
@@ -82,9 +82,24 @@ public class Persembe extends Fragment {
                 ders.setDersBaslangicSaati(cursor.getString(3));
                 ders.setDersBitisSaati(cursor.getString(4));
                 ders.setDersId((cursor.getInt(0)));
+                ders.setDersPozisyon(cursor.getInt(5));
                 ders.setDersTenefusSuresi(cursor.getString(6));
-                ders = new Ders(ders.getDersAdi(), gun, ders.getDersBaslangicSaati(), ders.getDersBitisSaati(), ders.getDersId(), ders.getDersPozisyon(), ders.getDersTenefusSuresi());
+                ders.setTenefusAktifMi(true);
+                ders.setButonYazisi("Güncelle");
+                if (ders.getDersAdi().equals("--Öğle Arası--")) {
+                    ders.setOnayAktifMi(View.INVISIBLE);
+                    ders.setNotEkleAktifMi(View.INVISIBLE);
+                    ders.setTenefusSuresiBaslik("Öğle Arası Süresi");
+                    i -= 1;
+                } else {
+                    ders.setTenefusSuresiBaslik("Tenefüs Süresi");
+                }
+                ders.setSira(i + ".Ders");
+
+                ders = new Ders(ders.getDersAdi(), gun, ders.getDersBaslangicSaati(), ders.getDersBitisSaati(), ders.getDersId(), ders.getDersPozisyon(), ders.getDersTenefusSuresi(), ders.getButonYazisi(), ders.getSira(), ders.getOnayAktifMi(), ders.getNotEkleAktifMi(), ders.getTenefusSuresiBaslik());
                 liste.add(ders);
+                i++;
+
             }
         }
         cardViewAdapterDersProgrami.notifyDataSetChanged();

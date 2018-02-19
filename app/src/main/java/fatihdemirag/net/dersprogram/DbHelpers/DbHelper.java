@@ -31,9 +31,10 @@ public class DbHelper extends SQLiteOpenHelper{
     public static final String col_1_3 = "ders_adi";
 
     SQLiteDatabase db;
-    DbHelper dbHelper;
 
-
+    long result;
+    long result2;
+    long result3;
 
     private void TostMesaj(String tost)
     {
@@ -52,7 +53,6 @@ public class DbHelper extends SQLiteOpenHelper{
             db.execSQL("create table "+table_2+" (id integer primary key autoincrement,"+col_1_2+" text not null,"+col_2_2+" text not null,"+col_3_2+" blob,"+col_4_2+" text)");
             db.execSQL("create table " + table_3 + " (id integer primary key autoincrement," + col_1_3 + " text not null unique)");
 
-
         }catch (Exception e)
         {
             try {
@@ -61,14 +61,11 @@ public class DbHelper extends SQLiteOpenHelper{
                 e1.printStackTrace();
             }
         }
-
     }
-    long result;
 
-    public boolean insertData(String dersAdi, String ders_gunu, String dersBaslangicSaati, String dersBitisSaati, int dersPoziyon, String dersTenefusSuresi)
+    public boolean dersEkle(String dersAdi, String ders_gunu, String dersBaslangicSaati, String dersBitisSaati, int dersPoziyon, String dersTenefusSuresi)
     {
-
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(col_1, dersAdi);
         contentValues.put(col_2, ders_gunu);
@@ -83,15 +80,17 @@ public class DbHelper extends SQLiteOpenHelper{
             return true;
 
     }
-    public Cursor getAllData()
+
+    public Cursor tumDersler()
     {
-        SQLiteDatabase db=this.getWritableDatabase();
+        db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from dersler_programi ", null);
         return cursor;
     }
-    public Cursor getAllDataT()
+
+    public Cursor dersler()
     {
-        SQLiteDatabase db=this.getWritableDatabase();
+        db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select distinct ders_adi from dersler", null);
         return cursor;
     }
@@ -102,68 +101,33 @@ public class DbHelper extends SQLiteOpenHelper{
         db.execSQL("drop table if exists " + table_3);
         onCreate(db);
     }
-    public Integer deleteData(String id)
+
+    public Integer dersSil(String id)
     {
-        SQLiteDatabase db=this.getWritableDatabase();
+        db = this.getWritableDatabase();
         return db.delete(table,"id = ?",new String[] {id});
     }
 
-    public boolean updateData(int id, String dersAdi, String dersBaslangic, String dersBitis, String dersTenefusSuresi)
-    {
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        //contentValues.put("id",id);
-        contentValues.put(col_1,dersAdi);
-        contentValues.put(col_2,dersBaslangic);
-        contentValues.put(col_3, dersBitis);
-        contentValues.put(col_6, dersTenefusSuresi);
-        String updateQuery = "update '" + table + "' set ders_adi='" + dersAdi + "',ders_baslangic_saati='" + dersBaslangic + "',ders_bitis_saati='" + dersBitis + "',ders_tenefus_suresi='" + dersTenefusSuresi + "' where id='" + id + "'";
-        //db.update(table,contentValues,"id"+"=?",new String[]{String.valueOf(id)});
-        db.execSQL(updateQuery);
-        db.close();
-        return true;
-    }
-
     public boolean dersGuncelle(int dersId, String dersAdi, int dersPozisyon, String dersTenefusSuresi) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("id", dersId);
-        contentValues.put(col_1, dersAdi);
-        contentValues.put(col_5, dersPozisyon);
-        contentValues.put(col_6, dersTenefusSuresi);
-
+        db = this.getWritableDatabase();
         String updateQuery = "update '" + table + "' set '" + col_1 + "'='" + dersAdi + "','" + col_5 + "'='" + dersPozisyon + "','" + col_6 + "'='" + dersTenefusSuresi + "' where id='" + dersId + "'";
-        //db.update(table,contentValues,"id"+"=?",new String[]{String.valueOf(id)});
         db.execSQL(updateQuery);
-        db.close();
         return true;
     }
-
 
     //--------Tablo 2---------//
 
-    public Integer deleteData2(String id)
-    {
-        SQLiteDatabase db=this.getWritableDatabase();
-        return db.delete(table_2,"id = ?",new String[] {id});
-    }
-
-    public boolean updateData2(int id, String not) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("id", id);
-        contentValues.put(col_2_2, not);
+    public boolean dersNotuGuncelle(int id, String not) {
+        db = this.getWritableDatabase();
         String updateQuery = "update '" + table_2 + "' set '" + col_2_2 + "'='" + not + "' where id='" + id + "'";
         db.execSQL(updateQuery);
-        db.close();
         return true;
     }
-    long result2;
 
-    public boolean insertData2(String konu,String ders,byte[] notResmi,String dersNotu)
+    public boolean dersNotuEkle(String konu, String ders, byte[] notResmi, String dersNotu)
     {
 
-        SQLiteDatabase db=this.getWritableDatabase();
+        db = this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put(col_1_2,konu);
         contentValues.put(col_2_2,dersNotu);
@@ -175,9 +139,10 @@ public class DbHelper extends SQLiteOpenHelper{
         else
             return true;
     }
-    public Cursor getAllData2(String ders)
+
+    public Cursor dersNotlari(String ders)
     {
-        SQLiteDatabase db=this.getWritableDatabase();
+        db = this.getWritableDatabase();
         String sql="select * from ders_notlari where ders=?";
         Cursor cursor=db.rawQuery(sql,new String[]{ders});
         return cursor;
@@ -185,51 +150,38 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public Cursor ResimBul(String id)
     {
-        SQLiteDatabase db=this.getWritableDatabase();
+        db = this.getWritableDatabase();
         String sql="select not_resmi from ders_notlari where id=?";
         Cursor cursor=db.rawQuery(sql,new String[]{id});
         return cursor;
-
     }
     public void NotSil(String ders)
     {
-        SQLiteDatabase db=this.getWritableDatabase();
+        db = this.getWritableDatabase();
         String query="delete from '"+table_2+"' where ders='"+ders+"'";
         db.execSQL(query);
+        db.close();
+
     }
 
     public void NotSilTekli(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         String query = "delete from '" + table_2 + "' where id='" + id + "'";
         db.execSQL(query);
+        db.close();
+
     }
 
     //  ---------------------Dersler Tablosu----------------------------------
-    public Cursor getAllData3() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select distinct ders_adi from dersler", null);
-        return cursor;
 
-    }
-
-    public Integer deleteData3(String ders) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public Integer dersSilTekli(String ders) {
+        db = this.getWritableDatabase();
         return db.delete(table_3, "ders_adi = ?", new String[]{ders});
     }
 
-    public boolean updateData3(int id, String dersAdi) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("id", id);
-        contentValues.put(col_1_3, dersAdi);
-        db.update(table_3, contentValues, id + "=?", new String[]{String.valueOf(dersAdi)});
-        return true;
-    }
 
-    long result3;
-
-    public boolean insertData3(String dersAdi) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean dersEkle(String dersAdi) {
+        db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(col_1_3, dersAdi);
         result3 = db.insert(table_3, null, contentValues);
@@ -237,6 +189,15 @@ public class DbHelper extends SQLiteOpenHelper{
             return false;
         else
             return true;
+
+    }
+
+//    ---------------------------------------------------
+
+    public Cursor dersKontrol(String saat) {
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from dersler_programi where ders_baslangic_saati='" + saat + "'", null);
+        return cursor;
     }
 
 }

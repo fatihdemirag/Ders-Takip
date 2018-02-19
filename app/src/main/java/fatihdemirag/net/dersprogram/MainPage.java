@@ -41,8 +41,12 @@ public class MainPage extends Activity {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
         adView.loadAd(adRequest);
+
+        Intent servisIntent = new Intent(MainPage.this, BildirimServisi.class);
+        startService(servisIntent);
 
         dersProgrami.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +81,6 @@ public class MainPage extends Activity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
-
-
 
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};

@@ -148,7 +148,7 @@ public class DersNotuGor extends Activity {
                     yeniNot.setVisibility(View.INVISIBLE);
 
                     DbHelper dbHelper = new DbHelper(DersNotuGor.this);
-                    dbHelper.updateData2(Integer.parseInt(gelenId), yeniNot.getText().toString());
+                    dbHelper.dersNotuGuncelle(Integer.parseInt(gelenId), yeniNot.getText().toString());
                     Toast.makeText(DersNotuGor.this, "Not Güncellendi", Toast.LENGTH_SHORT).show();
                     notGuncelleTiklandi = !notGuncelleTiklandi;
                 } else {
