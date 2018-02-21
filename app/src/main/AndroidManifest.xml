@@ -34,7 +34,11 @@
             android:name=".MainPage"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Material.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Dersler">
 
@@ -43,11 +47,7 @@
             android:name=".SplashEkrani"
             android:noHistory="true"
             android:theme="@android:style/Theme.Material.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--<service-->
         <!--android:name=".BildirimServisi"-->

@@ -51,8 +51,8 @@ public class Ayarlar extends Activity {
             dersBaslangicSaati.setCurrentHour(8);
             dersBaslangicSaati.setCurrentMinute(0);
         }
-        dersSuresi.setMinValue(10);
-        dersSuresi.setMaxValue(100);
+        dersSuresi.setMinValue(30);
+        dersSuresi.setMaxValue(50);
         if (!sharedPreferences.getString("dersSuresi", "").equals(""))
             dersSuresi.setValue(Integer.parseInt(sharedPreferences.getString("dersSuresi", "")));
 
