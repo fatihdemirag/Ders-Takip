@@ -74,6 +74,7 @@ public class Pazar extends Fragment {
                 ders.setButonYazisi("Kaydet");
                 ders.setTenefusAktifMi(true);
                 ders.setTenefusSuresiBaslik("Tenefüs Süresi");
+                ders.setSira("-");
                 liste.add(ders);
                 cardViewAdapterDersProgrami.notifyDataSetChanged();
 

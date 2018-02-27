@@ -1,6 +1,5 @@
 package fatihdemirag.net.dersprogram;
 
-import android.annotation.TargetApi;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -8,13 +7,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -45,6 +41,7 @@ public class BildirimServisi extends Service {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
+
                 DersKontrol();
                 sayac++;
 
@@ -52,8 +49,12 @@ public class BildirimServisi extends Service {
         };
         timer.schedule(timerTask, 0, 1000);
 
-
         super.onCreate();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return Service.START_STICKY;
     }
 
     @Override
@@ -85,15 +86,19 @@ public class BildirimServisi extends Service {
 
     }
 
+    String bildirimZamani, simdikiSaat;
+    int bildirimSuresi = -5;
+    int saat, dakika;
+
 
     void DersKontrol() {
         Calendar calendar = Calendar.getInstance();
 
-        String simdikiSaat = calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes();
-        int bildirimSuresi = 1;
-        int saat = Integer.parseInt(simdikiSaat.substring(0, simdikiSaat.indexOf(':')));
-        int dakika = Integer.parseInt(simdikiSaat.substring(simdikiSaat.indexOf(':') + 1, simdikiSaat.length()));
-        String bildirimZamani = saat + ":" + (Integer.parseInt(simdikiSaat.substring(simdikiSaat.indexOf(':') + 1, simdikiSaat.length())) + bildirimSuresi);
+        simdikiSaat = calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes();
+        saat = Integer.parseInt(simdikiSaat.substring(0, simdikiSaat.indexOf(':')));
+        dakika = Integer.parseInt(simdikiSaat.substring(simdikiSaat.indexOf(':') + 1, simdikiSaat.length()));
+        bildirimZamani = saat + ":" + (dakika + bildirimSuresi);
+
         String ders = "";
 
         DbHelper dbHelper = new DbHelper(this);
@@ -108,12 +113,11 @@ public class BildirimServisi extends Service {
 
                 if (!cursor.getString(1).equals("--Boş Ders--")) {
                     ders = cursor.getString(1);
-                    BildirimGonder(ders + " dersi dakika sonra başlayacak");
+                    BildirimGonder(ders + " dersi " + (bildirimSuresi * -1) + " dakika sonra başlayacak.");
                 } else {
-                    ders = "Ders boş \ud83d\ude03";
+                    ders = (bildirimSuresi * -1) + " dakika sonra boş dersiniz var. " + new String(Character.toChars(0x1F60D));
                     BildirimGonder(ders);
                 }
-
             }
         }
     }
