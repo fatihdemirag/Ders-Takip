@@ -16,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light">
         <activity android:name=".CustomAdapters_Listviews.Custom_ListView" />
-        <activity android:name=".CustomAdapters_Listviews.Custom_AlertDialog" />
         <activity
             android:name=".HaftalikDersler"
             android:label="@string/title_activity_gunler">
@@ -50,10 +49,10 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".BildirimServisi"
-            android:enabled="true"
-            android:exported="true" />
+        <!--<service-->
+        <!--android:name=".BildirimServisi"-->
+        <!--android:enabled="true"-->
+        <!--android:exported="true" />-->
     </application>
 
 </manifest>

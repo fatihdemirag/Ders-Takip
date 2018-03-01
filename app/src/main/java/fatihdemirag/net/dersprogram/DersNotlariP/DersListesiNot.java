@@ -50,7 +50,7 @@ public class DersListesiNot extends Activity {
             dersler.add(ders.getDersAdi());
         }
 
-        final ArrayAdapter adapter=new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,dersler);
+        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, dersler);
         dersNotuListesi.setAdapter(adapter);
 
         dersNotuListesi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -69,7 +69,9 @@ public class DersListesiNot extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder alertDialog=new AlertDialog.Builder(DersListesiNot.this);
-                alertDialog.setTitle(dersNotuListesi.getItemAtPosition(position) + " Dersinin Tüm Notlarını Silinecek").setMessage(dersNotuListesi.getItemAtPosition(position) + " Dersinin Silmek İstediğinize Emin Misiniz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                alertDialog.setTitle(dersNotuListesi.getItemAtPosition(position) + " Dersinin Tüm Notlarını Silinecek").
+                        setMessage(dersNotuListesi.getItemAtPosition(position) + " Dersinin Silmek İstediğinize Emin Misiniz ?").
+                        setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         try {
@@ -85,12 +87,7 @@ public class DersListesiNot extends Activity {
                         }
 
                     }
-                }).setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                }).show();
+                        }).setNegativeButton("Hayır", null).show();
                 return false;
             }
         });

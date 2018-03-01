@@ -13,20 +13,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp"
             android:scrollbars="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/cardview_background">
+                android:layout_height="wrap_content">
 
                 <com.jsibbold.zoomage.ZoomageView
                     android:id="@+id/notGelenResim"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_margin="10dp"
                     android:src="@mipmap/ic_launcher"
+                    android:background="@android:color/white"
                     app:zoomage_restrictBounds="false"
                     app:zoomage_animateOnReset="true"
                     app:zoomage_autoResetMode="UNDER"
@@ -80,23 +78,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
-                            android:layout_weight="0.1"
-                            android:text="Başlık : " />
+                            android:layout_weight="0.02"
+                            android:text="Konu : " />
 
                         <TextView
                             android:id="@+id/notGelenBaslik"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
-                            android:layout_weight="0.7"
+                            android:layout_weight="0.98"
                             android:text="TextView" />
 
-                        <ImageView
-                            android:id="@+id/notGuncelle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:layout_gravity="right"
-                            android:layout_weight="0.2" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -134,17 +126,38 @@
                                 android:id="@+id/yeniNot" />
                         </LinearLayout>
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <Button
+                            android:id="@+id/paylas"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Paylaş"
+                            android:paddingLeft="10dp"
+                            android:drawableLeft="@drawable/ic_paylas"
+                            android:background="@drawable/cardview_background" />
+
+                        <Button
+                            android:id="@+id/notGuncelle"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:text="Düzenle"
+                            android:paddingLeft="10dp"
+                            android:background="@drawable/cardview_background" />
+
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </FrameLayout>
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="10dp"
-        android:id="@+id/paylas"
-        android:background="@drawable/ic_paylas" />
 </FrameLayout>

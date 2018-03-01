@@ -53,7 +53,7 @@ public class DersNotuGor extends Activity {
 
     ImageButton solaDon, sagaDon;
 
-    ImageView notGuncelle;
+    Button notGuncelle;
 
     Button paylas;
 
@@ -137,13 +137,14 @@ public class DersNotuGor extends Activity {
             }
         });
 
-        notGuncelle.setImageResource(R.drawable.edit);
+        notGuncelle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_duzenle), null, null, null);
         notGuncelle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (notGuncelleTiklandi) {
                     gelenNot.setText(yeniNot.getText().toString());
-                    notGuncelle.setImageResource(R.drawable.edit);
+                    notGuncelle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_duzenle), null, null, null);
+                    notGuncelle.setText("Düzenle");
 
                     gelenNot.setVisibility(View.VISIBLE);
                     yeniNot.setVisibility(View.INVISIBLE);
@@ -155,7 +156,8 @@ public class DersNotuGor extends Activity {
                 } else {
                     yeniNot.setText(gelenNot.getText().toString());
 
-                    notGuncelle.setImageResource(R.drawable.onay);
+                    notGuncelle.setText("Kaydet");
+                    notGuncelle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_onay), null, null, null);
 
                     gelenNot.setVisibility(View.INVISIBLE);
                     yeniNot.setVisibility(View.VISIBLE);
