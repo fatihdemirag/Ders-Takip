@@ -200,4 +200,12 @@ public class DbHelper extends SQLiteOpenHelper{
         return cursor;
     }
 
+    public void dersProgramiSil() {
+        db = this.getWritableDatabase();
+        String query = "drop table dersler_programi";
+        db.execSQL(query);
+        db.close();
+    }
+
+
 }

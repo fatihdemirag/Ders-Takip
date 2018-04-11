@@ -93,4 +93,5 @@
                 ads:adUnitId="@string/bannerAdsId" />
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

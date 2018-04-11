@@ -45,8 +45,8 @@ public class MainPage extends Activity {
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
         adView.loadAd(adRequest);
 
-//        Intent servisIntent = new Intent(MainPage.this, BildirimServisi.class);
-//        startService(servisIntent);
+        Intent servisIntent = new Intent(MainPage.this, BildirimServisi.class);
+        startService(servisIntent);
 
         dersProgrami.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,11 +101,7 @@ public class MainPage extends Activity {
                     finish();
                 }
             });
-            builder.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
+            builder.setNegativeButton("Hayır", null);
             builder.show();
         }
         return super.onKeyDown(keyCode, event);
