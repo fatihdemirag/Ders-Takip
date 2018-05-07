@@ -6,9 +6,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
 import android.view.View;
@@ -45,9 +47,18 @@ public class MainPage extends Activity {
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
         adView.loadAd(adRequest);
 
-        Intent servisIntent = new Intent(MainPage.this, BildirimServisi.class);
-        startService(servisIntent);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        if (sharedPreferences.getString("ilkAcilis", "").isEmpty() || sharedPreferences.getString("ilkAcilis", "") == null) {
+            editor.putString("ilkAcilis", "1");
+            editor.putString("bildirim", "1");
+            editor.apply();
+        }
+        if (sharedPreferences.getString("bildirim", "").equals("1")) {
+            Intent servisIntent = new Intent(MainPage.this, BildirimServisi.class);
+            startService(servisIntent);
+        }
         dersProgrami.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

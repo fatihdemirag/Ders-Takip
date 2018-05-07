@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ public class Ayarlar extends Activity {
     TimePicker dersBaslangicSaati;
     NumberPicker dersSuresi;
     Button ayarKaydet;
+
+    Switch bildirim;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -42,6 +45,7 @@ public class Ayarlar extends Activity {
         dersBaslangicSaati = findViewById(R.id.dersBaslangicSaati);
         dersSuresi = findViewById(R.id.dersSuresi);
         ayarKaydet = findViewById(R.id.ayarKaydet);
+        bildirim = findViewById(R.id.bildirim);
 
         dersBaslangicSaati.setIs24HourView(true);
 
@@ -73,10 +77,19 @@ public class Ayarlar extends Activity {
                 else
                     editor.putString("dersBaslangicDakikasi", String.valueOf(dersBaslangicSaati.getCurrentMinute()));
                 editor.putString("dersSuresi", String.valueOf(dersSuresi.getValue()));
-                editor.commit();
+                editor.apply();
                 Toast.makeText(Ayarlar.this, "Ayarlar Kaydedildi", Toast.LENGTH_SHORT).show();
             }
         });
+
+        if (!bildirim.isActivated()) {
+            editor.putString("bildirim", "1");
+            editor.apply();
+        } else {
+            editor.putString("bildirim", "0");
+            editor.apply();
+        }
+
 
 //        String str="7:0";
 //        System.out.println("İki nokta : "+str.indexOf(':'));

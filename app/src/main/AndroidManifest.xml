@@ -49,10 +49,10 @@
             </intent-filter>
         </activity>
 
-        <!--<service-->
-        <!--android:name=".BildirimServisi"-->
-        <!--android:enabled="true"-->
-        <!--android:exported="true" />-->
+        <service
+            android:name=".BildirimServisi"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -27,7 +27,6 @@ public class BildirimServisi extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -44,7 +43,6 @@ public class BildirimServisi extends Service {
 
                 DersKontrol();
                 sayac++;
-
             }
         };
         timer.schedule(timerTask, 0, 1000);
@@ -81,13 +79,12 @@ public class BildirimServisi extends Service {
                 .setContentIntent(pendingIntent);
 
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
         manager.notify(0, builder.build());
 
     }
 
     String bildirimZamani, simdikiSaat;
-    int bildirimSuresi = -5;
+    int bildirimSuresi = 5;
     int saat, dakika;
 
 
@@ -104,13 +101,12 @@ public class BildirimServisi extends Service {
         DbHelper dbHelper = new DbHelper(this);
         Cursor cursor = dbHelper.dersKontrol(bildirimZamani);
 
-        Log.e("saat", saat + "");
-        Log.e("dakika", dakika + "");
-        Log.e("bildirimZamani", bildirimZamani + "");
+//        Log.e("saat", saat + "");
+//        Log.e("dakika", dakika + "");
+//        Log.e("bildirimZamani", bildirimZamani + "");
 
         while (cursor.moveToNext()) {
             if (cursor.getCount() > 0) {
-
                 if (!cursor.getString(1).equals("--Boş Ders--")) {
                     ders = cursor.getString(1);
                     BildirimGonder(ders + " dersi " + (bildirimSuresi * -1) + " dakika sonra başlayacak.");
