@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class DbHelper extends SQLiteOpenHelper{
     public static final String dbName="ders_programi";
     private static final String table = "dersler_programi";
@@ -193,10 +195,33 @@ public class DbHelper extends SQLiteOpenHelper{
     }
 
 //    ---------------------------------------------------
-
+private String gun = "";
     public Cursor dersKontrol(String saat) {
+        switch (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1) {
+            case 0:
+                gun = "Pazar";
+                break;
+            case 1:
+                gun = "Pazartesi";
+                break;
+            case 2:
+                gun = "Salı";
+                break;
+            case 3:
+                gun = "Çarşamba";
+                break;
+            case 4:
+                gun = "Perşembe";
+                break;
+            case 5:
+                gun = "Cuma";
+                break;
+            case 6:
+                gun = "Cumartesi";
+                break;
+        }
         db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from dersler_programi where ders_baslangic_saati='" + saat + "'", null);
+        Cursor cursor = db.rawQuery("select * from dersler_programi where ders_baslangic_saati='" + saat + "' and ders_gunu='" + gun + "'", null);
         return cursor;
     }
 

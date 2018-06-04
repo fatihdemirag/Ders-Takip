@@ -85,13 +85,12 @@ public class Pazartesi extends Fragment {
                 cardViewAdapterDersProgrami.notifyDataSetChanged();
 
                 editor.putString("gun", "Pazartesi");
-                editor.commit();
+                editor.apply();
 
             }
         });
 
         return view;
-
     }
 
     public void KayitYukle(String gun, DbHelper dbHelper, Ders ders, ArrayList<Ders> liste) {

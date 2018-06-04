@@ -2,8 +2,7 @@ package fatihdemirag.net.dersprogram;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,12 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 
 //fxd
 public class Ayarlar extends Activity {
@@ -65,6 +63,11 @@ public class Ayarlar extends Activity {
             dersSuresi.setValue(Integer.parseInt(sharedPreferences.getString("dersSuresi", "")));
 
 
+        if (sharedPreferences.getString("bildirim", "").equals("1"))
+            bildirim.setChecked(true);
+        else
+            bildirim.setChecked(false);
+
         ayarKaydet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,15 +85,26 @@ public class Ayarlar extends Activity {
             }
         });
 
-        if (!bildirim.isActivated()) {
-            editor.putString("bildirim", "1");
-            editor.apply();
-        } else {
-            editor.putString("bildirim", "0");
-            editor.apply();
-        }
+        bildirim.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    editor.putString("bildirim", "1");
+                    editor.apply();
+                    Intent servisIntent = new Intent(Ayarlar.this, BildirimServisi.class);
 
+                    startService(servisIntent);
 
+                    Toast.makeText(Ayarlar.this, "Ders başlangıcından 5 dakika önce bildirim gönderilecektir.", Toast.LENGTH_SHORT).show();
+                } else {
+                    editor.putString("bildirim", "0");
+                    editor.apply();
+                    Intent servisIntent = new Intent(Ayarlar.this, BildirimServisi.class);
+
+                    stopService(servisIntent);
+                }
+            }
+        });
 //        String str="7:0";
 //        System.out.println("İki nokta : "+str.indexOf(':'));
 //        System.out.println("İki nokta sol :"+str.substring(0,str.indexOf(':')));

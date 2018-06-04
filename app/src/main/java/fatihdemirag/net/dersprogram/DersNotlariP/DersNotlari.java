@@ -118,7 +118,7 @@ public class DersNotlari extends Activity {
         });
         if (dersNotuArrayList.size() == 0) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setMessage(ders + " dersinin notu bulunamadı !\nNot Eklensin mi ?");
+            alertDialog.setMessage(ders + " dersinin notu bulunamadı.\nNot Eklensin mi ?");
             alertDialog.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

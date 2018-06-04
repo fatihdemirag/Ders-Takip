@@ -52,7 +52,7 @@ public class BildirimServisi extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return Service.START_STICKY;
+        return START_STICKY;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class BildirimServisi extends Service {
     String bildirimZamani, simdikiSaat;
     int bildirimSuresi = 5;
     int saat, dakika;
-
+    boolean bildirimDurdur = true;
 
     void DersKontrol() {
         Calendar calendar = Calendar.getInstance();
@@ -94,7 +94,11 @@ public class BildirimServisi extends Service {
         simdikiSaat = calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes();
         saat = Integer.parseInt(simdikiSaat.substring(0, simdikiSaat.indexOf(':')));
         dakika = Integer.parseInt(simdikiSaat.substring(simdikiSaat.indexOf(':') + 1, simdikiSaat.length()));
-        bildirimZamani = saat + ":" + (dakika + bildirimSuresi);
+
+        if (dakika + bildirimSuresi >= 60)
+            bildirimZamani = saat + 1 + ":" + String.valueOf((dakika + bildirimSuresi)).substring(1);
+        else
+            bildirimZamani = saat + ":" + (dakika + bildirimSuresi);
 
         String ders = "";
 
@@ -105,15 +109,16 @@ public class BildirimServisi extends Service {
 //        Log.e("dakika", dakika + "");
 //        Log.e("bildirimZamani", bildirimZamani + "");
 
-        while (cursor.moveToNext()) {
+        while (cursor.moveToNext() && bildirimDurdur) {
             if (cursor.getCount() > 0) {
                 if (!cursor.getString(1).equals("--Boş Ders--")) {
                     ders = cursor.getString(1);
-                    BildirimGonder(ders + " dersi " + (bildirimSuresi * -1) + " dakika sonra başlayacak.");
+                    BildirimGonder(ders + " dersi " + bildirimSuresi + " dakika sonra başlayacak.");
                 } else {
                     ders = (bildirimSuresi * -1) + " dakika sonra boş dersiniz var. " + new String(Character.toChars(0x1F60D));
                     BildirimGonder(ders);
                 }
+                bildirimDurdur = false;
             }
         }
     }

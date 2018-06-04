@@ -43,10 +43,10 @@ import fatihdemirag.net.dersprogram.Sınıflar.Ders;
  */
 
 public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAdapterDersProgrami.ViewHolder> {
-    Context context;
-    ArrayList<Ders> liste;
-    View view;
-    ViewHolder viewHolder;
+    private Context context;
+    private ArrayList<Ders> liste;
+    private View view;
+    private ViewHolder viewHolder;
 
     public CardViewAdapterDersProgrami(Context context, ArrayList<Ders> liste) {
         this.context = context;
@@ -168,7 +168,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                             if (dersler.getSelectedItem().toString().equals("--Öğle Arası--")) {
                                 String ogleBaslangic = liste.get(getAdapterPosition() - 1).getDersBitisSaati();
                                 baslangicSaati.setText(ogleBaslangic);
-                                bitisSaati.setText((Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':'))) + 1) + ":" + liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length()));
+                                bitisSaati.setText(String.valueOf((Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':'))) + 1) + ":" + liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length())));
                                 KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaati.getText().toString(), bitisSaati.getText().toString(), dersler.getSelectedItemPosition());
                             } else {
                                 String simdikiBaslangicSaati = "";
@@ -282,7 +282,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
                         String ogleBaslangic = liste.get(getAdapterPosition() - 1).getDersBitisSaati();
                         baslangicSaati.setText(ogleBaslangic);
-                        bitisSaati.setText((Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':'))) + 1) + ":" + liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length()));
+                        bitisSaati.setText(String.valueOf((Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':'))) + 1) + ":" + liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length())));
 
 
                         sira.setText("Öğle Arası");

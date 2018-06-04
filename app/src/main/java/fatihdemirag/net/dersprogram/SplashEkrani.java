@@ -38,7 +38,7 @@ public class SplashEkrani extends Activity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1500);
                     Intent intent = new Intent(SplashEkrani.this, MainPage.class);
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

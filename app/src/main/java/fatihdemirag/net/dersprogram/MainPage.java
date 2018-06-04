@@ -43,7 +43,6 @@ public class MainPage extends Activity {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
         adView.loadAd(adRequest);
 
