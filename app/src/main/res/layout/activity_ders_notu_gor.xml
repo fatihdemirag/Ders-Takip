@@ -79,7 +79,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
                             android:layout_weight="0.02"
-                            android:text="Konu : " />
+                            android:text="@string/konugor" />
 
                         <TextView
                             android:id="@+id/notGelenBaslik"
@@ -87,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
                             android:layout_weight="0.98"
-                            android:text="TextView" />
+                            android:text="-" />
 
                     </LinearLayout>
 
@@ -102,7 +102,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
                             android:layout_gravity="left"
-                            android:text="Not" />
+                            android:text="@string/notgor" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -113,7 +113,7 @@
                                 android:id="@+id/notGelen"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="TextView"
+                                android:text="-"
                                 android:layout_marginTop="5dp"
                                 android:textIsSelectable="true" />
 
@@ -137,7 +137,7 @@
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Paylaş"
+                            android:text="@string/paylas"
                             android:paddingLeft="10dp"
                             android:drawableLeft="@drawable/ic_paylas"
                             android:background="@drawable/cardview_background" />
@@ -148,7 +148,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:layout_marginLeft="10dp"
-                            android:text="Düzenle"
+                            android:text="@string/notduzenle"
                             android:paddingLeft="10dp"
                             android:background="@drawable/cardview_background" />
 

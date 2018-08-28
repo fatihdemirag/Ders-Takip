@@ -231,19 +231,19 @@ public class HaftalikDersler extends Activity implements ActionBar.TabListener {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Pazartesi";
+                    return getString(R.string.pazartesi);
                 case 1:
-                    return "Salı";
+                    return getString(R.string.sali);
                 case 2:
-                    return "Çarşamba";
+                    return getString(R.string.carsamba);
                 case 3:
-                    return "Perşembe";
+                    return getString(R.string.persembe);
                 case 4:
-                    return "Cuma";
+                    return getString(R.string.cuma);
                 case 5:
-                    return "Cumartesi";
+                    return getString(R.string.cumartesi);
                 case 6:
-                    return "Pazar";
+                    return getString(R.string.pazar);
 
             }
             return null;

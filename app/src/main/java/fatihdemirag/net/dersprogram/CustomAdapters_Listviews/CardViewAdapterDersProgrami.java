@@ -153,15 +153,15 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                                 bitisSaati.setText(baslangicSaatiInt + ":" + (dersBitisSaati + dersSuresi));
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-                                builder.setMessage("Ders tanımlanmamış ders eklemek ister misiniz ?");
-                                builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                                builder.setMessage(itemView.getResources().getString(R.string.dersyok));
+                                builder.setPositiveButton(itemView.getResources().getString(R.string.evet), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(itemView.getContext(), Dersler.class);
                                         itemView.getContext().startActivity(intent);
                                     }
                                 });
-                                builder.setNegativeButton("Hayır", null);
+                                builder.setNegativeButton(itemView.getResources().getString(R.string.hayir), null);
                                 builder.show();
                             }
                         } else {
@@ -172,7 +172,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                                 KayitEkle(dersler.getSelectedItem().toString(), sharedPreferences.getString("gun", ""), baslangicSaati.getText().toString(), bitisSaati.getText().toString(), dersler.getSelectedItemPosition());
                             } else {
                                 String simdikiBaslangicSaati = "";
-                                if (liste.get(getAdapterPosition() - 1).getDersAdi().equals("--Öğle Arası--")) {
+                                if (liste.get(getAdapterPosition() - 1).getDersAdi().equals(itemView.getResources().getString(R.string.oglearasi))) {
                                     if (Integer.parseInt((String.valueOf(Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length()))))) >= 60)
                                         simdikiBaslangicSaati = String.valueOf(Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':'))) + 1) + ":" + String.valueOf(Integer.parseInt(String.valueOf(Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length())))) - 60);
                                     else
@@ -225,20 +225,20 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                 public void onClick(View v) {
                     if (dersler.getSelectedItem() == null) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-                        builder.setMessage("Ders tanımlanmamış ders eklemek ister misiniz ?");
-                        builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                        builder.setMessage(itemView.getResources().getString(R.string.dersyok));
+                        builder.setPositiveButton(itemView.getResources().getString(R.string.tamam), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(itemView.getContext(), Dersler.class);
                                 itemView.getContext().startActivity(intent);
                             }
                         });
-                        builder.setNegativeButton("Hayır", null);
+                        builder.setNegativeButton(itemView.getResources().getString(R.string.hayir), null);
                         builder.show();
                     } else {
                         Intent intent = new Intent(itemView.getContext(), DersNotuEkle.class);
                         Bundle bundle = new Bundle();
-                        bundle.putString("Ders", ders.getText().toString());
+                        bundle.putString(itemView.getResources().getString(R.string.ders), ders.getText().toString());
                         intent.putExtras(bundle);
                         itemView.getContext().startActivity(intent);
                     }
@@ -246,12 +246,12 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             });
 
             dbHelper = new DbHelper(itemView.getContext());
-
+//            itemView.getResources().getString(R.string.dersyok)
             customList.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(itemView.getContext());
-                    alertDialog.setTitle("Dersi Sil").setMessage("Dersi Silmek İstediğinize Emin Misiniz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    alertDialog.setTitle(itemView.getResources().getString(R.string.derssil)).setMessage(itemView.getResources().getString(R.string.derssiluyari)).setPositiveButton(itemView.getResources().getString(R.string.evet), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             liste.remove(getAdapterPosition());
@@ -262,7 +262,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                             KayitSil(dersId.getText().toString());
 
                         }
-                    }).setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    }).setNegativeButton(itemView.getResources().getString(R.string.hayir), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -274,9 +274,9 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             dersler.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if (dersler.getItemAtPosition(position).toString().equals("--Öğle Arası--")) {
+                    if (dersler.getItemAtPosition(position).toString().equals(itemView.getResources().getString(R.string.oglearasi))) {
                         dersler.setVisibility(View.INVISIBLE);
-                        tenefusSuresiBaslik.setText("Öğle Arası Süresi");
+                        tenefusSuresiBaslik.setText(itemView.getResources().getString(R.string.oglearasisuresi));
                         tenefusSuresiNumberPicker.setMinValue(60);
                         tenefusSuresiNumberPicker.setMaxValue(60);
 
@@ -285,7 +285,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                         bitisSaati.setText(String.valueOf((Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':'))) + 1) + ":" + liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length())));
 
 
-                        sira.setText("Öğle Arası");
+                        sira.setText(itemView.getResources().getString(R.string.oglearasi));
                     }
                 }
 
@@ -313,7 +313,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             DbHelper dbHelper = new DbHelper(itemView.getContext());
             int delete = dbHelper.dersSil(id);
             if (delete > 0) {
-                Toast.makeText(itemView.getContext(), "Ders Silindi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.dersilindi), Toast.LENGTH_SHORT).show();
                 return true;
             } else {
                 return false;
@@ -325,13 +325,13 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                 DbHelper dbHelper = new DbHelper(itemView.getContext());
 
                 if (dbHelper.dersEkle(dersAdi, gun, baslangicSaat, bitisSaat, dersPozisyon, String.valueOf(tenefusSuresiNumberPicker.getValue()))) {
-                    if (dersler.getSelectedItem().toString().equals("--Öğle Arası--"))
-                        Toast.makeText(itemView.getContext(), "Öğle Arası Eklendi", Toast.LENGTH_SHORT).show();
+                    if (dersler.getSelectedItem().toString().equals(itemView.getResources().getString(R.string.oglearasi)))
+                        Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.oglearasieklendi), Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(itemView.getContext(), "Ders Eklendi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.derseklendi), Toast.LENGTH_SHORT).show();
                 }
             } catch (SQLException s) {
-                Toast.makeText(itemView.getContext(), "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.derseklenemedi), Toast.LENGTH_SHORT).show();
                 s.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -343,8 +343,8 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             DbHelper dbHelper = new DbHelper(itemView.getContext());
             cursor = dbHelper.dersler();
 
-            dersListesi.add("--Boş Ders--");
-            dersListesi.add("--Öğle Arası--");
+            dersListesi.add(itemView.getResources().getString(R.string.bosders));
+            dersListesi.add(itemView.getResources().getString(R.string.oglearasi));
 
 
             while (cursor.moveToNext()) {
@@ -359,9 +359,9 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
         void KayitGuncelle() {
             DbHelper dbHelper = new DbHelper(itemView.getContext());
             if (dbHelper.dersGuncelle(Integer.parseInt(dersId.getText().toString()), dersler.getSelectedItem().toString(), dersler.getSelectedItemPosition(), String.valueOf(tenefusSuresiNumberPicker.getValue())))
-                Toast.makeText(itemView.getContext(), "Ders Güncellendi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.dersguncellendi), Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(itemView.getContext(), "Ders Güncellenemedi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.dersguncellenemedi), Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginRight="40dp"
-                android:text="Başlangıç" />
+                android:text="@string/baslangic" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,14 +65,14 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="9dp"
                 android:layout_marginRight="40dp"
-                android:text="Bitiş" />
+                android:text="@string/bitis" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:id="@+id/tenefusSuresiBaslik"
-                android:text="Tenefüs Süresi" />
+                android:text="@string/teneffüs" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,14 +89,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginRight="40dp"
-                android:text="Başlangıç" />
+                android:text="-" />
 
             <TextView
                 android:id="@+id/bitisSaat"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Bitiş" />
+                android:text="-" />
 
             <NumberPicker
                 android:id="@+id/tenefusSuresi"
@@ -117,7 +117,7 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Not Ekle"
+                android:text="@string/notekle"
                 android:paddingLeft="10dp"
                 android:background="@drawable/cardview_background"
                 android:drawableLeft="@drawable/notekle" />
@@ -129,7 +129,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:paddingLeft="10dp"
-                android:text="Kaydet"
+                android:text="@string/kaydet"
                 android:drawableLeft="@drawable/derskaydet"
                 android:background="@drawable/cardview_background" />
         </LinearLayout>

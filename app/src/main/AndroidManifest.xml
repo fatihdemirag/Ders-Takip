@@ -50,11 +50,14 @@
 
         </activity>
 
-        <service
-            android:name=".BildirimServisi"
-            android:enabled="true"
-            android:exported="true"
-            android:launchMode="singleTop" />
-    </application>
+        <!--<service-->
+        <!--android:name=".BildirimServisi"-->
+        <!--android:enabled="true"-->
+        <!--android:exported="true"-->
+        <!--android:launchMode="singleTop" />-->
 
+    </application>
+    <meta-data
+        android:name="io.fabric.ApiKey"
+        android:value="9e3370e51a9b156f737227b8733a0212039098ec" />
 </manifest>

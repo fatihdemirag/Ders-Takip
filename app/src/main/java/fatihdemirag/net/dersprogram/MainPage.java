@@ -17,9 +17,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
 
 import fatihdemirag.net.dersprogram.DersNotlariP.DersListesiNot;
 
@@ -42,6 +44,7 @@ public class MainPage extends Activity {
         dersler = findViewById(R.id.dersler);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Fabric.with(this, new Crashlytics());
 
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
         adView.loadAd(adRequest);

@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "540944517739",
+    "firebase_url": "https://derstakip-ee787.firebaseio.com",
+    "project_id": "derstakip-ee787",
+    "storage_bucket": "derstakip-ee787.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540944517739:android:2b600166b1290f07",
+        "android_client_info": {
+          "package_name": "fatihdemirag.net.derstakip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540944517739-bloa7cngf7oe53mocbgdo8ksdfmgchi9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fatihdemirag.net.derstakip",
+            "certificate_hash": "817ceee013b44bee5d35bcdfefb4f87b7367d838"
+          }
+        },
+        {
+          "client_id": "540944517739-nmk0lai963mmv51un1popdvpaa796v5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fatihdemirag.net.derstakip",
+            "certificate_hash": "1b8d4713a2a8dd2ea971ef002900b4a8f2033706"
+          }
+        },
+        {
+          "client_id": "540944517739-b07jvome069v8d4c95j4vqbvrpr7j1j1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fatihdemirag.net.derstakip",
+            "certificate_hash": "8ab6eac5434190fe095651445f6b05b370a10215"
+          }
+        },
+        {
+          "client_id": "540944517739-qeaj4u72m5j2a0iflgu1m742adei4jdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-QT_CpsmmyvyCXpmgbmBNyXwUY7pOSlM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540944517739-qeaj4u72m5j2a0iflgu1m742adei4jdu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

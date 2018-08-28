@@ -20,7 +20,7 @@
             android:id="@+id/dersAdi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ders" />
+            android:hint="@string/ders" />
 
         <Button
             android:id="@+id/dersEkle"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/cardview_background"
             android:layout_marginTop="10dp"
-            android:text="Dersi Ekle" />
+            android:text="@string/dersekle" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"

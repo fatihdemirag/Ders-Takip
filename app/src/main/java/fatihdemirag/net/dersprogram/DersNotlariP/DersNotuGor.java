@@ -90,7 +90,7 @@ public class DersNotuGor extends Activity {
         gelenId = bundle.getString("Seçilen Not Id", "");
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Not paylaşılıyor lütfen bekleyiniz");
+        progressDialog.setMessage(getString(R.string.notpaylasim));
         progressDialog.setCancelable(false);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
@@ -107,7 +107,7 @@ public class DersNotuGor extends Activity {
 
                 if (!hasPermissions(DersNotuGor.this, PERMISSIONS)) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(DersNotuGor.this);
-                    alertDialog.setTitle("Paylaşım özelliğini kullanmak için izin gereklidir.").setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+                    alertDialog.setTitle(getString(R.string.izinuyari)).setPositiveButton(getString(R.string.tamam), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ActivityCompat.requestPermissions(DersNotuGor.this, PERMISSIONS, PERMISSION_ALL);
@@ -144,19 +144,19 @@ public class DersNotuGor extends Activity {
                 if (notGuncelleTiklandi) {
                     gelenNot.setText(yeniNot.getText().toString());
                     notGuncelle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_duzenle), null, null, null);
-                    notGuncelle.setText("Düzenle");
+                    notGuncelle.setText(getString(R.string.notduzenle));
 
                     gelenNot.setVisibility(View.VISIBLE);
                     yeniNot.setVisibility(View.INVISIBLE);
 
                     DbHelper dbHelper = new DbHelper(DersNotuGor.this);
                     dbHelper.dersNotuGuncelle(Integer.parseInt(gelenId), yeniNot.getText().toString());
-                    Toast.makeText(DersNotuGor.this, "Not Güncellendi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DersNotuGor.this, getString(R.string.notguncellendi), Toast.LENGTH_SHORT).show();
                     notGuncelleTiklandi = !notGuncelleTiklandi;
                 } else {
                     yeniNot.setText(gelenNot.getText().toString());
 
-                    notGuncelle.setText("Kaydet");
+                    notGuncelle.setText(getString(R.string.kaydet));
                     notGuncelle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_onay), null, null, null);
 
                     gelenNot.setVisibility(View.INVISIBLE);
@@ -174,7 +174,7 @@ public class DersNotuGor extends Activity {
         intent.setType("image/jpeg");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        File file = new File(Environment.getExternalStorageDirectory() + "/Ders Programi");
+        File file = new File(Environment.getExternalStorageDirectory() + "/" + getString(R.string.app_name));
         try {
             file.createNewFile();
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -182,16 +182,16 @@ public class DersNotuGor extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory() + "/Ders Programi/temp.jpeg"));
-        intent.putExtra(Intent.EXTRA_TEXT, "Başlık : " + gelenBaslik.getText().toString() + "\n" + "Not : " + gelenNot.getText().toString());
-        startActivity(Intent.createChooser(intent, "Not Paylaş"));
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory() + "/" + getString(R.string.app_name) + "/temp.jpeg"));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.baslik) + " : " + gelenBaslik.getText().toString() + "\n" + getString(R.string.not) + " : " + gelenNot.getText().toString());
+        startActivity(Intent.createChooser(intent, getString(R.string.notpaylas)));
     }
 
     void ResimDosyasiOlustur(Bitmap bitmap) {
-        File klasör = new File(Environment.getExternalStorageDirectory() + "/Ders Programi");
-        if (!klasör.exists())
-            klasör.mkdir();
-        File path = new File(klasör.getAbsolutePath(), "temp.jpeg");
+        File klasor = new File(Environment.getExternalStorageDirectory() + "/" + getString(R.string.app_name));
+        if (!klasor.exists())
+            klasor.mkdir();
+        File path = new File(klasor.getAbsolutePath(), "temp.jpeg");
 
         FileOutputStream fileOutputStream = null;
         try {

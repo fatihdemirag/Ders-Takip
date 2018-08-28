@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ders başlangıç saati"
+        android:text="@string/dersbaslangic"
         android:padding="10dp"
         android:textStyle="bold"
         android:layout_gravity="center"
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ders süresi"
+        android:text="@string/derssuresi"
         android:padding="10dp"
         android:textStyle="bold"
         android:layout_gravity="center"
@@ -64,7 +64,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kaydet"
+            android:text="@string/kaydet"
             android:background="@drawable/buton_arkaplan"
             android:padding="10dp"
             android:layout_marginTop="10dp"
@@ -76,27 +76,14 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/cardview_background"
-        android:padding="5dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:gravity="center|bottom">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bildirim"
-            android:textSize="18dp"
-            android:layout_margin="10dp" />
-
-        <Switch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:id="@+id/bildirim"
-            android:layout_margin="6dp" />
+            android:text="@string/ceviri"
+            android:textSize="12dp" />
     </LinearLayout>
-
 </LinearLayout>

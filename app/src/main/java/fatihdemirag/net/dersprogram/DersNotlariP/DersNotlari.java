@@ -61,6 +61,7 @@ public class DersNotlari extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(getString(R.string.dersnotlari));
 
         fabButton = findViewById(R.id.fabButton);
         fabAcilis = AnimationUtils.loadAnimation(this, R.anim.fab_acilis);
@@ -68,8 +69,8 @@ public class DersNotlari extends Activity {
 
         dbHelper=new DbHelper(this);
         bundle=getIntent().getExtras();
-        ders=bundle.getString("Ders");
-        getActionBar().setTitle(ders+" Dersinin Notları");
+        ders = bundle.getString("Ders", "");
+        getActionBar().setTitle(ders + " " + getString(R.string.dersnotlari));
 
         notListesi = findViewById(R.id.notListesi);
         adView = findViewById(R.id.adView);
@@ -118,8 +119,8 @@ public class DersNotlari extends Activity {
         });
         if (dersNotuArrayList.size() == 0) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setMessage(ders + " dersinin notu bulunamadı.\nNot Eklensin mi ?");
-            alertDialog.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+            alertDialog.setMessage(ders + " " + getString(R.string.notbulunamadi));
+            alertDialog.setPositiveButton(getString(R.string.evet), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(DersNotlari.this, DersNotuEkle.class);
@@ -129,7 +130,7 @@ public class DersNotlari extends Activity {
                     startActivity(intent);
                 }
             });
-            alertDialog.setNegativeButton("Hayır", null);
+            alertDialog.setNegativeButton(getString(R.string.hayir), null);
             alertDialog.show();
         }
         fabButton.setOnClickListener(new View.OnClickListener() {
@@ -150,27 +151,22 @@ public class DersNotlari extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(DersNotlari.this);
-                alertDialog.setTitle("Ders Notunu Silmek İstiyor Musunuz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                alertDialog.setTitle(getString(R.string.dersnotsilonay)).setPositiveButton(getString(R.string.evet), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         try {
                             dbHelper.NotSilTekli(dersNotuArrayList.get(position).getId());
-                            Toast.makeText(DersNotlari.this, "Not Silindi", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DersNotlari.this, getString(R.string.notsilindi), Toast.LENGTH_SHORT).show();
 
                             dersNotuArrayList.clear();
                             KayitYukle();
                             custom_adapter2.notifyDataSetChanged();
                         } catch (Exception e) {
-                            Toast.makeText(DersNotlari.this, "Not Silinemedi", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DersNotlari.this, getString(R.string.notsilinemedi), Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
-                }).setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                }).show();
+                }).setNegativeButton(getString(R.string.hayir), null).show();
                 return false;
             }
         });
@@ -195,7 +191,7 @@ public class DersNotlari extends Activity {
 
         }catch (SQLException e)
         {
-            Toast.makeText(getApplicationContext(),"Not Yok",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.notyok), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }

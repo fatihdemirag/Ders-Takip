@@ -1,17 +1,95 @@
 <resources>
     <string name="app_name">Ders Takip</string>
-    <string name="action_settings">Ayarlar</string>
 
     <string name="title_activity_gunler">Ders Programı</string>
     <string name="duzenle">Dersi Düzenle</string>
-    <string name="title_activity_main2">Anasayfa</string>
 
-    <string name="title_section1">Ders Programı</string>
-    <string name="title_section2">Notlar</string>
-    <string name="title_section3">Ayarlar</string>
-    <string name="title_section4">Section 4</string>
-    <string name="title_section5">Section 5</string>
+    <string name="dersprogrami">Ders Programı</string>
+    <string name="notlar">Notlar</string>
+    <string name="dersler">Dersler</string>
+    <string name="ayarlar">Ayarlar</string>
 
+    <string name="splash">Ders Takip</string>
+
+    <string name="dersbaslangic">Ders Başlangıç Saati</string>
+    <string name="derssuresi">Ders süresi</string>
+
+    <string name="kaydet">Kaydet</string>
+    <string name="bildirim">Bildirim</string>
+    <string name="notduzenle">Düzenle</string>
+
+    <string name="notekle">Not Ekle</string>
+
+    <string name="baslangic">Başlangıç</string>
+    <string name="bitis">Bitiş</string>
+    <string name="teneffüs">Tenefüs Süresi</string>
+
+    <string name="pazartesi">Pazartesi</string>
+    <string name="sali">Salı</string>
+    <string name="carsamba">Çarşamba</string>
+    <string name="persembe">Perşembe</string>
+    <string name="cuma">Cuma</string>
+    <string name="cumartesi">Cumartesi</string>
+    <string name="pazar">Pazar</string>
+
+    <string name="ders">Ders</string>
+    <string name="guncelle">Güncelle</string>
+    <string name="oglearasi">--Öğle Arası--</string>
+    <string name="oglearasisuresi">Öğle Arası Süresi</string>
+
+    <string name="dersyok">Ders yok ders eklemek ister misiniz ?</string>
+
+    <string name="dersilindi">Ders Silindi</string>
+
+    <string name="dersisilindi">Dersi Silindi</string>
+    <string name="derssil">Ders Sil</string>
+    <string name="derssiluyari">Dersi Silmek İstediğinize Emin Misiniz ?</string>
+    <string name="derseklendi">Ders Eklendi</string>
+    <string name="oglearasieklendi">Öğle Arası Eklendi</string>
+    <string name="derseklenemedi">Ders Eklenemedi</string>
+    <string name="bosders">--Boş Ders--</string>
+    <string name="dersguncellendi">Ders Güncellendi</string>
+    <string name="dersguncellenemedi">Ders Güncellenemdi</string>
+
+
+    <string name="dersnotsil">Dersinin Tüm Notlarını Silinecek</string>
+    <string name="dersnotsilonay">Dersinin Silmek İstediğinize Emin Misiniz ?</string>
+    <string name="notsilindi">Notlar Silindi</string>
+    <string name="notsilinemedi">Notlar Silinemedi</string>
+
+    <string name="notbulunamadi">dersinin notu bulunamadı.
+        Not Eklensin mi ?</string>
+    <string name="notyok">Not Yok</string>
+
+    <string name="resimyok">Resim Tanınamadı</string>
+
+    <string name="konuuyari">Lütfen Konu Başlığı Giriniz</string>
+    <string name="notuyari">Lütfen Not Giriniz</string>
+    <string name="noteklendi">Not Eklendi</string>
+    <string name="noteklenemedi">Not Eklenemedi</string>
+    <string name="notguncellendi">Not Güncellendi</string>
+
+    <string name="not">Not</string>
+    <string name="notpaylas">Not Paylaş</string>
+    <string name="notpaylasim">Not paylaşılıyor lütfen bekleyiniz</string>
+    <string name="izinuyari">Paylaşım özelliğini kullanmak için izin gereklidir.</string>
+
+    <string name="baslik">Başlık</string>
+    <string name="dersbos">Ders Adı Boş Geçilemez</string>
+
+    <string name="konu">Konu</string>
+    <string name="konugor">Konu : </string>
+    <string name="notgor">Not : </string>
+    <string name="dersekle">Ders Ekle</string>
+    <string name="resimekle">Resim Ekle</string>
+    <string name="paylas">Paylaş</string>
+    <string name="notgorduzenle">Düzenle</string>
+    <string name="dersnotlari">Ders Notları</string>
+    <string name="ceviri">Çeviri : Merve Demirağ - Emirhan Demirağ</string>
+
+    <string name="tamam">Tamam</string>
+    <string name="hayir">Hayır</string>
+    <string name="evet">Evet</string>
 
     <string name="bannerAdsId">ca-app-pub-9361831426651608/9620720216</string>
 

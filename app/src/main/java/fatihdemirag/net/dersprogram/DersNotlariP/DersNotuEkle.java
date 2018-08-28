@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -31,10 +34,12 @@ public class DersNotuEkle extends Activity {
     int secilenResim=1;
     ImageView resim;
     Uri getResim;
-    InputStream ınputStream;
+    InputStream inputStream;
     EditText konu,not;
     DbHelper dbHelper;
     String ders;
+
+    AdView adView;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -42,14 +47,14 @@ public class DersNotuEkle extends Activity {
         {
                 try {
                     getResim=data.getData();
-                    ınputStream=getContentResolver().openInputStream(getResim);
-                    Bitmap r= BitmapFactory.decodeStream(ınputStream);
+                    inputStream = getContentResolver().openInputStream(getResim);
+                    Bitmap r = BitmapFactory.decodeStream(inputStream);
                     Bitmap kucukResim = Bitmap.createScaledBitmap(r, 1000, 600, true);
                     resim.setImageBitmap(kucukResim);
                     resim.setVisibility(View.VISIBLE);
                 }catch (FileNotFoundException f)
                 {
-                    Toast.makeText(getApplicationContext(),"Resim Tanınamadı",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.resimyok), Toast.LENGTH_SHORT).show();
                     f.printStackTrace();
                 }
         }
@@ -83,6 +88,11 @@ public class DersNotuEkle extends Activity {
         Bundle bundle=getIntent().getExtras();
         ders=bundle.getString("Ders");
 
+        adView = findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
+        adView.loadAd(adRequest);
+
         ekleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,21 +103,21 @@ public class DersNotuEkle extends Activity {
                 dbHelper=new DbHelper(getApplicationContext());
                 try {
                     if (konu.getText().length()==0)
-                        Toast.makeText(getApplicationContext(),"Lütfen Konu Başlığı Giriniz",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.konuuyari), Toast.LENGTH_SHORT).show();
                     else if(not.getText().length()==0)
-                        Toast.makeText(getApplicationContext(),"Lütfen Not Giriniz",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.notuyari), Toast.LENGTH_SHORT).show();
                     else {
                         if (dbHelper.dersNotuEkle(konu.getText().toString(), ders, i, not.getText().toString())) {
                             onBackPressed();
-                            Toast.makeText(getApplicationContext(), "Not Eklendi", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.noteklendi), Toast.LENGTH_SHORT).show();
                         }
                         else
-                            Toast.makeText(getApplicationContext(), "Not Eklenemedi", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.noteklenemedi), Toast.LENGTH_SHORT).show();
 
                     }
                 }catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Not Eklenemedi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.noteklenemedi), Toast.LENGTH_SHORT).show();
                 }
 
 

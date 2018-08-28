@@ -39,6 +39,7 @@ public class DersListesiNot extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(getString(R.string.dersnotlari));
 
         dersNotuListesi=(ListView)findViewById(R.id.dersListesi);
         dbHelper=new DbHelper(this);
@@ -69,25 +70,24 @@ public class DersListesiNot extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder alertDialog=new AlertDialog.Builder(DersListesiNot.this);
-                alertDialog.setTitle(dersNotuListesi.getItemAtPosition(position) + " Dersinin Tüm Notlarını Silinecek").
-                        setMessage(dersNotuListesi.getItemAtPosition(position) + " Dersinin Silmek İstediğinize Emin Misiniz ?").
-                        setPositiveButton("Evet", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        try {
-                            String ders=dersNotuListesi.getItemAtPosition(position).toString();
-                            dbHelper.NotSil(ders);
-                            Toast.makeText(DersListesiNot.this, "Notlar Silindi", Toast.LENGTH_SHORT).show();
-                            adapter.notifyDataSetChanged();
-                            dersNotuListesi.setAdapter(adapter);
-                        }catch (Exception e)
-                        {
-                            Toast.makeText(DersListesiNot.this, "Notlar Silinemedi", Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
+                alertDialog.setTitle(dersNotuListesi.getItemAtPosition(position) + " " + getString(R.string.dersnotsil)).
+                        setMessage(dersNotuListesi.getItemAtPosition(position) + " " + getString(R.string.dersnotsilonay)).
+                        setPositiveButton(getString(R.string.evet), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                try {
+                                    String ders = dersNotuListesi.getItemAtPosition(position).toString();
+                                    dbHelper.NotSil(ders);
+                                    Toast.makeText(DersListesiNot.this, getString(R.string.notsilindi), Toast.LENGTH_SHORT).show();
+                                    adapter.notifyDataSetChanged();
+                                    dersNotuListesi.setAdapter(adapter);
+                                } catch (Exception e) {
+                                    Toast.makeText(DersListesiNot.this, getString(R.string.notsilinemedi), Toast.LENGTH_SHORT).show();
+                                    e.printStackTrace();
+                                }
 
-                    }
-                        }).setNegativeButton("Hayır", null).show();
+                            }
+                        }).setNegativeButton(getString(R.string.hayir), null).show();
                 return false;
             }
         });

@@ -25,8 +25,6 @@ public class Ayarlar extends Activity {
     NumberPicker dersSuresi;
     Button ayarKaydet;
 
-    Switch bildirim;
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -43,7 +41,6 @@ public class Ayarlar extends Activity {
         dersBaslangicSaati = findViewById(R.id.dersBaslangicSaati);
         dersSuresi = findViewById(R.id.dersSuresi);
         ayarKaydet = findViewById(R.id.ayarKaydet);
-        bildirim = findViewById(R.id.bildirim);
 
         dersBaslangicSaati.setIs24HourView(true);
 
@@ -63,11 +60,6 @@ public class Ayarlar extends Activity {
             dersSuresi.setValue(Integer.parseInt(sharedPreferences.getString("dersSuresi", "")));
 
 
-        if (sharedPreferences.getString("bildirim", "").equals("1"))
-            bildirim.setChecked(true);
-        else
-            bildirim.setChecked(false);
-
         ayarKaydet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,26 +77,6 @@ public class Ayarlar extends Activity {
             }
         });
 
-        bildirim.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    editor.putString("bildirim", "1");
-                    editor.apply();
-                    Intent servisIntent = new Intent(Ayarlar.this, BildirimServisi.class);
-
-                    startService(servisIntent);
-
-                    Toast.makeText(Ayarlar.this, "Ders başlangıcından 5 dakika önce bildirim gönderilecektir.", Toast.LENGTH_SHORT).show();
-                } else {
-                    editor.putString("bildirim", "0");
-                    editor.apply();
-                    Intent servisIntent = new Intent(Ayarlar.this, BildirimServisi.class);
-
-                    stopService(servisIntent);
-                }
-            }
-        });
 //        String str="7:0";
 //        System.out.println("İki nokta : "+str.indexOf(':'));
 //        System.out.println("İki nokta sol :"+str.substring(0,str.indexOf(':')));

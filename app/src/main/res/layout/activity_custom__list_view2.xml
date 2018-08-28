@@ -36,14 +36,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Konu : " />
+                    android:text="@string/konugor" />
 
                 <TextView
                     android:id="@+id/konuText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView" />
+                    android:text="-" />
             </LinearLayout>
 
             <LinearLayout
@@ -57,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Not : "
+                    android:text="@string/notgor"
                     android:ellipsize="end"
                     android:maxLines="1" />
 
@@ -66,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="TextView"
+                    android:text="-"
                     android:ellipsize="end"
                     android:maxLines="1" />
             </LinearLayout>

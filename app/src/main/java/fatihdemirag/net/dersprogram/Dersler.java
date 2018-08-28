@@ -57,7 +57,7 @@ public class Dersler extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Dersler");
+        actionBar.setTitle(getString(R.string.dersler));
 
         derslerListesi = findViewById(R.id.derslerListesi);
         dersEkleButton = findViewById(R.id.dersEkleButton);
@@ -123,16 +123,16 @@ public class Dersler extends Activity {
 
                                     dersArrayList.add(dialogDersAdi.getText().toString());
 
-                                    Toast.makeText(Dersler.this, "Ders Eklendi", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Dersler.this, getString(R.string.derseklendi), Toast.LENGTH_SHORT).show();
 
                                 } else
-                                    Toast.makeText(Dersler.this, "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Dersler.this, getString(R.string.derseklenemedi), Toast.LENGTH_SHORT).show();
                             } else
-                                Toast.makeText(Dersler.this, "Ders Adı Boş Geçilemez", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Dersler.this, getString(R.string.dersbos), Toast.LENGTH_SHORT).show();
 
                         } catch (SQLException e) {
                             e.printStackTrace();
-                            Toast.makeText(Dersler.this, "Ders Eklenemedi", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Dersler.this, getString(R.string.derseklenemedi), Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -143,16 +143,16 @@ public class Dersler extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(Dersler.this);
-                alertDialog.setMessage("Dersi Silmek İstediğinize Emin Misiniz ?").setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                alertDialog.setMessage(getString(R.string.derssiluyari)).setPositiveButton(getString(R.string.evet), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dbHelper.dersSilTekli(dersArrayList.get(position).toString());
-                        Toast.makeText(Dersler.this, dersArrayList.get(position).toString() + " Dersi Silindi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Dersler.this, dersArrayList.get(position).toString() + " " + getString(R.string.dersisilindi), Toast.LENGTH_SHORT).show();
                         dersArrayList.remove(dersArrayList.get(position).toString());
                         arrayAdapter.notifyDataSetChanged();
                     }
                 });
-                alertDialog.setNegativeButton("Hayır", null);
+                alertDialog.setNegativeButton(getString(R.string.hayir), null);
                 alertDialog.show();
                 return false;
             }

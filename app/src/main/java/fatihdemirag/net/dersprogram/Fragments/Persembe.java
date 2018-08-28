@@ -49,7 +49,7 @@ public class Persembe extends Fragment {
         dbHelper=new DbHelper(getActivity());
 
 
-        KayitYukle("Perşembe", dbHelper, ders, liste);
+        KayitYukle("Perşembe", dbHelper, liste);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         final SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -58,11 +58,11 @@ public class Persembe extends Fragment {
             @Override
             public void onClick(View v) {
                 liste.clear();
-                KayitYukle("Perşembe", dbHelper, ders, liste);
+                KayitYukle("Perşembe", dbHelper, liste);
                 ders = new Ders();
-                ders.setButonYazisi("Kaydet");
+                ders.setButonYazisi(getString(R.string.kaydet));
                 ders.setTenefusAktifMi(true);
-                ders.setTenefusSuresiBaslik("Tenefüs Süresi");
+                ders.setTenefusSuresiBaslik(getString(R.string.teneffüs));
                 ders.setSira("-");
                 liste.add(ders);
                 cardViewAdapterDersProgrami.notifyDataSetChanged();
@@ -75,7 +75,7 @@ public class Persembe extends Fragment {
         return view;
     }
 
-    public void KayitYukle(String gun, DbHelper dbHelper, Ders ders, ArrayList<Ders> liste) {
+    public void KayitYukle(String gun, DbHelper dbHelper, ArrayList<Ders> liste) {
         liste.clear();
         Cursor cursor = dbHelper.tumDersler();
         int i = 1;
@@ -89,14 +89,14 @@ public class Persembe extends Fragment {
                 ders.setDersPozisyon(cursor.getInt(5));
                 ders.setDersTenefusSuresi(cursor.getString(6));
                 ders.setTenefusAktifMi(true);
-                ders.setButonYazisi("Güncelle");
-                if (ders.getDersAdi().equals("--Öğle Arası--")) {
+                ders.setButonYazisi(getString(R.string.guncelle));
+                if (ders.getDersAdi().equals(getString(R.string.oglearasi))) {
                     ders.setOnayAktifMi(View.INVISIBLE);
                     ders.setNotEkleAktifMi(View.INVISIBLE);
-                    ders.setTenefusSuresiBaslik("Öğle Arası Süresi");
+                    ders.setTenefusSuresiBaslik(getString(R.string.oglearasisuresi));
                     i -= 1;
                 } else {
-                    ders.setTenefusSuresiBaslik("Tenefüs Süresi");
+                    ders.setTenefusSuresiBaslik(getString(R.string.teneffüs));
                 }
                 ders.setSira(i + ".Ders");
 
@@ -112,7 +112,7 @@ public class Persembe extends Fragment {
     @Override
     public void onResume() {
         cardViewAdapterDersProgrami.notifyDataSetChanged();
-        KayitYukle("Perşembe", dbHelper, ders, liste);
+        KayitYukle("Perşembe", dbHelper, liste);
         super.onResume();
     }
 }
