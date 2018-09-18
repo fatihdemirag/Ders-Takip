@@ -1,14 +1,12 @@
 package fatihdemirag.net.dersprogram.CustomAdapters_Listviews;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
@@ -20,14 +18,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +74,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
         holder.onayButton.setVisibility(liste.get(position).getOnayAktifMi());
         holder.dersNotuEkle.setVisibility(liste.get(position).getNotEkleAktifMi());
         holder.tenefusSuresiBaslik.setText(liste.get(position).getTenefusSuresiBaslik());
+        YoYo.with(Techniques.FadeIn).playOn(holder.customList);
     }
 
     @Override
@@ -165,7 +164,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                                 builder.show();
                             }
                         } else {
-                            if (dersler.getSelectedItem().toString().equals("--Öğle Arası--")) {
+                            if (dersler.getSelectedItem().toString().equals(itemView.getResources().getString(R.string.oglearasisuresi))) {
                                 String ogleBaslangic = liste.get(getAdapterPosition() - 1).getDersBitisSaati();
                                 baslangicSaati.setText(ogleBaslangic);
                                 bitisSaati.setText(String.valueOf((Integer.parseInt(liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(0, liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':'))) + 1) + ":" + liste.get(getAdapterPosition() - 1).getDersBitisSaati().substring(liste.get(getAdapterPosition() - 1).getDersBitisSaati().indexOf(':') + 1, liste.get(getAdapterPosition() - 1).getDersBitisSaati().length())));
@@ -238,7 +237,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                     } else {
                         Intent intent = new Intent(itemView.getContext(), DersNotuEkle.class);
                         Bundle bundle = new Bundle();
-                        bundle.putString(itemView.getResources().getString(R.string.ders), ders.getText().toString());
+                        bundle.putString("Ders", ders.getText().toString());
                         intent.putExtras(bundle);
                         itemView.getContext().startActivity(intent);
                     }
@@ -314,6 +313,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
             int delete = dbHelper.dersSil(id);
             if (delete > 0) {
                 Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.dersilindi), Toast.LENGTH_SHORT).show();
+                updateList(liste);
                 return true;
             } else {
                 return false;

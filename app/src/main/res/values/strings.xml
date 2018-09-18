@@ -12,7 +12,7 @@
     <string name="splash">Ders Takip</string>
 
     <string name="dersbaslangic">Ders Başlangıç Saati</string>
-    <string name="derssuresi">Ders süresi</string>
+    <string name="derssuresi">Ders Süresi</string>
 
     <string name="kaydet">Kaydet</string>
     <string name="bildirim">Bildirim</string>
@@ -37,7 +37,7 @@
     <string name="oglearasi">--Öğle Arası--</string>
     <string name="oglearasisuresi">Öğle Arası Süresi</string>
 
-    <string name="dersyok">Ders yok ders eklemek ister misiniz ?</string>
+    <string name="dersyok">Ders Yok Ders Eklemek İster Misiniz ?</string>
 
     <string name="dersilindi">Ders Silindi</string>
 
@@ -57,8 +57,8 @@
     <string name="notsilindi">Notlar Silindi</string>
     <string name="notsilinemedi">Notlar Silinemedi</string>
 
-    <string name="notbulunamadi">dersinin notu bulunamadı.
-        Not Eklensin mi ?</string>
+    <string name="notbulunamadi">Dersinin Notu Bulunamadı.
+        Not Eklensin Mi ?</string>
     <string name="notyok">Not Yok</string>
 
     <string name="resimyok">Resim Tanınamadı</string>
@@ -71,8 +71,8 @@
 
     <string name="not">Not</string>
     <string name="notpaylas">Not Paylaş</string>
-    <string name="notpaylasim">Not paylaşılıyor lütfen bekleyiniz</string>
-    <string name="izinuyari">Paylaşım özelliğini kullanmak için izin gereklidir.</string>
+    <string name="notpaylasim">Not Paylaşılıyor Lütfen Bekleyiniz</string>
+    <string name="izinuyari">Paylaşım Özelliğini Kullanmak İçin İzin Gereklidir.</string>
 
     <string name="baslik">Başlık</string>
     <string name="dersbos">Ders Adı Boş Geçilemez</string>
@@ -90,6 +90,8 @@
     <string name="tamam">Tamam</string>
     <string name="hayir">Hayır</string>
     <string name="evet">Evet</string>
+
+    <string name="ekle">Ekle</string>
 
     <string name="bannerAdsId">ca-app-pub-9361831426651608/9620720216</string>
 

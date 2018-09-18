@@ -1,11 +1,8 @@
 package fatihdemirag.net.dersprogram.Fragments;
 
-import android.app.Dialog;
 import android.app.Fragment;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,20 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import java.util.ArrayList;
 
 import fatihdemirag.net.dersprogram.CustomAdapters_Listviews.CardViewAdapterDersProgrami;
 import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
-import fatihdemirag.net.dersprogram.Dersler;
 import fatihdemirag.net.dersprogram.Sınıflar.Ders;
 import fatihdemirag.net.dersprogram.R;
 
@@ -109,7 +97,10 @@ public class Pazar extends Fragment {
                 } else {
                     ders.setTenefusSuresiBaslik(getString(R.string.teneffüs));
                 }
-                ders.setSira(i + ".Ders");
+                if (ders.getDersAdi().equals(getString(R.string.bosders))) {
+                    ders.setNotEkleAktifMi(View.INVISIBLE);
+                }
+                ders.setSira(i + "." + getString(R.string.ders));
 
                 ders = new Ders(ders.getDersAdi(), gun, ders.getDersBaslangicSaati(), ders.getDersBitisSaati(), ders.getDersId(), ders.getDersPozisyon(), ders.getDersTenefusSuresi(), ders.getButonYazisi(), ders.getSira(), ders.getOnayAktifMi(), ders.getNotEkleAktifMi(), ders.getTenefusSuresiBaslik());
                 liste.add(ders);

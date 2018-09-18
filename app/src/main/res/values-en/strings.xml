@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Follow the lesson</string>
+    <string name="app_name">Follow The Lesson</string>
 
     <string name="title_activity_gunler">Syllabus</string>
     <string name="duzenle">Edit lesson</string>
@@ -9,10 +9,10 @@
     <string name="dersler">Lessons</string>
     <string name="ayarlar">Settings</string>
 
-    <string name="splash">Follow the lesson</string>
+    <string name="splash">Follow The Lesson</string>
 
     <string name="dersbaslangic">Lesson Start Time</string>
-    <string name="derssuresi">Course duration</string>
+    <string name="derssuresi">Lesson Duration</string>
     <string name="kaydet">Save</string>
     <string name="bildirim">Notification</string>
     <string name="notduzenle">Edit Note</string>
@@ -21,7 +21,7 @@
 
     <string name="baslangic">Start</string>
     <string name="bitis">Finish</string>
-    <string name="teneffüs">Course Break</string>
+    <string name="teneffüs">Lesson Break</string>
 
     <string name="pazartesi">Monday</string>
     <string name="sali">Tuesday</string>
@@ -33,54 +33,54 @@
 
     <string name="ders">Lesson</string>
     <string name="guncelle">Update</string>
-    <string name="oglearası">--Breaks--</string>
-    <string name="oglearasısaati">Breaks time</string>
+    <string name="oglearasi">--Breaks--</string>
+    <string name="oglearasisuresi">Breaks Time</string>
 
-    <string name="dersyok">No lessons found, would you like to add lessons?</string>
+    <string name="dersyok">No lessons Found, Would You Like To Add Lessons ?</string>
 
-    <string name="dersisilindi">Course Deleted</string>
+    <string name="dersisilindi">Lesson Deleted</string>
 
-    <string name="derssilindi">Delete course</string>
-    <string name="derssiluyarı">Are you sure you want to delete the lesson?</string>
-    <string name="derseklendi">Added course</string>
-    <string name="oglearasıeklendi">Added at breaks</string>
-    <string name="derseklenemedi">Couldnt add course</string>
-    <string name="bosders">--Empty course-</string>
-    <string name="dersguncellendi">Course updated</string>
-    <string name="dersguncellenmedi">Couldnt update course</string>
+    <string name="dersilindi">Lesson Deleted</string>
+    <string name="derssiluyari">Are You Sure You Want To Delete The Lesson ?</string>
+    <string name="derseklendi">Lesson Added</string>
+    <string name="oglearasıeklendi">Added At Breaks</string>
+    <string name="derseklenemedi">Couldnt Add Course</string>
+    <string name="bosders">--Empty Lesson--</string>
+    <string name="dersguncellendi">Lesson Updated</string>
+    <string name="dersguncellenmedi">Couldnt Update Course</string>
 
 
-    <string name="dersnotsil">All grades of the course will be deleted!</string>
-    <string name="dersnotsilonay">Are you sure you want to delete?</string>
+    <string name="dersnotsil">All Grades Of The Lesson Will Be Deleted!</string>
+    <string name="dersnotsilonay">Are You Sure You Want To Delete?</string>
     <string name="notsilindi">Notes Deleted</string>
-    <string name="notsilinemedi">Couldnt delete notes</string>
+    <string name="notsilinemedi">Couldnt Delete Notes</string>
 
-    <string name="notbulunamadı">Course no note found..
-        Not eklensinmi ?</string>
-    <string name="notyok">Note not found</string>
+    <string name="notbulunamadi">Course No Note Found.
+        Did You Not Get Added ?</string>
+    <string name="notyok">Note Not Found</string>
 
-    <string name="resimyok">Image not recognized</string>
+    <string name="resimyok">Image Not Recognized</string>
 
-    <string name="konuuyarı">Please enter topic title</string>
-    <string name="notuyarı">Please enter a not</string>
-    <string name="noteklendi">Added note</string>
-    <string name="noteklenemedi">Note not added</string>
-    <string name="notgüncellendi">NoTE Updated</string>
+    <string name="konuuyari">Please Enter Topic Title</string>
+    <string name="notuyari">Please Enter A Not</string>
+    <string name="noteklendi">Note Added</string>
+    <string name="noteklenemedi">Note Not Added</string>
+    <string name="notgüncellendi">Note Updated</string>
 
     <string name="not">Note</string>
-    <string name="notpaylas">Share note</string>
+    <string name="notpaylas">Share Note</string>
     <string name="notpaylasım">Note sharing please wait</string>
-    <string name="izinuyarı">Permission is required to use the share feature.</string>
-    <string name="dersnotu">Course notes</string>
+    <string name="izinuyari">Permission Is Required To Use The Share Feature.</string>
+    <string name="dersnotu">Lesson Notes</string>
 
 
     <string name="baslik">Title</string>
-    <string name="dersbos">Course Name Cannot Be Empty</string>
+    <string name="dersbos">Lesson Name Cannot Be Empty</string>
 
     <string name="konu">Subject</string>
     <string name="konugor">Subject : </string>
     <string name="notgor">Note  : </string>
-    <string name="dersekle">Add Course</string>
+    <string name="dersekle">Add Lesson</string>
     <string name="resimekle">Add Picture</string>
     <string name="paylas">Share</string>
     <string name="notgorduzenle">Edit</string>
@@ -91,4 +91,7 @@
     <string name="hayir">No</string>
     <string name="evet">Yes</string>
 
+    <string name="ekle">Add</string>
+
+    <string name="bannerAdsId">ca-app-pub-9361831426651608/9620720216</string>
 </resources>

@@ -111,7 +111,10 @@ public class Cuma extends Fragment {
                 } else {
                     ders.setTenefusSuresiBaslik(getString(R.string.teneffüs));
                 }
-                ders.setSira(i + ".Ders");
+                if (ders.getDersAdi().equals(getString(R.string.bosders))) {
+                    ders.setNotEkleAktifMi(View.INVISIBLE);
+                }
+                ders.setSira(i + "." + getString(R.string.ders));
 
                 ders = new Ders(ders.getDersAdi(), gun, ders.getDersBaslangicSaati(), ders.getDersBitisSaati(), ders.getDersId(), ders.getDersPozisyon(), ders.getDersTenefusSuresi(), ders.getButonYazisi(), ders.getSira(), ders.getOnayAktifMi(), ders.getNotEkleAktifMi(), ders.getTenefusSuresiBaslik());
                 liste.add(ders);

@@ -45,18 +45,17 @@ public class DersNotuEkle extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode==RESULT_OK && data!=null)
         {
-                try {
-                    getResim=data.getData();
-                    inputStream = getContentResolver().openInputStream(getResim);
-                    Bitmap r = BitmapFactory.decodeStream(inputStream);
-                    Bitmap kucukResim = Bitmap.createScaledBitmap(r, 1000, 600, true);
-                    resim.setImageBitmap(kucukResim);
-                    resim.setVisibility(View.VISIBLE);
-                }catch (FileNotFoundException f)
-                {
-                    Toast.makeText(getApplicationContext(), getString(R.string.resimyok), Toast.LENGTH_SHORT).show();
-                    f.printStackTrace();
-                }
+            try {
+                getResim = data.getData();
+                inputStream = getContentResolver().openInputStream(getResim);
+                Bitmap r = BitmapFactory.decodeStream(inputStream);
+                Bitmap kucukResim = Bitmap.createScaledBitmap(r, 1000, 600, true);
+                resim.setImageBitmap(kucukResim);
+                resim.setVisibility(View.VISIBLE);
+            } catch (FileNotFoundException f) {
+                Toast.makeText(getApplicationContext(), getString(R.string.resimyok), Toast.LENGTH_SHORT).show();
+                f.printStackTrace();
+            }
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -66,10 +65,13 @@ public class DersNotuEkle extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ders_notu_ekle);
+        Bundle bundle = getIntent().getExtras();
+        ders = bundle.getString("Ders");
 
         ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(getString(R.string.ekle) + " " + ders + " " + getString(R.string.not));
 
         resim=(ImageView)findViewById(R.id.galeriResim);
         resimEkle=(Button)findViewById(R.id.resimEkle);
@@ -85,42 +87,55 @@ public class DersNotuEkle extends Activity {
         ekleButton=(Button)findViewById(R.id.ekleButton);
         dbHelper=new DbHelper(getApplicationContext());
 
-        Bundle bundle=getIntent().getExtras();
-        ders=bundle.getString("Ders");
-
         adView = findViewById(R.id.adView);
-
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
         adView.loadAd(adRequest);
 
         ekleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap bitmap=((BitmapDrawable)resim.getDrawable()).getBitmap();
-                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                byte[] i=stream.toByteArray();
-                dbHelper=new DbHelper(getApplicationContext());
                 try {
-                    if (konu.getText().length()==0)
-                        Toast.makeText(getApplicationContext(), getString(R.string.konuuyari), Toast.LENGTH_SHORT).show();
-                    else if(not.getText().length()==0)
-                        Toast.makeText(getApplicationContext(), getString(R.string.notuyari), Toast.LENGTH_SHORT).show();
-                    else {
-                        if (dbHelper.dersNotuEkle(konu.getText().toString(), ders, i, not.getText().toString())) {
-                            onBackPressed();
-                            Toast.makeText(getApplicationContext(), getString(R.string.noteklendi), Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                            Toast.makeText(getApplicationContext(), getString(R.string.noteklenemedi), Toast.LENGTH_SHORT).show();
+                    if (resim.getDrawable() == null) {
+                        Bitmap bitmap = ((BitmapDrawable) getResources().getDrawable(R.drawable.blank)).getBitmap();
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                        byte[] i = stream.toByteArray();
+                        dbHelper = new DbHelper(getApplicationContext());
 
+                        if (konu.getText().length() == 0)
+                            Toast.makeText(getApplicationContext(), getString(R.string.konuuyari), Toast.LENGTH_SHORT).show();
+                        else if (not.getText().length() == 0)
+                            Toast.makeText(getApplicationContext(), getString(R.string.notuyari), Toast.LENGTH_SHORT).show();
+                        else {
+                            if (dbHelper.dersNotuEkle(konu.getText().toString(), ders, i, not.getText().toString())) {
+                                onBackPressed();
+                                Toast.makeText(getApplicationContext(), getString(R.string.noteklendi), Toast.LENGTH_SHORT).show();
+                            } else
+                                Toast.makeText(getApplicationContext(), getString(R.string.noteklenemedi), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Bitmap bitmap = ((BitmapDrawable) resim.getDrawable()).getBitmap();
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                        byte[] i = stream.toByteArray();
+                        dbHelper = new DbHelper(getApplicationContext());
+
+                        if (konu.getText().length() == 0)
+                            Toast.makeText(getApplicationContext(), getString(R.string.konuuyari), Toast.LENGTH_SHORT).show();
+                        else if (not.getText().length() == 0)
+                            Toast.makeText(getApplicationContext(), getString(R.string.notuyari), Toast.LENGTH_SHORT).show();
+                        else {
+                            if (dbHelper.dersNotuEkle(konu.getText().toString(), ders, i, not.getText().toString())) {
+                                onBackPressed();
+                                Toast.makeText(getApplicationContext(), getString(R.string.noteklendi), Toast.LENGTH_SHORT).show();
+                            } else
+                                Toast.makeText(getApplicationContext(), getString(R.string.noteklenemedi), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), getString(R.string.noteklenemedi), Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }

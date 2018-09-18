@@ -115,7 +115,7 @@ public class BildirimServisi extends Service {
                     ders = cursor.getString(1);
                     BildirimGonder(ders + " dersi " + bildirimSuresi + " dakika sonra başlayacak.");
                 } else {
-                    ders = (bildirimSuresi * -1) + " dakika sonra boş dersiniz var. " + new String(Character.toChars(0x1F60D));
+                    ders = bildirimSuresi + " dakika sonra boş dersiniz var. " + new String(Character.toChars(0x1F60D));
                     BildirimGonder(ders);
                 }
                 bildirimDurdur = false;

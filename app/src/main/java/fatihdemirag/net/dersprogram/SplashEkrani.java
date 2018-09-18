@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SplashEkrani extends Activity {
@@ -13,6 +14,8 @@ public class SplashEkrani extends Activity {
     TextView baslik;
 
     ImageView icon;
+
+    LinearLayout container;
 
     Animation animation;
 
@@ -23,11 +26,11 @@ public class SplashEkrani extends Activity {
 
         baslik = findViewById(R.id.baslik);
         icon = findViewById(R.id.icon);
+        container = findViewById(R.id.container);
 
         animation = AnimationUtils.loadAnimation(this, R.anim.splash_ekrani_yazi);
 
-        baslik.startAnimation(animation);
-        icon.startAnimation(animation);
+        container.startAnimation(animation);
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
