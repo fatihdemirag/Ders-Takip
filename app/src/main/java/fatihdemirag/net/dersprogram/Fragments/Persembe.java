@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import fatihdemirag.net.dersprogram.CustomAdapters_Listviews.CardViewAdapterDersProgrami;
@@ -47,9 +49,6 @@ public class Persembe extends Fragment {
         dersProgramiRecycler.setAdapter(cardViewAdapterDersProgrami);
 
         dbHelper=new DbHelper(getActivity());
-
-
-        KayitYukle("Perşembe", dbHelper, liste);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         final SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -114,8 +113,13 @@ public class Persembe extends Fragment {
 
     @Override
     public void onResume() {
-        cardViewAdapterDersProgrami.notifyDataSetChanged();
-        KayitYukle("Perşembe", dbHelper, liste);
+        try {
+            KayitYukle("Perşembe", dbHelper, liste);
+            cardViewAdapterDersProgrami.notifyDataSetChanged();
+        }catch (Exception e)
+        {
+            Toast.makeText(getActivity(), getResources().getString(R.string.hata), Toast.LENGTH_SHORT).show();
+        }
         super.onResume();
     }
 }

@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,13 +16,12 @@ import android.support.v4.app.ActivityCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.crashlytics.android.Crashlytics;
 
-import io.fabric.sdk.android.Fabric;
 
 import fatihdemirag.net.dersprogram.DersNotlariP.DersListesiNot;
 
@@ -29,6 +29,8 @@ public class MainPage extends Activity {
     Intent intent;
 
     Button dersProgrami, notlar, ayarlar, dersler;
+
+    TextView website;
 
     private AdView adView;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -42,9 +44,9 @@ public class MainPage extends Activity {
         adView = findViewById(R.id.adView);
         ayarlar = findViewById(R.id.ayarlar);
         dersler = findViewById(R.id.dersler);
+        website=findViewById(R.id.website);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        Fabric.with(this, new Crashlytics());
 
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("47F268874164B56F4CA084A336DE0B42").build();
         adView.loadAd(adRequest);
@@ -83,6 +85,15 @@ public class MainPage extends Activity {
             }
         });
 
+        website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.fatihdemirag.net"));
+                startActivity(intent);
+            }
+        });
+
         int PERMISSION_ALL = 1;
         String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
 
@@ -95,14 +106,14 @@ public class MainPage extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Çıkış Yapmak İstiyor Musunuz ?");
-            builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+            builder.setMessage(getString(R.string.cikisyap));
+            builder.setPositiveButton(getString(R.string.evet), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finish();
                 }
             });
-            builder.setNegativeButton("Hayır", null);
+            builder.setNegativeButton(getString(R.string.hayir), null);
             builder.show();
         }
         return super.onKeyDown(keyCode, event);

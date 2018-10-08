@@ -2,6 +2,8 @@ package fatihdemirag.net.dersprogram;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -13,10 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
 
 //fxd
 public class Ayarlar extends Activity {
@@ -24,6 +29,8 @@ public class Ayarlar extends Activity {
     TimePicker dersBaslangicSaati;
     NumberPicker dersSuresi;
     Button ayarKaydet;
+
+    LinearLayout dersProgramiSil;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -41,6 +48,7 @@ public class Ayarlar extends Activity {
         dersBaslangicSaati = findViewById(R.id.dersBaslangicSaati);
         dersSuresi = findViewById(R.id.dersSuresi);
         ayarKaydet = findViewById(R.id.ayarKaydet);
+        dersProgramiSil=findViewById(R.id.dersProgramiSil);
 
         dersBaslangicSaati.setIs24HourView(true);
 
@@ -74,6 +82,30 @@ public class Ayarlar extends Activity {
                 editor.putString("dersSuresi", String.valueOf(dersSuresi.getValue()));
                 editor.apply();
                 Toast.makeText(Ayarlar.this, "Ayarlar Kaydedildi", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dersProgramiSil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Ayarlar.this);
+                builder.setMessage(getResources().getString(R.string.dersprogramisilonay));
+                builder.setPositiveButton(getResources().getString(R.string.evet), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       try {
+                           DbHelper dbHelper=new DbHelper(Ayarlar.this);
+                           dbHelper.dersProgramiSil();
+
+                           Toast.makeText(Ayarlar.this, getResources().getString(R.string.dersprogramisilindi), Toast.LENGTH_SHORT).show();
+                       }catch (Exception e)
+                       {
+                           Toast.makeText(Ayarlar.this, getResources().getString(R.string.hata), Toast.LENGTH_SHORT).show();
+                       }
+                    }
+                });
+                builder.setNegativeButton(getResources().getString(R.string.hayir), null);
+                builder.show();
             }
         });
 

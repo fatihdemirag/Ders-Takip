@@ -63,8 +63,6 @@ public class Carsamba extends Fragment {
 
         dbHelper=new DbHelper(getActivity());
 
-        KayitYukle("Çarşamba", dbHelper, liste);
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -129,8 +127,13 @@ public class Carsamba extends Fragment {
 
     @Override
     public void onResume() {
-        cardViewAdapterDersProgrami.notifyDataSetChanged();
-        KayitYukle("Çarşamba", dbHelper, liste);
+        try {
+            KayitYukle("Çarşamba", dbHelper, liste);
+            cardViewAdapterDersProgrami.notifyDataSetChanged();
+        }catch (Exception e)
+        {
+            Toast.makeText(getActivity(), getResources().getString(R.string.hata), Toast.LENGTH_SHORT).show();
+        }
         super.onResume();
     }
 }

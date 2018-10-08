@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "540944517739-bloa7cngf7oe53mocbgdo8ksdfmgchi9.apps.googleusercontent.com",
+          "client_id": "540944517739-b07jvome069v8d4c95j4vqbvrpr7j1j1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "fatihdemirag.net.derstakip",
-            "certificate_hash": "817ceee013b44bee5d35bcdfefb4f87b7367d838"
+            "certificate_hash": "8ab6eac5434190fe095651445f6b05b370a10215"
           }
         },
         {
@@ -31,11 +31,19 @@
           }
         },
         {
-          "client_id": "540944517739-b07jvome069v8d4c95j4vqbvrpr7j1j1.apps.googleusercontent.com",
+          "client_id": "540944517739-bloa7cngf7oe53mocbgdo8ksdfmgchi9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "fatihdemirag.net.derstakip",
-            "certificate_hash": "8ab6eac5434190fe095651445f6b05b370a10215"
+            "certificate_hash": "817ceee013b44bee5d35bcdfefb4f87b7367d838"
+          }
+        },
+        {
+          "client_id": "540944517739-ke3a8dsovasp496lek7icn4o6qlk17lm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fatihdemirag.net.derstakip",
+            "certificate_hash": "c1f7a68016b003c083a990fb8a7a1d0078b27307"
           }
         },
         {
@@ -64,7 +72,8 @@
         "ads_service": {
           "status": 2
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-9361831426651608~8778322543"
     }
   ],
   "configuration_version": "1"

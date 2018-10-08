@@ -8,7 +8,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -38,10 +37,6 @@ public class DbHelper extends SQLiteOpenHelper{
     long result2;
     long result3;
 
-    private void TostMesaj(String tost)
-    {
-        Toast.makeText(null,tost,Toast.LENGTH_SHORT).show();
-    }
     public DbHelper(Context context)
     {
         super(context,dbName,null,version);
@@ -50,19 +45,10 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        try {
-            db.execSQL("create table " + table + " (id integer primary key autoincrement," + col_1 + " text not null," + col_2 + " text," + col_3 + " text," + col_4 + " text," + col_5 + " int," + col_6 + " text)");
-            db.execSQL("create table "+table_2+" (id integer primary key autoincrement,"+col_1_2+" text not null,"+col_2_2+" text not null,"+col_3_2+" blob,"+col_4_2+" text)");
-            db.execSQL("create table " + table_3 + " (id integer primary key autoincrement," + col_1_3 + " text not null unique)");
+        db.execSQL("create table " + table + " (id integer primary key autoincrement," + col_1 + " text not null," + col_2 + " text," + col_3 + " text," + col_4 + " text," + col_5 + " int," + col_6 + " text)");
+        db.execSQL("create table "+table_2+" (id integer primary key autoincrement,"+col_1_2+" text not null,"+col_2_2+" text not null,"+col_3_2+" blob,"+col_4_2+" text)");
+        db.execSQL("create table " + table_3 + " (id integer primary key autoincrement," + col_1_3 + " text not null unique)");
 
-        }catch (Exception e)
-        {
-            try {
-                TostMesaj("Hata Oluştu");
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
     }
 
     public boolean dersEkle(String dersAdi, String ders_gunu, String dersBaslangicSaati, String dersBitisSaati, int dersPoziyon, String dersTenefusSuresi)
@@ -80,7 +66,6 @@ public class DbHelper extends SQLiteOpenHelper{
             return false;
         else
             return true;
-
     }
 
     public Cursor tumDersler()
@@ -111,9 +96,14 @@ public class DbHelper extends SQLiteOpenHelper{
     }
 
     public boolean dersGuncelle(int dersId, String dersAdi, int dersPozisyon, String dersTenefusSuresi) {
-        db = this.getWritableDatabase();
-        String updateQuery = "update '" + table + "' set '" + col_1 + "'='" + dersAdi + "','" + col_5 + "'='" + dersPozisyon + "','" + col_6 + "'='" + dersTenefusSuresi + "' where id='" + dersId + "'";
-        db.execSQL(updateQuery);
+        try {
+            db = this.getWritableDatabase();
+            String updateQuery = "update '" + table + "' set '" + col_1 + "'='" + dersAdi + "','" + col_5 + "'='" + dersPozisyon + "','" + col_6 + "'='" + dersTenefusSuresi + "' where id='" + dersId + "'";
+            db.execSQL(updateQuery);
+        }catch (Exception e)
+        {
+
+        }
         return true;
     }
 
@@ -128,7 +118,6 @@ public class DbHelper extends SQLiteOpenHelper{
 
     public boolean dersNotuEkle(String konu, String ders, byte[] notResmi, String dersNotu)
     {
-
         db = this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
         contentValues.put(col_1_2,konu);
@@ -227,7 +216,7 @@ private String gun = "";
 
     public void dersProgramiSil() {
         db = this.getWritableDatabase();
-        String query = "drop table dersler_programi";
+        String query = "delete from dersler_programi";
         db.execSQL(query);
         db.close();
     }

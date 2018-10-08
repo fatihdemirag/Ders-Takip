@@ -93,9 +93,9 @@ public class HaftalikDersler extends Activity implements ActionBar.TabListener {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (sharedPreferences.getString("dersBaslangicSaati", "").equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Ders başlangıç saati tanımlanmamış");
+            builder.setMessage(getString(R.string.dersbaslangictanimsiz));
             builder.setCancelable(false);
-            builder.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(getString(R.string.tamam), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(HaftalikDersler.this, Ayarlar.class);

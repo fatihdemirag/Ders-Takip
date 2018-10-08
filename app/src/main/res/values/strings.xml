@@ -13,6 +13,7 @@
 
     <string name="dersbaslangic">Ders Başlangıç Saati</string>
     <string name="derssuresi">Ders Süresi</string>
+    <string name="dersbaslangictanimsiz">Ders Başlangıç Saati Tanımlanmamış</string>
 
     <string name="kaydet">Kaydet</string>
     <string name="bildirim">Bildirim</string>
@@ -78,8 +79,8 @@
     <string name="dersbos">Ders Adı Boş Geçilemez</string>
 
     <string name="konu">Konu</string>
-    <string name="konugor">Konu : </string>
-    <string name="notgor">Not : </string>
+    <string name="konugor">Konu</string>
+    <string name="notgor">Not</string>
     <string name="dersekle">Ders Ekle</string>
     <string name="resimekle">Resim Ekle</string>
     <string name="paylas">Paylaş</string>
@@ -92,7 +93,15 @@
     <string name="evet">Evet</string>
 
     <string name="ekle">Ekle</string>
+    <string name="hata">Hata</string>
+    <string name="cikisyap">Çıkış Yapmak İstediğine Emin Misiniz ?</string>
 
     <string name="bannerAdsId">ca-app-pub-9361831426651608/9620720216</string>
-
+    <string name="oglearasıeklendi">Öğle Arası Eklendi</string>
+    <string name="dersguncellenmedi">Ders Güncellenemedi</string>
+    <string name="notgüncellendi">Not Güncellendi</string>
+    <string name="dersnotu">Ders Notu</string>
+    <string name="dersprogramisil">Ders Programını Sil</string>
+    <string name="dersprogramisilonay">Ders Programını Silmek İstediğinize Emin Misiniz ?</string>
+    <string name="dersprogramisilindi">Ders Programı Silindi</string>
 </resources>

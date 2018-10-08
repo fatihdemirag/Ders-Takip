@@ -6,74 +6,97 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
+    android:background="#ededed"
     tools:context="fatihdemirag.net.dersprogram.Ayarlar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dersbaslangic"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:textAllCaps="false" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/cardview_background"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content" android:background="@drawable/cardview_background" android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dersbaslangic"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textAllCaps="false" />
 
-        <TimePicker
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:id="@+id/dersBaslangicSaati"
-            android:timePickerMode="spinner" />
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TimePicker
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:id="@+id/dersBaslangicSaati"
+                android:timePickerMode="spinner" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/derssuresi"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:textAllCaps="false" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/derssuresi"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textAllCaps="false" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/cardview_background"
-        android:padding="5dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-
-        <NumberPicker
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/dersSuresi" />
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <NumberPicker
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/dersSuresi" />
+
+        </LinearLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/kaydet"
             android:background="@drawable/buton_arkaplan"
             android:padding="10dp"
-            android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:textAllCaps="false"
             android:id="@+id/ayarKaydet"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="5dp"
             android:layout_weight="1" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardview_background"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dersProgramiSil"
+            android:padding="10dp"
+            android:weightSum="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sil"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dersprogramisil"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#b71c1c"/>
+        </LinearLayout>
 
     </LinearLayout>
     <LinearLayout

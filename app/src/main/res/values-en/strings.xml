@@ -69,7 +69,6 @@
 
     <string name="not">Note</string>
     <string name="notpaylas">Share Note</string>
-    <string name="notpaylasım">Note sharing please wait</string>
     <string name="izinuyari">Permission Is Required To Use The Share Feature.</string>
     <string name="dersnotu">Lesson Notes</string>
 
@@ -78,8 +77,8 @@
     <string name="dersbos">Lesson Name Cannot Be Empty</string>
 
     <string name="konu">Subject</string>
-    <string name="konugor">Subject : </string>
-    <string name="notgor">Note  : </string>
+    <string name="konugor">Subject</string>
+    <string name="notgor">Note</string>
     <string name="dersekle">Add Lesson</string>
     <string name="resimekle">Add Picture</string>
     <string name="paylas">Share</string>
@@ -92,6 +91,17 @@
     <string name="evet">Yes</string>
 
     <string name="ekle">Add</string>
+    <string name="hata">Error</string>
+    <string name="dersbaslangictanimsiz">Lesson Start Time Not defined</string>
+    <string name="cikisyap">Are You Sure You Want To Log Out ?</string>
 
     <string name="bannerAdsId">ca-app-pub-9361831426651608/9620720216</string>
+    <string name="dersguncellenemedi">Couldnt Update Course</string>
+    <string name="oglearasieklendi">Added At Breaks</string>
+    <string name="notguncellendi">Note Updated</string>
+    <string name="notpaylasim">Note Sharing Please Wait</string>
+    <string name="derssil">Lesson Delete</string>
+    <string name="dersprogramisil">Delete Course Program</string>
+    <string name="dersprogramisilonay">Are you sure you want to delete the course program?</string>
+    <string name="dersprogramisilindi">Course Schedule Deleted</string>
 </resources>

@@ -60,8 +60,6 @@ public class Cumartesi extends Fragment {
 
         dbHelper=new DbHelper(getActivity());
 
-        KayitYukle("Cumartesi", dbHelper, liste);
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -125,8 +123,13 @@ public class Cumartesi extends Fragment {
 
     @Override
     public void onResume() {
-        cardViewAdapterDersProgrami.notifyDataSetChanged();
-        KayitYukle("Cumartesi", dbHelper, liste);
+        try {
+            KayitYukle("Cumartesi", dbHelper, liste);
+            cardViewAdapterDersProgrami.notifyDataSetChanged();
+        }catch (Exception e)
+        {
+            Toast.makeText(getActivity(), getResources().getString(R.string.hata), Toast.LENGTH_SHORT).show();
+        }
         super.onResume();
     }
 }
