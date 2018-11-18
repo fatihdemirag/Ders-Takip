@@ -82,7 +82,7 @@
     <string name="konugor">Konu</string>
     <string name="notgor">Not</string>
     <string name="dersekle">Ders Ekle</string>
-    <string name="resimekle">Resim Ekle</string>
+    <string name="resimekle">Fotoğraf Ekle</string>
     <string name="paylas">Paylaş</string>
     <string name="notgorduzenle">Düzenle</string>
     <string name="dersnotlari">Ders Notları</string>
@@ -104,4 +104,5 @@
     <string name="dersprogramisil">Ders Programını Sil</string>
     <string name="dersprogramisilonay">Ders Programını Silmek İstediğinize Emin Misiniz ?</string>
     <string name="dersprogramisilindi">Ders Programı Silindi</string>
+    <string name="notara">Not Ara</string>
 </resources>

@@ -183,8 +183,8 @@ public class DbHelper extends SQLiteOpenHelper{
 
     }
 
-//    ---------------------------------------------------
-private String gun = "";
+    //    ---------------------------------------------------
+    private String gun = "";
     public Cursor dersKontrol(String saat) {
         switch (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1) {
             case 0:

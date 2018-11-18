@@ -1,7 +1,6 @@
 package fatihdemirag.net.dersprogram.DersNotlariP;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,8 +9,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -20,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,23 +28,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jsibbold.zoomage.ZoomageView;
+
+import com.github.chrisbanes.photoview.PhotoView;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 import fatihdemirag.net.dersprogram.DbHelpers.DbHelper;
-import fatihdemirag.net.dersprogram.MainPage;
 import fatihdemirag.net.dersprogram.R;
-import fatihdemirag.net.dersprogram.Sınıflar.DersNotu;
 
 public class DersNotuGor extends Activity {
 
-    ZoomageView gelenResim;
+    ImageView gelenResim;
     TextView gelenBaslik,gelenNot;
 
     EditText yeniNot;
@@ -97,7 +93,7 @@ public class DersNotuGor extends Activity {
         byte[] photo=bundle.getByteArray("Seçilen Not Resmi");
         final ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
         bitmap = BitmapFactory.decodeStream(imageStream);
-        gelenResim.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1000, 600, false));
+        gelenResim.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1000, 500, false));
 
         paylas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,8 +117,6 @@ public class DersNotuGor extends Activity {
 
             }
         });
-
-
 
         solaDon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,8 +159,36 @@ public class DersNotuGor extends Activity {
                 }
             }
         });
+        gelenResim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder resimBuyukUyari = new AlertDialog.Builder(DersNotuGor.this,android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
+
+                View customUyari = getLayoutInflater().inflate(R.layout.custom_resim_dialog, null);
+                PhotoView photoView = customUyari.findViewById(R.id.gelenResimBuyuk);
+                ImageView resimKapat=customUyari.findViewById(R.id.resimKapat);
 
 
+                Display display = getWindowManager().getDefaultDisplay();
+                int width = display.getWidth();
+                int height = display.getHeight();
+
+                photoView.setImageBitmap(Bitmap.createScaledBitmap(bitmap, width, height, false));
+
+                resimBuyukUyari.setView(customUyari);
+
+                final AlertDialog buyukResimDialog = resimBuyukUyari.create();
+                buyukResimDialog.show();
+
+                resimKapat.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        buyukResimDialog.cancel();
+                    }
+                });
+
+            }
+        });
     }
 
     void Paylas(Bitmap bitmap) {

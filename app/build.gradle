@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId 'fatihdemirag.net.derstakip'
         minSdkVersion 21
         targetSdkVersion 27
-        versionName '1.25'
+        versionName '1.26'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 26
+        versionCode 27
     }
     buildTypes {
         release {
@@ -42,11 +42,10 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.jsibbold:zoomage:1.1.0'
-    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     implementation 'com.google.firebase:firebase-messaging:17.0.0'
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

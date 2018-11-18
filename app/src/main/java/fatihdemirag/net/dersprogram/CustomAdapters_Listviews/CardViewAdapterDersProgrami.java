@@ -318,7 +318,6 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
 
             KayitYukle();
 
-
         }
         @Override
         public void onClick(View view) {
@@ -352,6 +351,7 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                     else
                         Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.derseklendi), Toast.LENGTH_SHORT).show();
                 }
+                updateList(liste);
             } catch (SQLException s) {
                 Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.derseklenemedi), Toast.LENGTH_SHORT).show();
                 s.printStackTrace();
