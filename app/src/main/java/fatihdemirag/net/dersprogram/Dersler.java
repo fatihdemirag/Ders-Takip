@@ -115,14 +115,13 @@ public class Dersler extends Activity {
                         try {
                             if (!dialogDersAdi.getText().toString().equals("")) {
                                 if (dbHelper.dersEkle(dialogDersAdi.getText().toString().trim())) {
-
                                     dersEkleButton.startAnimation(fabKapanis);
 
+                                    dersArrayList.add(dialogDersAdi.getText().toString());
                                     dialog.dismiss();
                                     KayitYukle();
 
-                                    dersArrayList.add(dialogDersAdi.getText().toString());
-
+                                    dialogDersAdi.setText("");
                                     Toast.makeText(Dersler.this, getString(R.string.derseklendi), Toast.LENGTH_SHORT).show();
 
                                 } else

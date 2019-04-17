@@ -351,11 +351,11 @@ public class CardViewAdapterDersProgrami extends RecyclerView.Adapter<CardViewAd
                     else
                         Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.derseklendi), Toast.LENGTH_SHORT).show();
                 }
-                updateList(liste);
             } catch (SQLException s) {
                 Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.derseklenemedi), Toast.LENGTH_SHORT).show();
                 s.printStackTrace();
             } catch (Exception e) {
+                Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.derseklenemedi), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }

@@ -75,8 +75,7 @@ public class DersNotuGor extends Activity {
         gelenNot = findViewById(R.id.notGelen);
         gelenResim = findViewById(R.id.notGelenResim);
         paylas = findViewById(R.id.paylas);
-        solaDon = findViewById(R.id.solaDon);
-        sagaDon = findViewById(R.id.sagaDon);
+
         notGuncelle = findViewById(R.id.notGuncelle);
         yeniNot = findViewById(R.id.yeniNot);
 
@@ -90,10 +89,15 @@ public class DersNotuGor extends Activity {
         progressDialog.setCancelable(false);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
+
+        Display display = getWindowManager().getDefaultDisplay();
+        int width = display.getWidth();
+//        int height = display.getHeight();
+
         byte[] photo=bundle.getByteArray("Seçilen Not Resmi");
         final ByteArrayInputStream imageStream = new ByteArrayInputStream(photo);
         bitmap = BitmapFactory.decodeStream(imageStream);
-        gelenResim.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1000, 500, false));
+        gelenResim.setImageBitmap(Bitmap.createScaledBitmap(bitmap, 1000, width, false));
 
         paylas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,19 +119,6 @@ public class DersNotuGor extends Activity {
                     asenkronPaylas.execute();
                 }
 
-            }
-        });
-
-        solaDon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gelenResim.setRotation(gelenResim.getRotation() - 90);
-            }
-        });
-        sagaDon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gelenResim.setRotation(gelenResim.getRotation() + 90);
             }
         });
 
@@ -165,15 +156,13 @@ public class DersNotuGor extends Activity {
                 AlertDialog.Builder resimBuyukUyari = new AlertDialog.Builder(DersNotuGor.this,android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen);
 
                 View customUyari = getLayoutInflater().inflate(R.layout.custom_resim_dialog, null);
-                PhotoView photoView = customUyari.findViewById(R.id.gelenResimBuyuk);
+                final PhotoView photoView = customUyari.findViewById(R.id.gelenResimBuyuk);
                 ImageView resimKapat=customUyari.findViewById(R.id.resimKapat);
 
+                solaDon = customUyari.findViewById(R.id.solaDon);
+                sagaDon = customUyari.findViewById(R.id.sagaDon);
 
-                Display display = getWindowManager().getDefaultDisplay();
-                int width = display.getWidth();
-                int height = display.getHeight();
-
-                photoView.setImageBitmap(Bitmap.createScaledBitmap(bitmap, width, height, false));
+                photoView.setImageBitmap(bitmap);
 
                 resimBuyukUyari.setView(customUyari);
 
@@ -184,6 +173,19 @@ public class DersNotuGor extends Activity {
                     @Override
                     public void onClick(View view) {
                         buyukResimDialog.cancel();
+                    }
+                });
+
+                solaDon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        photoView.setRotation(photoView.getRotation() - 90);
+                    }
+                });
+                sagaDon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        photoView.setRotation(photoView.getRotation() + 90);
                     }
                 });
 

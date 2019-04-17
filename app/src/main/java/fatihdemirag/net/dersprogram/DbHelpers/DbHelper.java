@@ -62,10 +62,10 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put(col_5, dersPoziyon);
         contentValues.put(col_6, dersTenefusSuresi);
         result = db.insert(table, null, contentValues);
-        if (result == 0)
-            return false;
-        else
+        if (result != -1)
             return true;
+        else
+            return false;
     }
 
     public Cursor tumDersler()
@@ -125,10 +125,10 @@ public class DbHelper extends SQLiteOpenHelper{
         contentValues.put(col_3_2,notResmi);
         contentValues.put(col_4_2,ders);
         result2=db.insert(table_2,null,contentValues);
-        if (result2 == 0)
-            return false;
-        else
+        if (result2 != -1)
             return true;
+        else
+            return false;
     }
 
     public Cursor dersNotlari(String ders)
@@ -176,11 +176,12 @@ public class DbHelper extends SQLiteOpenHelper{
         ContentValues contentValues = new ContentValues();
         contentValues.put(col_1_3, dersAdi);
         result3 = db.insert(table_3, null, contentValues);
-        if (result3 == 0)
-            return false;
-        else
-            return true;
 
+        System.out.println("ders : "+result3);
+        if (result3 != -1)
+            return true;
+        else
+            return false;
     }
 
     //    ---------------------------------------------------

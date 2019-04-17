@@ -27,27 +27,6 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="-80dp"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_margin="5dp"
-                    android:id="@+id/solaDon"
-                    android:background="@drawable/soldonus" />
-
-                <ImageButton
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_margin="5dp"
-                    android:id="@+id/sagaDon"
-                    android:background="@drawable/sagdonus" />
-            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
