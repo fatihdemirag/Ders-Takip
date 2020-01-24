@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.Fragment.Notes">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/notAra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ara"
+            android:padding="10dp"
+            android:background="@drawable/bg_cardview"
+            />
+        <ListView
+            android:id="@+id/notListesi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp" />
+
+    </LinearLayout>
+    <Button
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="70dp"
+        android:id="@+id/fabButton"
+        android:background="@drawable/button_circle"
+        android:text="+"
+        android:textSize="24dp" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_gravity="bottom"
+        ads:adUnitId="@string/bannerAdsId" />
+
+</FrameLayout>

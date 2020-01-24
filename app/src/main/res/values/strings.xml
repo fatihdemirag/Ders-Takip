@@ -58,7 +58,7 @@
     <string name="notsilindi">Notlar Silindi</string>
     <string name="notsilinemedi">Notlar Silinemedi</string>
 
-    <string name="notbulunamadi">Dersinin Notu Bulunamadı.
+    <string name="notbulunamadi">Ders Notu Bulunamadı.
         Not Eklensin Mi ?</string>
     <string name="notyok">Not Yok</string>
 
@@ -106,4 +106,14 @@
     <string name="dersprogramisilindi">Ders Programı Silindi</string>
     <string name="notara">Not Ara</string>
     <string name="fotografcek">Fotoğraf Çek</string>
+    <string name="anasayfa">Anasayfa</string>
+
+
+    <string name="dakika">Dakika</string>
+    <string name="ayarlarkaydet">Ayarlar Kaydedildi</string>
+
+    <string name="sonnotlar">Son Notlar</string>
+
+    <string name="ara">Ara (Ders/Not)</string>
+    <string name="site">fatihdemirag.net</string>
 </resources>

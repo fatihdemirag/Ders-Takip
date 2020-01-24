@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="fatihdemirag.net.dersprogram.ui.Fragment.Home"
+        android:label="@string/anasayfa"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/syllabus"
+        android:name="fatihdemirag.net.dersprogram.ui.Fragment.Syllabus"
+        android:label="@string/dersprogrami"
+        tools:layout="@layout/fragment_syllabus" />
+    <fragment
+        android:id="@+id/notes"
+        android:name="fatihdemirag.net.dersprogram.ui.Fragment.Notes"
+        android:label="@string/dersnotlari"
+        tools:layout="@layout/fragment_notes" />
+
+    <fragment
+        android:id="@+id/lessons"
+        android:name="fatihdemirag.net.dersprogram.ui.Fragment.Lessons"
+        android:label="@string/dersler"
+        tools:layout="@layout/fragment_lessons" />
+
+
+    <fragment
+        android:id="@+id/settings"
+        android:name="fatihdemirag.net.dersprogram.ui.Fragment.Settings"
+        android:label="@string/ayarlar"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

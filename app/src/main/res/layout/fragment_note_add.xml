@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.Fragment.NoteAdd">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/ders"/>
+
+                <Spinner
+                    android:id="@+id/derslerSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp"
+                    android:text="@string/konu"/>
+
+                <EditText
+                    android:id="@+id/konu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/konu"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black"
+                    android:text="@string/not"/>
+                <EditText
+                    android:id="@+id/not"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="@string/not"
+                    android:inputType="textMultiLine" />
+
+            </LinearLayout>
+
+
+
+            <ImageView
+                android:id="@+id/galeriResim"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:layout_marginBottom="1dp"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/fotografEkle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/resimekle"
+                    android:textAllCaps="false"
+                    android:padding="10dp"
+                    android:background="@android:color/white"/>
+                <Button
+                    android:id="@+id/fotografCek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/fotografcek"
+                    android:textAllCaps="false"
+                    android:padding="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/white" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/ekleButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/kaydet"
+                    android:textAllCaps="false"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/white" />
+            </LinearLayout>
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adViewNoteAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="BANNER"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="bottom"
+                ads:adUnitId="@string/bannerAdsId" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

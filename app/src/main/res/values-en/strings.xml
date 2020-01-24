@@ -55,7 +55,7 @@
     <string name="notsilindi">Notes Deleted</string>
     <string name="notsilinemedi">Couldnt Delete Notes</string>
 
-    <string name="notbulunamadi">Course No Note Found.
+    <string name="notbulunamadi">Lesson Note Found.
         Did You Not Get Added ?</string>
     <string name="notyok">Note Not Found</string>
 
@@ -106,4 +106,12 @@
     <string name="dersprogramisilindi">Course Schedule Deleted</string>
     <string name="notara">Search Note</string>
     <string name="fotografcek">Take Picture</string>
+    <string name="anasayfa">Home</string>
+    <string name="dakika">Minute</string>
+
+    <string name="ayarlarkaydet">Save Settings</string>
+    <string name="sonnotlar">Latest Notes</string>
+    <string name="ara">Search (Lesson/Note)</string>
+    <string name="site">fatihdemirag.net</string>
+
 </resources>
