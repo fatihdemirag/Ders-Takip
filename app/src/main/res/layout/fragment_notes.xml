@@ -18,6 +18,11 @@
             android:padding="10dp"
             android:background="@drawable/bg_cardview"
             />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dersListesi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <ListView
             android:id="@+id/notListesi"
             android:layout_width="match_parent"

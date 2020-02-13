@@ -6,8 +6,8 @@ android {
         applicationId "fatihdemirag.net.derstakip"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 38
-        versionName '2.2'
+        versionCode 39
+        versionName '2.3'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

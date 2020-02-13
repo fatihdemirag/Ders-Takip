@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="0dp"
+    android:layout_margin="5dp"
+    android:id="@+id/dersContainer"
+    tools:context="fatihdemirag.net.dersprogram.MainActivity">
+
+    <TextView
+        android:id="@+id/ders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:ellipsize="end"
+        android:textSize="10dp"
+        android:padding="5dp"
+        android:textColor="#a7abae"
+        android:background="@color/lesson"
+        android:maxLines="1" />
+
+</LinearLayout>

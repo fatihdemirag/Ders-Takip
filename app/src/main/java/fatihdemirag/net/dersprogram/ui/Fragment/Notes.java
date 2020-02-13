@@ -31,9 +31,13 @@ import java.util.ArrayList;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.adapters.CardViewAdapterNote;
+import fatihdemirag.net.dersprogram.adapters.CardViewAdapterNoteLesson;
 import fatihdemirag.net.dersprogram.db.DbHelper;
+import fatihdemirag.net.dersprogram.helpers.classes.LessonClass;
 import fatihdemirag.net.dersprogram.helpers.classes.NoteClass;
 
 public class Notes extends Fragment {
@@ -44,7 +48,9 @@ public class Notes extends Fragment {
 
     private Bundle bundle;
 
-    private ListView notListesi;
+    public static ListView notListesi;
+
+    private RecyclerView dersListesi;
 
     private Button fabButton;
 
@@ -52,14 +58,17 @@ public class Notes extends Fragment {
 
     private Animation fabAcilis, fabKapanis;
 
-    private ArrayList<NoteClass> dersNotuArrayList=new ArrayList<>();
+    public ArrayList<NoteClass> dersNotuArrayList=new ArrayList<>();
+    private ArrayList<LessonClass> derslerArrayList=new ArrayList<>();
 
     private Cursor cursor;
     private DbHelper dbHelper;
 
-    private CardViewAdapterNote cardviewAdapterNote;
+    public CardViewAdapterNote cardviewAdapterNote;
+    private CardViewAdapterNoteLesson cardviewAdapterNoteLesson;
 
     private NoteClass dersNotu;
+    private LessonClass ders;
 
     private AdView adView;
 
@@ -79,6 +88,7 @@ public class Notes extends Fragment {
         bundle=getArguments();
 
         notListesi = view.findViewById(R.id.notListesi);
+        dersListesi = view.findViewById(R.id.dersListesi);
         adView = view.findViewById(R.id.adView);
 
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("97B662D4BD302B562AEF9FF593DD78C8").build();
@@ -87,7 +97,15 @@ public class Notes extends Fragment {
         cardviewAdapterNote = new CardViewAdapterNote(getActivity(), dersNotuArrayList);
         notListesi.setAdapter(cardviewAdapterNote);
 
+        cardviewAdapterNoteLesson = new CardViewAdapterNoteLesson(getActivity(), derslerArrayList);
+        LinearLayoutManager layoutManager= new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
+        dersListesi.setLayoutManager(layoutManager);
+
+        dersListesi.setAdapter(cardviewAdapterNoteLesson);
+
+
         KayitYukle();
+        DersleriYukle();
 
 
         notListesi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -199,6 +217,7 @@ public class Notes extends Fragment {
         });
 
 
+
         return view;
     }
 
@@ -223,6 +242,30 @@ public class Notes extends Fragment {
         }catch (SQLException e)
         {
             Toast.makeText(getActivity(), getString(R.string.notyok), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    public void DersleriYukle()
+    {
+        try {
+            derslerArrayList.clear();
+            cursor = dbHelper.dersler();
+
+            ders=new LessonClass(getActivity().getString(R.string.tum),"","","",0,0,"","","",0,0,"",0);
+            derslerArrayList.add(ders);
+            while(cursor.moveToNext())
+            {
+                ders=new LessonClass();
+                ders.setDersAdi(cursor.getString(0));
+
+                ders=new LessonClass(ders.getDersAdi(),"","","",0,0,"","","",0,0,"",0);
+                derslerArrayList.add(ders);
+            }
+            cardviewAdapterNoteLesson.notifyDataSetChanged();
+
+        }catch (SQLException e)
+        {
             e.printStackTrace();
         }
     }
