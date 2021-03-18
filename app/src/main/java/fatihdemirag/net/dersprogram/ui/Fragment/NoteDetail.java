@@ -5,10 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.Html;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +31,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import fatihdemirag.net.dersprogram.MainActivity;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.db.DbHelper;
 
@@ -63,7 +69,7 @@ public class NoteDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_note_detail, container, false);
-
+        MainActivity.page.setText(getString(R.string.not));
 
         gelenBaslik = view.findViewById(R.id.notGelenBaslik);
         gelenNot = view.findViewById(R.id.notGelen);

@@ -5,16 +5,20 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import fatihdemirag.net.dersprogram.MainActivity;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.db.DbHelper;
 
@@ -65,7 +70,6 @@ public class NoteAdd extends Fragment {
 
     private boolean foto=false;
 
-    private AdView adView;
 
     private File resimDosyasi,resimKonumu;
     private File resimOlustur=null;
@@ -76,7 +80,7 @@ public class NoteAdd extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_note_add, container, false);
-
+        MainActivity.page.setText(getString(R.string.notekle));
 
         resim=view.findViewById(R.id.galeriResim);
         resimEkle=view.findViewById(R.id.fotografEkle);
@@ -95,9 +99,6 @@ public class NoteAdd extends Fragment {
 
         dbHelper=new DbHelper(getActivity());
 
-        adView = view.findViewById(R.id.adViewNoteAdd);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("97B662D4BD302B562AEF9FF593DD78C8").build();
-        adView.loadAd(adRequest);
 
         DersleriYukle();
 
@@ -137,7 +138,11 @@ public class NoteAdd extends Fragment {
                             Toast.makeText(getActivity(), getString(R.string.notuyari), Toast.LENGTH_SHORT).show();
                         else {
                             if (dbHelper.dersNotuEkle(konu.getText().toString(), dersler.getSelectedItem().toString(), i, not.getText().toString(),simpleDateFormat.format(Calendar.getInstance().getTime()))) {
-                                Toast.makeText(getActivity(), getString(R.string.noteklendi), Toast.LENGTH_SHORT).show();
+                                {
+                                    konu.setText("");
+                                    not.setText("");
+                                    Toast.makeText(getActivity(), getString(R.string.noteklendi), Toast.LENGTH_SHORT).show();
+                                }
                             } else
                                 Toast.makeText(getActivity(), getString(R.string.noteklenemedi), Toast.LENGTH_SHORT).show();
                         }

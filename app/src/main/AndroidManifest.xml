@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fatihdemirag.net.dersprogram">
+        package="fatihdemirag.net.dersprogram">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_icon"
-        android:label="@string/app_name"
-        android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_icon"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_icon"
+            android:label="@string/app_name"
+            android:largeHeap="true"
+            android:roundIcon="@mipmap/ic_icon"
+            android:supportsRtl="true"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:theme="@style/AppTheme">
         <activity android:name=".SplashScreen" android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +27,8 @@
 
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name">
+                android:name=".MainActivity"
+                android:label="@string/app_name">
         </activity>
 
         <service android:name=".helpers.MyFirebaseInstanceIDService">
@@ -35,13 +37,18 @@
             </intent-filter>
         </service>
         <service
-            android:name=".helpers.MyFirebaseMessagingService"
-            android:enabled="true"
-            android:exported="true">
+                android:name=".helpers.MyFirebaseMessagingService"
+                android:enabled="true"
+                android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ca-app-pub-9361831426651608~8778322543"/>
+
     </application>
 
 </manifest>

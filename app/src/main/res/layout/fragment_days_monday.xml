@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ededed"
+    android:background="#fff"
     tools:context="fatihdemirag.net.dersprogram.MainActivity">
 
     <ScrollView

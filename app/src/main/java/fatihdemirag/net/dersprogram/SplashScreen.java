@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class SplashScreen extends AppCompatActivity {
-    TextView baslik;
+    TextView title;
 
     ImageView icon;
 
@@ -24,9 +24,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-
-
-        baslik = findViewById(R.id.baslik);
+        title = findViewById(R.id.title);
         icon = findViewById(R.id.icon);
         container = findViewById(R.id.container);
 

@@ -1,86 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/customList"
-    tools:context="fatihdemirag.net.dersprogram.MainActivity">
-
-    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="0dp"
-        android:background="@drawable/bg_cardview"
-        android:layout_margin="5dp">
-        <LinearLayout
+        android:id="@+id/customList"
+        tools:context="fatihdemirag.net.dersprogram.MainActivity">
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:weightSum="3">
-            <LinearLayout
-                android:layout_width="wrap_content"
+            android:elevation="0dp"
+            android:background="@drawable/bg_cardview"
+            android:layout_margin="5dp">
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="-3dp"
-                android:background="@color/colorPrimary">
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:weightSum="3">
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="-3dp"
+                    android:background="@color/colorPrimary">
                 <ImageView
-                    android:id="@+id/notImage"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@mipmap/ic_icon" />
+                        android:id="@+id/notImage"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@mipmap/ic_icon" />
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-                    <TextView
-                        android:id="@+id/konuText"
-                        android:layout_width="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:textColor="#82878b"
-                        android:textSize="14dp"
-                        android:textStyle="bold"
-                        android:text="-" />
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+                    <TextView
+                            android:id="@+id/konuText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:textColor="#82878b"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:text="-" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/notText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:ellipsize="end"
-                        android:textSize="10dp"
-                        android:padding="5dp"
-                        android:textColor="#a7abae"
-                        android:background="@color/lesson"
-                        android:maxLines="1" />
+                            android:id="@+id/notText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-"
+                            android:ellipsize="end"
+                            android:textSize="14dp"
+                            android:padding="5dp"
+                            android:layout_marginTop="5dp"
+                            android:textColor="#a7abae"
+                            android:background="@color/lesson"
+                            android:maxLines="1" />
                 </LinearLayout>
             </LinearLayout>
 
             <TextView
-                android:id="@+id/notId"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="notId"
-                android:visibility="invisible" />
+                    android:id="@+id/notId"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="notId"
+                    android:visibility="invisible" />
         </LinearLayout>
 
     </LinearLayout>

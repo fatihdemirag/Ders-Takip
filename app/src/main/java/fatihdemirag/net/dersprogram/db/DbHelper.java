@@ -137,6 +137,7 @@ public class DbHelper extends SQLiteOpenHelper{
         Cursor cursor=db.rawQuery(sql,new String[]{ders});
         return cursor;
     }
+
     public Cursor dersNotlariTumu()
     {
         db = this.getWritableDatabase();

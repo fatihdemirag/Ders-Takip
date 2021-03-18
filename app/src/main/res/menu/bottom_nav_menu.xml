@@ -2,27 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
-        android:icon="@drawable/ic_home"
-        android:title="@string/anasayfa"/>
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/anasayfa"/>
 
     <item
-        android:id="@+id/syllabus"
-        android:icon="@drawable/weekly"
-        android:title="@string/dersprogrami"/>
+            android:id="@+id/syllabus"
+            android:icon="@drawable/weekly"
+            android:title="@string/dersprogrami"/>
     <item
-        android:id="@+id/notes"
-        android:icon="@drawable/notes"
-        android:title="@string/notlar"/>
+            android:id="@+id/notes"
+            android:icon="@drawable/notes"
+            android:title="@string/notlar"/>
 
     <item
-        android:id="@+id/lessons"
-        android:icon="@drawable/lessons"
-        android:title="@string/dersler"/>
+            android:id="@+id/lessons"
+            android:icon="@drawable/lessons"
+            android:title="@string/dersler"/>
 
     <item
-        android:id="@+id/settings"
-        android:icon="@drawable/settings"
-        android:title="@string/ayarlar"/>
+            android:id="@+id/settings"
+            android:icon="@drawable/settings"
+            android:title="@string/ayarlar"/>
 
 </menu>

@@ -5,12 +5,16 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +25,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import fatihdemirag.net.dersprogram.MainActivity;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.db.DbHelper;
 
@@ -44,6 +49,7 @@ public class Settings extends Fragment {
                              Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.fragment_settings, container, false);
+        MainActivity.page.setText(getString(R.string.ayarlar));
 
         dersBaslangicSaati = view.findViewById(R.id.dersBaslangicSaati);
         dersSuresi = view.findViewById(R.id.dersSuresi);

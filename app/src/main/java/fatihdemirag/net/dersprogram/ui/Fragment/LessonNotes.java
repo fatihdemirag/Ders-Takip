@@ -3,17 +3,11 @@ package fatihdemirag.net.dersprogram.ui.Fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,15 +22,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
-import java.util.ArrayList;
-
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 import fatihdemirag.net.dersprogram.MainActivity;
 import fatihdemirag.net.dersprogram.R;
@@ -46,23 +38,18 @@ import fatihdemirag.net.dersprogram.db.DbHelper;
 import fatihdemirag.net.dersprogram.helpers.classes.LessonClass;
 import fatihdemirag.net.dersprogram.helpers.classes.NoteClass;
 
-public class Notes extends Fragment {
+public class LessonNotes extends Fragment {
 
 
-    public Notes() {
+    public LessonNotes() {
     }
 
     private Bundle bundle;
 
     public static ListView notListesi;
 
-    private RecyclerView dersListesi;
-
-    private Button fabButton;
 
     private EditText notAra;
-
-    private Animation fabAcilis, fabKapanis;
 
     public ArrayList<NoteClass> dersNotuArrayList=new ArrayList<>();
     private ArrayList<LessonClass> derslerArrayList=new ArrayList<>();
@@ -71,7 +58,6 @@ public class Notes extends Fragment {
     private DbHelper dbHelper;
 
     public CardViewAdapterNote cardviewAdapterNote;
-    private CardViewAdapterNoteLesson cardviewAdapterNoteLesson;
 
     private NoteClass dersNotu;
     private LessonClass ders;
@@ -80,33 +66,22 @@ public class Notes extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_notes, container, false);
-        MainActivity.page.setText(getString(R.string.notlar));
+        View view=inflater.inflate(R.layout.fragment_lesson_notes, container, false);
 
+        bundle=getArguments();
+        MainActivity.page.setText(bundle.getString("ders","")+" "+getString(R.string.notlar));
 
-        fabButton = view.findViewById(R.id.fabButton);
-        fabAcilis = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_open);
-        fabKapanis = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_close);
         notAra = view.findViewById(R.id.notAra);
 
         dbHelper=new DbHelper(getActivity());
-        bundle=getArguments();
 
         notListesi = view.findViewById(R.id.notListesi);
-        dersListesi = view.findViewById(R.id.dersListesi);
 
 
         cardviewAdapterNote = new CardViewAdapterNote(getActivity(), dersNotuArrayList);
         notListesi.setAdapter(cardviewAdapterNote);
 
-        cardviewAdapterNoteLesson = new CardViewAdapterNoteLesson(getActivity(), derslerArrayList);
-        LinearLayoutManager layoutManager= new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false);
-        dersListesi.setLayoutManager(layoutManager);
-
-        dersListesi.setAdapter(cardviewAdapterNoteLesson);
-
-
-        KayitYukle();
+        KayitYukle(bundle.getString("ders",""));
         DersleriYukle();
 
 
@@ -129,12 +104,6 @@ public class Notes extends Fragment {
                 Cursor cursor=dbHelper.ResimBul(secilenNotId.getText().toString());
                 while (cursor.moveToNext())
                     dersNotu.setNotResmi(cursor.getBlob(0));
-                //Resmi byteArraya dönüştürme kodu
-                //
-                //Bitmap bitmap=((BitmapDrawable)secilenNotResmi.getDrawable()).getBitmap();
-                //ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                //bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-                //byte[] i=stream.toByteArray();
 
                 bundle.putByteArray("Seçilen Not Resmi",dersNotu.getNotResmi());
 
@@ -166,16 +135,6 @@ public class Notes extends Fragment {
             alertDialog.setNegativeButton(getString(R.string.hayir), null);
             alertDialog.show();
         }
-        fabButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager manager = getFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.nav_host_fragment,new NoteAdd(),"noteAdd");
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
 
         notListesi.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -189,7 +148,7 @@ public class Notes extends Fragment {
                             Toast.makeText(getActivity(), getString(R.string.notsilindi), Toast.LENGTH_SHORT).show();
 
                             dersNotuArrayList.clear();
-                            KayitYukle();
+                            KayitYukle(bundle.getString("ders",""));
                             cardviewAdapterNote.notifyDataSetChanged();
                         } catch (Exception e) {
                             Toast.makeText(getActivity(), getString(R.string.notsilinemedi), Toast.LENGTH_SHORT).show();
@@ -209,7 +168,7 @@ public class Notes extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Notes.this.onTextChanged(s,start,before,count);
+                LessonNotes.this.onTextChanged(s,start,before,count);
             }
 
             @Override
@@ -223,11 +182,11 @@ public class Notes extends Fragment {
         return view;
     }
 
-    public void KayitYukle()
+    public void KayitYukle(String ders)
     {
         try {
             dersNotuArrayList.clear();
-            cursor = dbHelper.dersNotlariTumu();
+            cursor = dbHelper.dersNotlari(ders);
             while(cursor.moveToNext())
             {
                 dersNotu=new NoteClass();
@@ -264,7 +223,6 @@ public class Notes extends Fragment {
                 ders=new LessonClass(ders.getDersAdi(),"","","",0,0,"","","",0,0,"",0);
                 derslerArrayList.add(ders);
             }
-            cardviewAdapterNoteLesson.notifyDataSetChanged();
 
         }catch (SQLException e)
         {

@@ -6,12 +6,16 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +34,8 @@ import java.util.Objects;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import fatihdemirag.net.dersprogram.MainActivity;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.adapters.CardViewAdapterNote;
 import fatihdemirag.net.dersprogram.db.DbHelper;
@@ -50,17 +56,14 @@ public class Home extends Fragment {
 
     private CardViewAdapterNote cardviewAdapterNote;
 
-    private AdView adView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_home, container, false);
+        MainActivity.page.setText(getString(R.string.anasayfa));
+
 
         notListesi = view.findViewById(R.id.notListesi);
-        adView = view.findViewById(R.id.adViewHome);
-
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("97B662D4BD302B562AEF9FF593DD78C8").build();
-        adView.loadAd(adRequest);
 
         cardviewAdapterNote = new CardViewAdapterNote(getActivity(), dersNotuArrayList);
         notListesi.setAdapter(cardviewAdapterNote);

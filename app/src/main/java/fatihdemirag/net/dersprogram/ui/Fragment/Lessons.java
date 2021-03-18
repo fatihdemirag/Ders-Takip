@@ -1,15 +1,14 @@
 package fatihdemirag.net.dersprogram.ui.Fragment;
 
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +22,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
+import fatihdemirag.net.dersprogram.MainActivity;
 import fatihdemirag.net.dersprogram.R;
 import fatihdemirag.net.dersprogram.db.DbHelper;
 
@@ -42,7 +40,6 @@ public class Lessons extends Fragment {
 
     private EditText dialogDersAdi;
 
-    private AdView adView;
 
     private Animation fabAcilis, fabKapanis;
 
@@ -58,9 +55,9 @@ public class Lessons extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_lessons, container, false);
+        MainActivity.page.setText(getString(R.string.dersler));
 
-
-        ListView derslerListesi = view.findViewById(R.id.derslerListesi);
+        final ListView derslerListesi = view.findViewById(R.id.derslerListesi);
         dersEkleButton = view.findViewById(R.id.dersEkleButton);
 
         fabAcilis = AnimationUtils.loadAnimation(getActivity(), R.anim.fab_open);
@@ -80,10 +77,6 @@ public class Lessons extends Fragment {
         dialog.setCancelable(true);
 
         dialogDersAdi = dialog.findViewById(R.id.dersAdi);
-        adView = dialog.findViewById(R.id.adView);
-
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("97B662D4BD302B562AEF9FF593DD78C8").build();
-        adView.loadAd(adRequest);
 
 
         dersEkleButton.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +150,21 @@ public class Lessons extends Fragment {
                 return false;
             }
         });
-
+        derslerListesi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(), derslerListesi.getItemAtPosition(i).toString(), Toast.LENGTH_SHORT).show();
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                LessonNotes lessonNotes=new LessonNotes();
+                Bundle bundle=new Bundle();
+                bundle.putString("ders",derslerListesi.getItemAtPosition(i).toString());
+                lessonNotes.setArguments(bundle);
+                transaction.replace(R.id.nav_host_fragment,lessonNotes,"noteAdd");
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         return view;
     }
